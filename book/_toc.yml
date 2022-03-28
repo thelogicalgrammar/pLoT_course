@@ -2,5 +2,6 @@
 format: jb-book
 root: intro
 chapters:
+- file: howto 
 - file: 1_python
 - file: 2_formalGrammars
