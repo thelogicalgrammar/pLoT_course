@@ -1,6 +1,7 @@
 LOTlib3
 LOTlib3/*
-book/*.*
+book/_build/
+book/_build/html/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
