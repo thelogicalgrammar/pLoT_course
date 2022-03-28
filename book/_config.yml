@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: The pLoT
+title: "The pLoT: A course"
 author: Fausto Carcassi
 logo: logo.png
 
@@ -34,3 +34,6 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+# prevent jupyter-book from adding LOTlib3 to build_
+exclude_patterns: [LOTlib3]
