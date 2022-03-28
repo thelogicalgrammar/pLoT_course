@@ -1,3 +1,7 @@
+LOTlib3
+LOTlib3/*
+book/*.*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
