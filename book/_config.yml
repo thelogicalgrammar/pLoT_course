@@ -29,6 +29,9 @@ repository:
   url: https://thelogicalgrammar.github.io/pLoT_course  # Online location of your book
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
+launch_buttons:
+  colab_url: "https://colab.research.google.com"
+
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
