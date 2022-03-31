@@ -1,4 +1,4 @@
-# An Introduction to the probabilistic Language of Thought
+# Introduction
 
 > **_NOTE_** This is very much work in progress, so feel free to send feedback to the email address described by the following string:  
 > `fausto` followed by a dot followed by `carcassi` followed by `@` followed by `gmail.com`.
@@ -10,7 +10,7 @@ This course starts from scratch with a brief introduction to Python and builds u
 The latter half of the course relies on [Steven Piantadosi](http://colala.berkeley.edu/people/piantadosi/)'s library [LOTlib3](https://github.com/piantado/LOTlib3). 
 Note that LOTlib3 is slower than other similar inference libraries developed by Piantadosi (e.g. [fleet](https://github.com/piantado/Fleet)). 
 However, we use LOTlib3 for a crucial reasons: it is written entirely in python, which means folks with more python knowledge can easily have a look at 
-what is happening behind the hood, and parts of the LOTlib3 code can be explained in class. 
+what is happening under the hood, and parts of the LOTlib3 code can be explained in class. 
 
 ## Structure of the course
 
