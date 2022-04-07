@@ -1,7 +1,27 @@
 # Table of contents
 format: jb-book
 root: intro
-chapters:
-- file: howto 
-- file: 1_python
-- file: 2_formalGrammars
+
+# chapters:
+# - file: evaluation
+# - file: howto 
+parts:
+- numbered: True
+  chapters:
+    - file: evaluation
+    - file: howto 
+    - file: acknowledgments
+    - file: askquestion
+- caption: Foundations
+  numbered: True
+  chapters:
+    - file: 1_python
+    - file: 2_pythonContinued
+    - file: 3_formalGrammars
+    - file: 4_pcfg
+    - file: 5_BayesI
+    - file: 6_BayesII
+- caption: The probabilistic LoT
+  numbered: True
+  chapters:
+    - file: 7_introPLoT

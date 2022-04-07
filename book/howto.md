@@ -7,7 +7,7 @@ There are two main ways of getting colab running in the context of this course.
 
 First method (fast and simple)
 1. Go to the chapter you want to work on in this book.
-1. Hover the the little spaceship button at the top of the page.
+1. Hover on the little spaceship button at the top of the page.
 1. Click on the 'Colab' button from the menu that appears.
 
 Second method (more generalizable to other contexts)

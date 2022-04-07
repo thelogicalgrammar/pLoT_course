@@ -3,6 +3,7 @@
 
 title: "The pLoT: A course"
 author: Fausto Carcassi
+copyright: "2022"
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
@@ -26,8 +27,9 @@ sphinx:
 
 # Information about where the book exists on the web
 repository:
-  url: https://thelogicalgrammar.github.io/pLoT_course  # Online location of your book
-  branch: master  # Which branch of the repository should be used when creating links (optional)
+  url: https://github.com/thelogicalgrammar/pLoT_course 
+  path_to_book: book/
+  branch: master 
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"
@@ -39,7 +41,7 @@ html:
   use_repository_button: true
 
 # prevent jupyter-book from adding LOTlib3 to build_
-exclude_patterns: [LOTlib3]
+exclude_patterns: [LOTlib3, update_book.sh]
 
 google_analytics:
   mytrackingcode: G-WNHEQ7TJ4F
