@@ -15,7 +15,7 @@ parts:
   numbered: True
   chapters:
     - file: 1_topfile
-      title: Introduction
+      title: Week 1
       sections:
         - file: 1_python
           title: Lab
