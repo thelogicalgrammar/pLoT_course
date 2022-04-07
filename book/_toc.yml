@@ -2,25 +2,31 @@
 format: jb-book
 root: intro
 
-# chapters:
-# - file: evaluation
-# - file: howto 
 parts:
 - numbered: True
   chapters:
     - file: evaluation
     - file: howto 
+      title: Running code in labs
     - file: acknowledgments
     - file: askquestion
+
 - caption: Foundations
   numbered: True
   chapters:
-    - file: 1_python
+    - file: 1_topfile
+      title: Introduction
+      sections:
+        - file: 1_python
+          title: Lab
+        - file: 1_lecture
+          title: Lecture
     - file: 2_pythonContinued
     - file: 3_formalGrammars
     - file: 4_pcfg
     - file: 5_BayesI
     - file: 6_BayesII
+
 - caption: The probabilistic LoT
   numbered: True
   chapters:
