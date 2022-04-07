@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. (Crash) Intro to python &#8212; The pLoT: A course</title>
+    <title>5.1. (Crash) Intro to python &#8212; The pLoT: A course</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. More python!" href="2_pythonContinued.html" />
-    <link rel="prev" title="4. Ask a question!" href="askquestion.html" />
+    <link rel="next" title="5.2. Introduction week" href="1_lecture.html" />
+    <link rel="prev" title="5. Lecture" href="1_topfile.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -105,7 +105,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="howto.html">
-   2. How to get things running on colab
+   2. Running code in labs
   </a>
  </li>
  <li class="toctree-l1">
@@ -125,10 +125,27 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   5. (Crash) Intro to python
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="1_topfile.html">
+   5. Introduction
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.1. Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="1_lecture.html">
+     5.2. Lecture
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2_pythonContinued.html">
@@ -278,89 +295,89 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#colab">
-   5.1. Colab
+   5.1.1. Colab
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#jupyter-notebooks">
-   5.2. Jupyter notebooks
+   5.1.2. Jupyter notebooks
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#some-programming-concepts-in-python">
-   5.3. Some programming concepts in python
+   5.1.3. Some programming concepts in python
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#spaces-and-indentation">
-     5.3.1. Spaces and indentation
+     5.1.3.1. Spaces and indentation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#printing-and-commands">
-     5.3.2. Printing and commands
+     5.1.3.2. Printing and commands
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#comments">
-     5.3.3. Comments
+     5.1.3.3. Comments
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#variables-in-python">
-     5.3.4. Variables in python
+     5.1.3.4. Variables in python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#operators">
-     5.3.5. Operators
+     5.1.3.5. Operators
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#equality-sign">
-     5.3.6. Equality sign
+     5.1.3.6. Equality sign
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#data-types-and-their-operators">
-     5.3.7. Data types and their operators
+     5.1.3.7. Data types and their operators
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#strings-str">
-       5.3.7.1. Strings: str
+       5.1.3.7.1. Strings: str
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#integers-int">
-       5.3.7.2. Integers: int
+       5.1.3.7.2. Integers: int
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#floats-float">
-       5.3.7.3. Floats: float
+       5.1.3.7.3. Floats: float
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#lists-list">
-       5.3.7.4. Lists: list
+       5.1.3.7.4. Lists: list
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#boolean-bool">
-       5.3.7.5. Boolean: bool
+       5.1.3.7.5. Boolean: bool
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#conditionals">
-     5.3.8. Conditionals
+     5.1.3.8. Conditionals
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#for-loops">
-     5.3.9.
+     5.1.3.9.
      <code class="docutils literal notranslate">
       <span class="pre">
        for
@@ -371,29 +388,29 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#some-other-important-keywords">
-     5.3.10. Some other important keywords
+     5.1.3.10. Some other important keywords
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-meaning-of-the-dot">
-     5.3.11. The meaning of the dot ‘.’
+     5.1.3.11. The meaning of the dot ‘.’
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#on-googling-problems">
-   5.4. On googling problems
+   5.1.4. On googling problems
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#some-exercises">
-   5.5. Some exercises
+   5.1.5. Some exercises
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#one-more-word-on-programming">
-   5.6. One more word on programming
+   5.1.6. One more word on programming
   </a>
  </li>
 </ul>
@@ -418,89 +435,89 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#colab">
-   5.1. Colab
+   5.1.1. Colab
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#jupyter-notebooks">
-   5.2. Jupyter notebooks
+   5.1.2. Jupyter notebooks
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#some-programming-concepts-in-python">
-   5.3. Some programming concepts in python
+   5.1.3. Some programming concepts in python
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#spaces-and-indentation">
-     5.3.1. Spaces and indentation
+     5.1.3.1. Spaces and indentation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#printing-and-commands">
-     5.3.2. Printing and commands
+     5.1.3.2. Printing and commands
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#comments">
-     5.3.3. Comments
+     5.1.3.3. Comments
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#variables-in-python">
-     5.3.4. Variables in python
+     5.1.3.4. Variables in python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#operators">
-     5.3.5. Operators
+     5.1.3.5. Operators
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#equality-sign">
-     5.3.6. Equality sign
+     5.1.3.6. Equality sign
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#data-types-and-their-operators">
-     5.3.7. Data types and their operators
+     5.1.3.7. Data types and their operators
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#strings-str">
-       5.3.7.1. Strings: str
+       5.1.3.7.1. Strings: str
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#integers-int">
-       5.3.7.2. Integers: int
+       5.1.3.7.2. Integers: int
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#floats-float">
-       5.3.7.3. Floats: float
+       5.1.3.7.3. Floats: float
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#lists-list">
-       5.3.7.4. Lists: list
+       5.1.3.7.4. Lists: list
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#boolean-bool">
-       5.3.7.5. Boolean: bool
+       5.1.3.7.5. Boolean: bool
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#conditionals">
-     5.3.8. Conditionals
+     5.1.3.8. Conditionals
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#for-loops">
-     5.3.9.
+     5.1.3.9.
      <code class="docutils literal notranslate">
       <span class="pre">
        for
@@ -511,29 +528,29 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#some-other-important-keywords">
-     5.3.10. Some other important keywords
+     5.1.3.10. Some other important keywords
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-meaning-of-the-dot">
-     5.3.11. The meaning of the dot ‘.’
+     5.1.3.11. The meaning of the dot ‘.’
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#on-googling-problems">
-   5.4. On googling problems
+   5.1.4. On googling problems
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#some-exercises">
-   5.5. Some exercises
+   5.1.5. Some exercises
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#one-more-word-on-programming">
-   5.6. One more word on programming
+   5.1.6. One more word on programming
   </a>
  </li>
 </ul>
@@ -546,7 +563,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="crash-intro-to-python">
-<h1><span class="section-number">5. </span>(Crash) Intro to python<a class="headerlink" href="#crash-intro-to-python" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5.1. </span>(Crash) Intro to python<a class="headerlink" href="#crash-intro-to-python" title="Permalink to this headline">¶</a></h1>
 <p>Hello everyone!</p>
 <p>The first two labs are going to be just an introduction to python. These are just the minimal requirements to follow the rest of the course, and it would be great if you could try to really internalize it and become familiar with it. You do this by going through the lab multiple times, or by looking at other introductions ot python on the internet. The latter might make more sense because the particular way I have to explain this stuff might not click with you; seeing different approaches is always useful.</p>
 <blockquote>
@@ -554,12 +571,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div></blockquote>
 <p>Unfortunately, <em>familiarity with programming takes time</em> - no way around that!</p>
 <div class="section" id="colab">
-<h2><span class="section-number">5.1. </span>Colab<a class="headerlink" href="#colab" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.1. </span>Colab<a class="headerlink" href="#colab" title="Permalink to this headline">¶</a></h2>
 <p>If you want to run this code on the server (not in your laptop), you should be seeing this document on colab. Colab. Colab is a product from Google that allows anyone to write and run python code through the browser. This way, you don’t need to set up and keep track of a python environment, which can be painful, and also we can make sure that we are all working on the same system, which helps with managing packages and avoiding surprises.</p>
 <p>While colab works pretty well for our purposes, it has some disadvantages. First, it limits the amount of computation you can do. Second, it makes it more complicated to manage files if you make changes to the notebooks I’ll provide. If you do, you’ll have to save your version of the notebook on your laptop and then re-upload it on colab to keep working on it.</p>
 </div>
 <div class="section" id="jupyter-notebooks">
-<h2><span class="section-number">5.2. </span>Jupyter notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.2. </span>Jupyter notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h2>
 <p>The labs (including the one you are working on right now!) will be written in Jupyter notebooks. Jupyter notebooks are files that contain a combination of text and code. Each notebook consists of a series of <em>cells</em>, and each cell is either a text cell or a code cell.</p>
 <p>Various things to keep in mind:</p>
 <ul class="simple">
@@ -577,9 +594,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div></blockquote>
 </div>
 <div class="section" id="some-programming-concepts-in-python">
-<h2><span class="section-number">5.3. </span>Some programming concepts in python<a class="headerlink" href="#some-programming-concepts-in-python" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.3. </span>Some programming concepts in python<a class="headerlink" href="#some-programming-concepts-in-python" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="spaces-and-indentation">
-<h3><span class="section-number">5.3.1. </span>Spaces and indentation<a class="headerlink" href="#spaces-and-indentation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.1. </span>Spaces and indentation<a class="headerlink" href="#spaces-and-indentation" title="Permalink to this headline">¶</a></h3>
 <p>Spaces in python are part of the code, so adding or removing spaces can change the meaning of the code or break it. For instance, this should run fine:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -613,7 +630,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="printing-and-commands">
-<h3><span class="section-number">5.3.2. </span>Printing and commands<a class="headerlink" href="#printing-and-commands" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.2. </span>Printing and commands<a class="headerlink" href="#printing-and-commands" title="Permalink to this headline">¶</a></h3>
 <p>As is traditional when learning a programming language, let’s start with how you print the string ‘Hello world’. Strings in python are written with single or double quotation marks (they aren’t quite the same, but that doesn’t matter here). For instance, the string containing the sentence ‘Hello world’ can be written as <code class="docutils literal notranslate"><span class="pre">&quot;Hello</span> <span class="pre">world&quot;</span></code> or as <code class="docutils literal notranslate"><span class="pre">'Hello</span> <span class="pre">world'</span></code>.</p>
 <p>The way we print a string is by passing the string as an argument to the <code class="docutils literal notranslate"><span class="pre">print</span></code> function. Here’s the code:</p>
 <div class="cell docutils container">
@@ -636,7 +653,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div></blockquote>
 </div>
 <div class="section" id="comments">
-<h3><span class="section-number">5.3.3. </span>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.3. </span>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h3>
 <p>Comments are parts of the code that are not ran when you run the code. You can add them to your code to add explanations about what your code is doing. In python, if we want to only comment one line, we use the symbol <code class="docutils literal notranslate"><span class="pre">#</span></code>: everything after <code class="docutils literal notranslate"><span class="pre">#</span></code> will be a comment. If we want the comment to span over multiple lines, we use three quotation marks to mark the beginning of the comment and then three more to mark its end (possibly on a different line).</p>
 <p>For instance, suppose we wanted to comment the code above to explain what we are doing. We could do it so:</p>
 <div class="cell docutils container">
@@ -672,7 +689,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Python doesn’t see the comments!</p>
 </div>
 <div class="section" id="variables-in-python">
-<h3><span class="section-number">5.3.4. </span>Variables in python<a class="headerlink" href="#variables-in-python" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.4. </span>Variables in python<a class="headerlink" href="#variables-in-python" title="Permalink to this headline">¶</a></h3>
 <p>The topic of variables is huge and we can’t do it justice in the little space we have available here. But just to give you an idea, you can think of a variable as a letter or word that has some content.</p>
 <p>In python, variables are defined with the symbol <code class="docutils literal notranslate"><span class="pre">=</span></code>. On the left of the symbol you specify the name of your variable, and on the right the (initial) value, which you can generally change later. For instance, suppose we want to create a variable called <code class="docutils literal notranslate"><span class="pre">name</span></code> that has as value the string <code class="docutils literal notranslate"><span class="pre">John</span></code>. We could do it as follows:</p>
 <div class="cell docutils container">
@@ -732,7 +749,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div></blockquote>
 </div>
 <div class="section" id="operators">
-<h3><span class="section-number">5.3.5. </span>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.5. </span>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h3>
 <p>We have seen how to define string and variables containing string. But what if you wanted to combine two or more strings into a longer string? This is an example of what an <em>operator</em> can do. You can think of an operator as a python keyword to do something to an object, for example a string.</p>
 <p>In the case of combining string, we can use the operator <code class="docutils literal notranslate"><span class="pre">+</span></code>. We can do it as follows:</p>
 <div class="cell docutils container">
@@ -764,7 +781,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="equality-sign">
-<h3><span class="section-number">5.3.6. </span>Equality sign<a class="headerlink" href="#equality-sign" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.6. </span>Equality sign<a class="headerlink" href="#equality-sign" title="Permalink to this headline">¶</a></h3>
 <p>The equality sign in programming in a sense is close to what in English is expressed by the word ‘is’. However, note that there is a fundamental difference between two sense of ‘<code class="docutils literal notranslate"><span class="pre">a</span></code> is 3’:</p>
 <ol class="simple">
 <li><p>We are <em>giving</em> <code class="docutils literal notranslate"><span class="pre">a</span></code> the value 3</p></li>
@@ -794,7 +811,7 @@ False
 </div>
 </div>
 <div class="section" id="data-types-and-their-operators">
-<h3><span class="section-number">5.3.7. </span>Data types and their operators<a class="headerlink" href="#data-types-and-their-operators" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.7. </span>Data types and their operators<a class="headerlink" href="#data-types-and-their-operators" title="Permalink to this headline">¶</a></h3>
 <p>Things in python can be of different <em>types</em>, and depending on what type they are you can do different things with them and use different operators. To check the type of any object, use the keyword <code class="docutils literal notranslate"><span class="pre">type</span></code>. For instance, the following tells us that <code class="docutils literal notranslate"><span class="pre">a</span></code> is a string (<code class="docutils literal notranslate"><span class="pre">'str'</span></code>) and that <code class="docutils literal notranslate"><span class="pre">b</span></code> is an integer (<code class="docutils literal notranslate"><span class="pre">'int'</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -815,7 +832,7 @@ b is of type:  &lt;class &#39;int&#39;&gt;
 </div>
 <p>Let’s consider some important types one by one (not exhaustive!).</p>
 <div class="section" id="strings-str">
-<h4><span class="section-number">5.3.7.1. </span>Strings: str<a class="headerlink" href="#strings-str" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">5.1.3.7.1. </span>Strings: str<a class="headerlink" href="#strings-str" title="Permalink to this headline">¶</a></h4>
 <p>We have already briefly seen strings above. Basically, you can use them to encode text. You can join multiple strings with <code class="docutils literal notranslate"><span class="pre">+</span></code>, as we saw above. You can also do loads of other stuff with strings!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -836,7 +853,7 @@ THIS IS A GOOD STRING
 <p>Etcetera. If you want to know more about what you can do with strings, have a look <a class="reference external" href="https://docs.python.org/3/library/string.html">here</a>.</p>
 </div>
 <div class="section" id="integers-int">
-<h4><span class="section-number">5.3.7.2. </span>Integers: int<a class="headerlink" href="#integers-int" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">5.1.3.7.2. </span>Integers: int<a class="headerlink" href="#integers-int" title="Permalink to this headline">¶</a></h4>
 <p>Integers are just numbers without a fractional part. They can be positive or negative. Note that there are limits to the size of integers in python (and to the size of variables of every other type, too).</p>
 <p>You can do with ints everything you’d expect to be able to do:</p>
 <div class="cell docutils container">
@@ -875,7 +892,7 @@ False
 </div>
 </div>
 <div class="section" id="floats-float">
-<h4><span class="section-number">5.3.7.3. </span>Floats: float<a class="headerlink" href="#floats-float" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">5.1.3.7.3. </span>Floats: float<a class="headerlink" href="#floats-float" title="Permalink to this headline">¶</a></h4>
 <p>Intuitively, these are numbers with a comma. You can do with them everything you can do with integers, and it behaves as you’d expect. Moreover, note that equality doesn’t care about the type:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -899,7 +916,7 @@ True
 </div>
 </div>
 <div class="section" id="lists-list">
-<h4><span class="section-number">5.3.7.4. </span>Lists: list<a class="headerlink" href="#lists-list" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">5.1.3.7.4. </span>Lists: list<a class="headerlink" href="#lists-list" title="Permalink to this headline">¶</a></h4>
 <p>You can think of lists as ordered sets of values of any type.</p>
 <p>You can define them as follows:</p>
 <div class="cell docutils container">
@@ -975,7 +992,7 @@ second
 </div>
 </div>
 <div class="section" id="boolean-bool">
-<h4><span class="section-number">5.3.7.5. </span>Boolean: bool<a class="headerlink" href="#boolean-bool" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">5.1.3.7.5. </span>Boolean: bool<a class="headerlink" href="#boolean-bool" title="Permalink to this headline">¶</a></h4>
 <p>Boolean values are truth values, and there’s two of them: <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>. We can manipulate Booleans as you learned in logic 1. For instance, we can use the Boolean operators to calculate a function of multiple Boolean values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1018,7 +1035,7 @@ True
 </div>
 </div>
 <div class="section" id="conditionals">
-<h3><span class="section-number">5.3.8. </span>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.8. </span>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">¶</a></h3>
 <p>Suppose you want one thing to happen if a condition obtains and another thing to happen if it doesn’t. We can use the ‘if-else’ construction to achieve this. The way it works is:</p>
 <ul class="simple">
 <li><p>The first line of the if-else construct is like:</p></li>
@@ -1055,7 +1072,7 @@ True
 </div>
 </div>
 <div class="section" id="for-loops">
-<h3><span class="section-number">5.3.9. </span><code class="docutils literal notranslate"><span class="pre">for</span></code> loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.9. </span><code class="docutils literal notranslate"><span class="pre">for</span></code> loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h3>
 <p>Suppose you want to go through the elements of a list one by one. One way to do it would be to just do it by hand. But for long lists that would become impractical, and the point of programming is automation. A better way is to use a <em>for</em> loop. The idea is that you run some piece of code repeatedly, and a variables you specify takes on each value in the list in turn.</p>
 <p>The syntax to do this is:</p>
 <ol class="simple">
@@ -1081,7 +1098,7 @@ True
 </div>
 </div>
 <div class="section" id="some-other-important-keywords">
-<h3><span class="section-number">5.3.10. </span>Some other important keywords<a class="headerlink" href="#some-other-important-keywords" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.10. </span>Some other important keywords<a class="headerlink" href="#some-other-important-keywords" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">range</span></code>: Often, we want to loop over successive integers. <code class="docutils literal notranslate"><span class="pre">range</span></code> allows us to do this easily. Specifically, suppose we want to loop from number 0 to number 9. Then we could write <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(10)</span></code>. Let’s test it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1164,14 +1181,14 @@ True
 <p><code class="docutils literal notranslate"><span class="pre">import</span></code>: While ‘base’ python defines some useful by default (e.g., all the stuff we’ve seen above), often you’ll need to use functions and other things that are not defined in python by default. One option is to write them yourself, but often someone else has done that already, and if that someone else was organized enough, they put it in a library and now we can use it too! The way we do it is by first installing the library (there’s various ways of doing this, but I’ll mostly do it for you in this course) and then calling <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;libraryname&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;libraryname&gt;</span></code> stands for the name of the library you want to import.</p>
 </div>
 <div class="section" id="the-meaning-of-the-dot">
-<h3><span class="section-number">5.3.11. </span>The meaning of the dot ‘.’<a class="headerlink" href="#the-meaning-of-the-dot" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.11. </span>The meaning of the dot ‘.’<a class="headerlink" href="#the-meaning-of-the-dot" title="Permalink to this headline">¶</a></h3>
 <p>You’ll see that in python you often write things like <code class="docutils literal notranslate"><span class="pre">foo.bar</span></code>, where <code class="docutils literal notranslate"><span class="pre">foo</span></code> and <code class="docutils literal notranslate"><span class="pre">bar</span></code> are some words. The meaning of the dot is that you are accessing an attribute (e.g., <code class="docutils literal notranslate"><span class="pre">bar</span></code>) from an object (e.g., <code class="docutils literal notranslate"><span class="pre">foo</span></code>). E.g., it could be something like <code class="docutils literal notranslate"><span class="pre">person.age</span></code> or <code class="docutils literal notranslate"><span class="pre">person.calculate_age()</span></code>, where you are accessing the attribute <code class="docutils literal notranslate"><span class="pre">age</span></code> from the object <code class="docutils literal notranslate"><span class="pre">person</span></code>.</p>
 <p>Objects can be all sorts of things in python (and you use the dot for things that aren’t objects, too), and this is a huge topic. But I hope that this gives you a first intuition.</p>
 <p>In practice, you’ll soon encounter this when using a library. After we import a library, e.g., we import numpy with <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code>, we can access the things defined within the library with the dot notation. For instance, if we want to get the function <code class="docutils literal notranslate"><span class="pre">sum</span></code> from numpy, we could write <code class="docutils literal notranslate"><span class="pre">np.sum</span></code></p>
 </div>
 </div>
 <div class="section" id="on-googling-problems">
-<h2><span class="section-number">5.4. </span>On googling problems<a class="headerlink" href="#on-googling-problems" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.4. </span>On googling problems<a class="headerlink" href="#on-googling-problems" title="Permalink to this headline">¶</a></h2>
 <p>Finally, a short comment on googling stuff. Finding stuff on google is an absolutely social skill for programming, whether you get an error and you have no idea what it means or you need to finds a way of doing something complicated. An important part of this skill is to learn how to <em>phrase</em> your problem in a way that relevant results come up. This skill is hard to teach, and often you need several tries before something relevant comes up, but some words of advice:</p>
 <ul class="simple">
 <li><p>Python is incredibly popular and the community is huge. If you have a problem, it’s most likely that someone else already had it and there’s a discussion / solution out there on the internet.</p></li>
@@ -1180,7 +1197,7 @@ True
 </ul>
 </div>
 <div class="section" id="some-exercises">
-<h2><span class="section-number">5.5. </span>Some exercises<a class="headerlink" href="#some-exercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.5. </span>Some exercises<a class="headerlink" href="#some-exercises" title="Permalink to this headline">¶</a></h2>
 <p>Please make sure you can do these exercises:</p>
 <ol class="simple">
 <li><p>Write a loop that prints the characters in the string ‘Fodor was a great writer’. The output should be:</p></li>
@@ -1205,7 +1222,7 @@ True
 </ol>
 </div>
 <div class="section" id="one-more-word-on-programming">
-<h2><span class="section-number">5.6. </span>One more word on programming<a class="headerlink" href="#one-more-word-on-programming" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.6. </span>One more word on programming<a class="headerlink" href="#one-more-word-on-programming" title="Permalink to this headline">¶</a></h2>
 <p>This was a super super condensed introduction / refresher on python, but of course it could only scratch the surface of the tip of the iceberg (metaphor parkour!).</p>
 <p>If this stuff was all familiar and easy peasy, steady on. However, if you found it new / difficult / confusing, I recommend that you try to familiarize yourself with these concepts as soon as possible. Also, let me know and if there is enough interest I can arrange a separate class for a more thorough introduction to programming.</p>
 <p><font size=10>Don’t lose the thread of the course!</font></p>
@@ -1237,17 +1254,17 @@ True
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="askquestion.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="1_topfile.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4. </span>Ask a question!</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Lecture</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="2_pythonContinued.html" title="next page">
+    <a class='right-next' id="next-link" href="1_lecture.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>More python!</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Introduction week</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
