@@ -1,6 +1,7 @@
-# Introduction week
+# Lecture
 
-Welcome everyone! This section contains the material for the first week.
+<iframe src='./1_introduction.pdf' width='100%' height='600px' frameborder='0'>
+
 
 
 
