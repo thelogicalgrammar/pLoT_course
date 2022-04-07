@@ -17,63 +17,14 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from LOTlib3.Grammar import Grammar
-grammar = Grammar()
-
-grammar.add_rule('START', '', ['QUANT'], 1.0)
-
-# Very simple -- one allowed and required quantifier
-grammar.add_rule('QUANT', 'exists_', ['FUNCTION', 'SET'], 1.00)
-grammar.add_rule('QUANT', 'forall_', ['FUNCTION', 'SET'], 1.00)
-
-# The thing we are a function of
-grammar.add_rule('SET', 'S', None, 1.0)
-
-# And allow us to create a new kind of function
-grammar.add_rule('FUNCTION', 'lambda', ['BOOL'], 1.0, bv_type='OBJECT')
-
-# Logical connectives
-grammar.add_rule('BOOL', 'and_', ['BOOL', 'BOOL'], 1.0)
-grammar.add_rule('BOOL', 'or_', ['BOOL', 'BOOL'], 1.0)
-grammar.add_rule('BOOL', 'not_', ['BOOL'], 1.0)
-
-# non-terminal arguments get passed as normal python arguments
-grammar.add_rule('BOOL', 'is_color_',  ['OBJECT', '\'red\''],   5.00) # --> is_color_(OBJECT, 'red') --> OBJECT.color == 'red'
-grammar.add_rule('BOOL', 'is_color_',  ['OBJECT', '\'blue\''],  5.00)
-grammar.add_rule('BOOL', 'is_color_',  ['OBJECT', '\'green\''], 5.00)
+for i in range(3):
+print(i, end='')
 ------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-File [0;32m/mnt/c/Users/faust/Dropbox/Tubingen/teaching/pLoT/pLoT_course/book/LOTlib3/Miscellaneous.py:19[0m, in [0;36m<module>[0;34m[0m
-[1;32m     17[0m [38;5;28;01mimport[39;00m [38;5;21;01mtypes[39;00m    [38;5;66;03m# For checking if something is a function: isinstance(f, types.FunctionType)[39;00m
-[0;32m---> 19[0m [38;5;28;01mtry[39;00m: [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[1;32m     20[0m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m: [38;5;28;01mimport[39;00m [38;5;21;01mnumpypy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;36m  Input [0;32mIn [2][0;36m[0m
+[0;31m    print(i, end='')[0m
+[0m    ^[0m
+[0;31mIndentationError[0m[0;31m:[0m expected an indented block after 'for' statement on line 1
 
-[0;31mModuleNotFoundError[0m: No module named 'numpy'
-
-During handling of the above exception, another exception occurred:
-
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [2][0m, in [0;36m<cell line: 1>[0;34m()[0m
-[0;32m----> 1[0m [38;5;28;01mfrom[39;00m [38;5;21;01mLOTlib3[39;00m[38;5;21;01m.[39;00m[38;5;21;01mGrammar[39;00m [38;5;28;01mimport[39;00m Grammar
-[1;32m      2[0m grammar [38;5;241m=[39m Grammar()
-[1;32m      4[0m grammar[38;5;241m.[39madd_rule([38;5;124m'[39m[38;5;124mSTART[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124m'[39m, [[38;5;124m'[39m[38;5;124mQUANT[39m[38;5;124m'[39m], [38;5;241m1.0[39m)
-
-File [0;32m/mnt/c/Users/faust/Dropbox/Tubingen/teaching/pLoT/pLoT_course/book/LOTlib3/Grammar.py:10[0m, in [0;36m<module>[0;34m[0m
-[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mcollections[39;00m [38;5;28;01mimport[39;00m defaultdict
-[1;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01mitertools[39;00m
-[0;32m---> 10[0m [38;5;28;01mfrom[39;00m [38;5;21;01mLOTlib3[39;00m[38;5;21;01m.[39;00m[38;5;21;01mMiscellaneous[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
-[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01mLOTlib3[39;00m[38;5;21;01m.[39;00m[38;5;21;01mGrammarRule[39;00m [38;5;28;01mimport[39;00m GrammarRule, BVAddGrammarRule
-[1;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mLOTlib3[39;00m[38;5;21;01m.[39;00m[38;5;21;01mBVRuleContextManager[39;00m [38;5;28;01mimport[39;00m BVRuleContextManager
-
-File [0;32m/mnt/c/Users/faust/Dropbox/Tubingen/teaching/pLoT/pLoT_course/book/LOTlib3/Miscellaneous.py:20[0m, in [0;36m<module>[0;34m[0m
-[1;32m     17[0m [38;5;28;01mimport[39;00m [38;5;21;01mtypes[39;00m    [38;5;66;03m# For checking if something is a function: isinstance(f, types.FunctionType)[39;00m
-[1;32m     19[0m [38;5;28;01mtry[39;00m: [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[0;32m---> 20[0m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m: [38;5;28;01mimport[39;00m [38;5;21;01mnumpypy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[1;32m     22[0m [38;5;66;03m# Some useful constants[39;00m
-[1;32m     23[0m Infinity [38;5;241m=[39m [38;5;28mfloat[39m([38;5;124m"[39m[38;5;124minf[39m[38;5;124m"[39m)
-
-[0;31mModuleNotFoundError[0m: No module named 'numpypy'
-ModuleNotFoundError: No module named 'numpypy'
+IndentationError: expected an indented block after 'for' statement on line 1 (3243958857.py, line 2)
 

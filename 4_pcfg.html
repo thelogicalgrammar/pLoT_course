@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Evaluations &amp; project topics &#8212; The pLoT: A course</title>
+    <title>8. Probabilistic Context Free Grammars &#8212; The pLoT: A course</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -50,8 +50,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. How to get things running on colab" href="howto.html" />
-    <link rel="prev" title="Introduction" href="intro.html" />
+    <link rel="next" title="9. Bayes (Part I)" href="5_BayesI.html" />
+    <link rel="prev" title="7. Formal Grammars" href="3_formalGrammars.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,9 +95,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="evaluation.html">
    1. Evaluations &amp; project topics
   </a>
  </li>
@@ -122,7 +122,7 @@ const thebe_selector_output = ".output, .cell_output"
   Foundations
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="1_python.html">
    5. (Crash) Intro to python
@@ -138,8 +138,8 @@ const thebe_selector_output = ".output, .cell_output"
    7. Formal Grammars
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="4_pcfg.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    8. Probabilistic Context Free Grammars
   </a>
  </li>
@@ -206,9 +206,9 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/evaluation.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/4_pcfg.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -226,7 +226,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/thelogicalgrammar/pLoT_course/issues/new?title=Issue%20on%20page%20%2Fevaluation.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/thelogicalgrammar/pLoT_course/issues/new?title=Issue%20on%20page%20%2F4_pcfg.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -242,29 +242,33 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/thelogicalgrammar/pLoT_course/master?urlpath=tree/book/4_pcfg.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/thelogicalgrammar/pLoT_course/blob/master/book/4_pcfg.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#evaluations">
-   1.1. Evaluations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#project-topics">
-   1.2. Project topics
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -272,74 +276,19 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Evaluations & project topics</h1>
+                <h1>Probabilistic Context Free Grammars</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#evaluations">
-   1.1. Evaluations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#project-topics">
-   1.2. Project topics
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="evaluations-project-topics">
-<h1><span class="section-number">1. </span>Evaluations &amp; project topics<a class="headerlink" href="#evaluations-project-topics" title="Permalink to this headline">¶</a></h1>
-<p>This is a 6 credits course (If you want to take it for 9 credits please let me know and we can try to arrange something).</p>
-<div class="section" id="evaluations">
-<h2><span class="section-number">1.1. </span>Evaluations<a class="headerlink" href="#evaluations" title="Permalink to this headline">¶</a></h2>
-<p>This course will have the following moments of evaluation:</p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Type</p></th>
-<th class="head"><p>Percentage of grade</p></th>
-<th class="head"><p>Info</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Homework</p></td>
-<td><p>30% (total) / 10% (each)</p></td>
-<td><p>3 sets of homework. <br>First set will be on the third week and then every two weeks for three times.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Final project</p></td>
-<td><p>70%</p></td>
-<td><p>Final project, either selected from the given list or proposed by you.<br>(If the latter, please discuss your idea with me in advance)</p></td>
-</tr>
-</tbody>
-</table>
-<p>The homework will be about the programming / technical side of the course.</p>
-</div>
-<div class="section" id="project-topics">
-<h2><span class="section-number">1.2. </span>Project topics<a class="headerlink" href="#project-topics" title="Permalink to this headline">¶</a></h2>
-<p>Here are some possible final projects in order of increasing complexity:</p>
-<ul class="simple">
-<li><p>Review of the literature on the probabilistic Language of Thought.</p></li>
-<li><p>Review of the philosophical literature on the Language of Thought.</p></li>
-<li><p>Implement a model for learning spatial connectives in LOTlib3 (e.g., ‘up’, ‘below’, etc.)</p></li>
-<li><p>Comment the source code of LOTlib3.</p></li>
-<li><p>Choose a Bayesian approximation algorithm (e.g. reversible-jump Monte Carlo), implement it, and fit one of the models discussed in the second half of the course.</p></li>
-<li><p>Implement a model of geometric shape learning in LOTlib3 (quite a challenge! Not sure how well it can be done, but I judge the quality of the attempt even if it does not work well).</p></li>
-<li><p>Choose your own semantic domain and implement a model that learns it in LOTlib3 (Discuss your choice of domain with me first!).</p></li>
-</ul>
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="probabilistic-context-free-grammars">
+<h1><span class="section-number">8. </span>Probabilistic Context Free Grammars<a class="headerlink" href="#probabilistic-context-free-grammars" title="Permalink to this headline">¶</a></h1>
 </div>
 
     <script type="text/x-thebe-config">
@@ -351,33 +300,33 @@ const thebe_selector_output = ".output, .cell_output"
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "plot"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "plot",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'plot'</script>
 
               </div>
               
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="3_formalGrammars.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction</p>
+            <p class="prev-next-title"><span class="section-number">7. </span>Formal Grammars</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="howto.html" title="next page">
+    <a class='right-next' id="next-link" href="5_BayesI.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>How to get things running on colab</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Bayes (Part I)</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -1,8 +1,6 @@
 # Introduction
 
-> **_NOTE_** This is very much work in progress, so feel free to send feedback to the email address described by the following string:  
-> `fausto` followed by a dot followed by `carcassi` followed by `@` followed by `gmail.com`.
-> Materials for this course will change throughout 2022 as I adapt the course to emerging students' needs.
+> **_NOTE_** This is very much work in progress, so feel free to send feedback to the email address described by the following string:  `fausto` followed by a dot followed by `carcassi` followed by `@` followed by `gmail.com`. Materials for this course will change throughout 2022 as I adapt the course to emerging students' needs.
 
 This is the material for the programming labs for Fausto Carcassi's course on the probabilistic Language of Thought (pLoT) taught in the summer semester 2022 in Tuebingen.
 This course starts from scratch with a brief introduction to Python and builds up to learning categories in a pLoT with Bayesian learning algorithms.
@@ -23,13 +21,11 @@ with Markov Chain Monte Carlo algorithms. The second section focuses on learning
 	1. Introduction 
 		- Lecture: 
 			- Introduction to the course and overview
-		- Lab: 
-			- Setting up python & introduction to python
 	2. Philosophy week 1
 		- Lecture: 
 			- The Language of Thought: what's the idea?
 		- Lab: 
-			- Introduction to python (continued)
+			- Introduction to python
 	3. Philosophy week 2
 		- Lecture: 
 			- The Language of Thought (continued)
@@ -37,7 +33,7 @@ with Markov Chain Monte Carlo algorithms. The second section focuses on learning
 			- Introduction to python (continued)
 	4. Formal languages 1
 		- Lecture: 
-			- Formal grammar and formal languages
+			- Formal grammar, formal languages, and typed lambda calculus
 		- Lab:
 			- Defining formal grammars in python
 	5. Formal languages 2
@@ -95,12 +91,9 @@ with Markov Chain Monte Carlo algorithms. The second section focuses on learning
 
 ## Table of contents
 
+> __**NOTE**__ that most of the book is still empty. I will add the labs during the semester based on your feedback and how I feel the course is going!
+
 Here's the table of contents to help you orientate and give you a sense of what's where:
 ```{tableofcontents}
 ```
 
-## Acknowledgments
-
-I am writing this course while doing a postdoc with Michael Franke, so a big thank you to him! 
-
-Also thank you to Steven Piantadosi for developing LOTlib3, thus saving me a huge amount of time.
