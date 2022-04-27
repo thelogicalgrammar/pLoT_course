@@ -9,7 +9,8 @@ logo: logo.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+  execute_notebooks: "off"
+  # execute_notebooks: force
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -24,6 +25,7 @@ bibtex_bibfiles:
 sphinx:
   config:
     bibtex_reference_style: author_year
+    html_extra_path: ['lectures']
 
 # Information about where the book exists on the web
 repository:
@@ -37,6 +39,7 @@ launch_buttons:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
+  favicon: favicon.png
   use_issues_button: true
   use_repository_button: true
 

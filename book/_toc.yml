@@ -3,8 +3,7 @@ format: jb-book
 root: intro
 
 parts:
-- numbered: True
-  chapters:
+- chapters:
     - file: evaluation
     - file: howto 
       title: Running code in labs
@@ -12,22 +11,49 @@ parts:
     - file: askquestion
 
 - caption: Foundations
-  numbered: True
   chapters:
     - file: 1_topfile
-      title: Week 1
+      title: Week 1 - Introduction and Plan
       sections:
-        - file: 1_python
-          title: Lab
         - file: 1_lecture
           title: Lecture
-    - file: 2_pythonContinued
-    - file: 3_formalGrammars
-    - file: 4_pcfg
-    - file: 5_BayesI
-    - file: 6_BayesII
+        - file: 1_reading
+          title: Reading
+    - file: 2_topfile
+      title: Week 2 - LoT Hypothesis I
+      sections:
+        - file: 2_lecture
+          title: Lecture
+        - file: 2_python
+          title: Lab
+        - file: 2_reading
+          title: Reading
+    - file: 3_topfile
+      title: Week 3 - LoT Hypothesis II
+      sections:
+        - file: 3_pythonContinued
+          title: Lab
+    - file: 4_topfile
+      title: Week 4 - Formal Grammars I
+      sections:
+        - file: 4_formalGrammars
+          title: Lab
+    - file: 5_topfile
+      title: Week 5 - Formal Grammars II
+      sections:
+        - file: 5_pcfg
+          title: Lab
+    - file: 6_topfile
+      title: Week 6 - Bayes I
+      sections:
+        - file: 6_BayesI
+          title: Lab
+    - file: 7_topfile
+      title: Week 7 - Bayes II
+      sections:
+        - file: 7_BayesII
+          title: Lab
 
 - caption: The probabilistic LoT
-  numbered: True
   chapters:
-    - file: 7_introPLoT
+    - file: 8_introPLoT
