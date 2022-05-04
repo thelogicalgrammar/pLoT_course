@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>More python! &#8212; The pLoT: A course</title>
+    <title>Python refresher: Part II &#8212; The pLoT: A course</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -192,7 +192,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Lab
+     Python refresher: Part II
     </a>
    </li>
    <li class="toctree-l2">
@@ -396,101 +396,94 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#importing-and-using-libraries">
-   Importing and using libraries
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Python refresher: Part II
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-library">
-     What is a library?
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing-and-using-libraries">
+     Importing and using libraries
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-a-library">
+       What is a library?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-do-we-import-and-use-libraries">
+       How do we import and use libraries?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions">
+     Functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#motivation">
+       Motivation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standard-function-definition-in-python">
+       Standard function definition in python
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calling-a-function">
+       Calling a function
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lambda-lambda-functions">
+       <span class="math notranslate nohighlight">
+        \(\lambda\)
+       </span>
+       (‘lambda’) functions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#recursive-functions">
+       Recursive functions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-as-objects">
+     Functions as objects
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-do-we-import-and-use-libraries">
-     How do we import and use libraries?
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recursion-without-recursion-note-more-difficult">
+     Recursion without recursion (note: more difficult!)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-in-matplotlib">
+     Plotting in Matplotlib
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classes-what-s-the-idea">
+     Classes, what’s the idea?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-handling">
+     Error handling
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#functions">
-   Functions
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-homeworks-set">
+   First homeworks set
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-function">
-     What is a function?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#standard-function-definition-in-python">
-     Standard function definition in python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#calling-a-function">
-     Calling a function
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lambda-lambda-functions">
-     <span class="math notranslate nohighlight">
-      \(\lambda\)
-     </span>
-     (‘lambda’) functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#recursive-functions">
-     Recursive functions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plotting-in-matplotlib">
-   Plotting in Matplotlib
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#classes">
-   Classes
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-class-intuitively">
-     What is a class, intuitively?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-define-a-class">
-     How to define a class
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#instantiating-an-object-from-a-class">
-     Instantiating an ‘object’ from a ‘class’
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#error-handling">
-   Error handling
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-s-an-error-and-what-types-of-errors-are-there">
-     What’s an error and what types of errors are there?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#try-except">
-     try … except …
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -502,7 +495,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>More python!</h1>
+                <h1>Python refresher: Part II</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -512,101 +505,94 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#importing-and-using-libraries">
-   Importing and using libraries
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Python refresher: Part II
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-library">
-     What is a library?
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing-and-using-libraries">
+     Importing and using libraries
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-a-library">
+       What is a library?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-do-we-import-and-use-libraries">
+       How do we import and use libraries?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions">
+     Functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#motivation">
+       Motivation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standard-function-definition-in-python">
+       Standard function definition in python
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calling-a-function">
+       Calling a function
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lambda-lambda-functions">
+       <span class="math notranslate nohighlight">
+        \(\lambda\)
+       </span>
+       (‘lambda’) functions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#recursive-functions">
+       Recursive functions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-as-objects">
+     Functions as objects
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-do-we-import-and-use-libraries">
-     How do we import and use libraries?
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recursion-without-recursion-note-more-difficult">
+     Recursion without recursion (note: more difficult!)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-in-matplotlib">
+     Plotting in Matplotlib
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classes-what-s-the-idea">
+     Classes, what’s the idea?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-handling">
+     Error handling
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#functions">
-   Functions
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-homeworks-set">
+   First homeworks set
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-function">
-     What is a function?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#standard-function-definition-in-python">
-     Standard function definition in python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#calling-a-function">
-     Calling a function
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lambda-lambda-functions">
-     <span class="math notranslate nohighlight">
-      \(\lambda\)
-     </span>
-     (‘lambda’) functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#recursive-functions">
-     Recursive functions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plotting-in-matplotlib">
-   Plotting in Matplotlib
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#classes">
-   Classes
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-class-intuitively">
-     What is a class, intuitively?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-define-a-class">
-     How to define a class
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#instantiating-an-object-from-a-class">
-     Instantiating an ‘object’ from a ‘class’
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#error-handling">
-   Error handling
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-s-an-error-and-what-types-of-errors-are-there">
-     What’s an error and what types of errors are there?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#try-except">
-     try … except …
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -617,10 +603,11 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="more-python">
-<h1>More python!<a class="headerlink" href="#more-python" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="python-refresher-part-ii">
+<h1>Python refresher: Part II<a class="headerlink" href="#python-refresher-part-ii" title="Permalink to this headline">¶</a></h1>
 <p>Last week, we have seen some basic python, which you should be familiar with by now. This includes comments, data types and some of the operators that can be used with them, and other tids and bits.</p>
 <p>This week, we’re going to look at some slightly more complex topics that are needed to work with the code in the second section of the course. Specifically, some concepts that we need to use Piantadosi’s LOTlib3 library.</p>
+<p>I expect the topics in this lab will be familiar to different extents to different people. Therefore, rather than explaining everything in huge detail, it’s easier if you just ask if you get stuck on a point, and we explore it more in detail.</p>
 <div class="section" id="importing-and-using-libraries">
 <h2>Importing and using libraries<a class="headerlink" href="#importing-and-using-libraries" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="what-is-a-library">
@@ -643,61 +630,753 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>and then we can just write:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 </pre></div>
 </div>
 <p>which is shorter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
+</pre></div>
+</div>
+</div>
+</div>
 <p>If we do not want the full library but rather just one thing from it, we can write:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
 </pre></div>
 </div>
 <p>and then we can just use <code class="docutils literal notranslate"><span class="pre">pi</span></code> directly without needing the <code class="docutils literal notranslate"><span class="pre">np.</span></code>.</p>
-<p>However, note that we need to</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="what-is-a-function">
-<h3>What is a function?<a class="headerlink" href="#what-is-a-function" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="motivation">
+<h3>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
+<p>Often when programming you repeatedly need some code that ‘does the same thing’, e.g. multiply two numbers, or take a string and transform it in some way. You can think of a function in python as a way of dealing with this without having to repeatedly write the same code (this is not all that a function is good for, but it is one thing that functions are good for). Basically, you give a name to the ‘piece of code’ that you repeatedly need, and use the name instead of the code itself.</p>
+<p>Let’s look at an example to understand this better. Suppose you have to write some code that takes a string, changes the first letter to ‘A’, and returns the first 10 characters. You can write it as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span> <span class="o">+</span> <span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Aello worl
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now suppose that you need to perform the procedure above for each element in a list of strings. You can do this by putting the code above in a loop:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="s1">&#39;conversation world&#39;</span><span class="p">,</span> <span class="s1">&#39;goodbye world&#39;</span><span class="p">]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">strings</span><span class="p">:</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span> <span class="o">+</span> <span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Aello worl&#39;, &#39;Aonversati&#39;, &#39;Aoodbye wo&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>But now suppose that you don’t know a priori whether you’re getting a list or a single word, and you need to adapt. One natural way to do it would be:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;bla bla bla&#39;</span>
+
+<span class="c1"># check if the variable is a list</span>
+<span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">variable</span><span class="p">:</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span> <span class="o">+</span> <span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span> <span class="o">+</span> <span class="n">variable</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ala bla bl
+</pre></div>
+</div>
+</div>
+</div>
+<p>But notes that some lines are repeated, namely</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span> <span class="o">+</span> <span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We would like a way to only write them once and use them in two places. A natural solution to this is a function that takes a string and performs the transformation we want.</p>
 </div>
 <div class="section" id="standard-function-definition-in-python">
 <h3>Standard function definition in python<a class="headerlink" href="#standard-function-definition-in-python" title="Permalink to this headline">¶</a></h3>
+<p>To define a function in python we do the following:</p>
+<ul class="simple">
+<li><p>start with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code></p></li>
+<li><p>followed by the name of the function</p></li>
+<li><p>followed by an open <code class="docutils literal notranslate"><span class="pre">(</span></code></p></li>
+<li><p>followed by zero or more arguments divided by commas</p></li>
+<li><p>followed by <code class="docutils literal notranslate"><span class="pre">):</span></code></p></li>
+<li><p>followed by one or more lines at the next indentation level</p></li>
+<li><p>In the points where you want a function to return a value, you can optionally put a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement followed by the value you want the function to return.</p></li>
+</ul>
+<p>For instance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="n">argument1</span><span class="p">,</span> <span class="n">argument2</span><span class="p">):</span>
+    <span class="n">first</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">function</span>
+    <span class="n">second</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">function</span>
+    <span class="k">return</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>To solve the problem above we could use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transform_string</span><span class="p">(</span><span class="n">string_to_transform</span><span class="p">):</span>
+    <span class="n">string_to_transform</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span> <span class="o">+</span> <span class="n">string_to_transform</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">string_to_transform</span> <span class="o">=</span> <span class="n">string_to_transform</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">string_to_transform</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="calling-a-function">
 <h3>Calling a function<a class="headerlink" href="#calling-a-function" title="Permalink to this headline">¶</a></h3>
+<p>Then, we can rewrite the above as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;bla bla bla&#39;</span>
+
+<span class="c1"># check if the variable is a list</span>
+<span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">variable</span><span class="p">:</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transform_string</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">transform_string</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Aoodbye wo
+</pre></div>
+</div>
+</div>
+</div>
+<p>Basically what we have done it <em>called</em> a function on a certain input (<code class="docutils literal notranslate"><span class="pre">transform_string(string)</span></code>), which is the same as running the input through the code in the function and getting the return values of the function.</p>
+<p>Now we only repeat one word rather than several lines, and also if it turns out we want to change the transformation later, we only need to do it once rather than changing it independently multiple times!</p>
 </div>
 <div class="section" id="lambda-lambda-functions">
 <h3><span class="math notranslate nohighlight">\(\lambda\)</span> (‘lambda’) functions<a class="headerlink" href="#lambda-lambda-functions" title="Permalink to this headline">¶</a></h3>
+<p>At this point it is worth mentioning that there is another notation for defining functions that doesn’t use the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword. Namely, we write <code class="docutils literal notranslate"><span class="pre">lambda</span></code> followed by a space, zero or more comma-separated arguments, a colon, and a single statement.</p>
+<p>For example, suppose we want to sum two variables. We could define a function that does it as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sum_function</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>One case where this might be useful is in conjunction with <code class="docutils literal notranslate"><span class="pre">map</span></code>, which is an operation that takes two arguments, a function and a list, and applies the function to each element of the list. E.g., in the following example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 8, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lambda functions are usually a slightly more advanced topic, but they’ll come up a lot in the rest of the course, so it’s good to start getting used to them already.</p>
 </div>
 <div class="section" id="recursive-functions">
 <h3>Recursive functions<a class="headerlink" href="#recursive-functions" title="Permalink to this headline">¶</a></h3>
+<p>This is a slighlty mindbending concept: functions can <em>call themselves</em>. This means that inside a function <span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(f\)</span> itself can be called and the return value can be used inside <span class="math notranslate nohighlight">\(f\)</span>. Of course, this can easily lead to functions that never terminate, but rather keep calling themselves, forever increasing the level of nested calls. For instance, try to think what is happening here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bad_recursive_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">bad_recursive_function</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    
+<span class="n">bad_recursive_function</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RecursionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [21],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">bad_recursive_function</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">bad_recursive_function</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nn">Input In [21],</span> in <span class="ni">bad_recursive_function</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">bad_recursive_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">bad_recursive_function</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="nn">Input In [21],</span> in <span class="ni">bad_recursive_function</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">bad_recursive_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">bad_recursive_function</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="p">[</span><span class="o">...</span> <span class="n">skipping</span> <span class="n">similar</span> <span class="n">frames</span><span class="p">:</span> <span class="n">bad_recursive_function</span> <span class="n">at</span> <span class="n">line</span> <span class="mi">3</span> <span class="p">(</span><span class="mi">2970</span> <span class="n">times</span><span class="p">)]</span>
+
+<span class="nn">Input In [21],</span> in <span class="ni">bad_recursive_function</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">bad_recursive_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">bad_recursive_function</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="ne">RecursionError</span>: maximum recursion depth exceeded
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thankfully, python has a way of preventing the function running infinitely and automatically raises an error after a certain number of nested calls. You can see it here as <code class="docutils literal notranslate"><span class="pre">RecursionError:</span> <span class="pre">maximum</span> <span class="pre">recursion</span> <span class="pre">depth</span> <span class="pre">exceeded</span></code>.</p>
+<p>Usually, recursive functions are conceptualized as follows:</p>
+<ul class="simple">
+<li><p>There is one or more ‘base case’, i.e. an input for which the function simply calculates a return value without calling the function itself.</p></li>
+<li><p>There are ‘complex’ cases where the input to the function is somehow ‘simplified’ and the function is called with the simplified input. Eventually after enough ‘simplification’ steps the input reduces to a base case, and recursion stops.</p></li>
+</ul>
+<p>A classic case of recursion is the following formulation of the <span class="math notranslate nohighlight">\(n\)</span>th Fibonacci numbers:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(n\)</span> is 0 or 1 (i.e., the first or second Fibonacci number), return 1</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(n\)</span> is greater than 1, return the <span class="math notranslate nohighlight">\(n\)</span>th-2 Fibonacci number + the <span class="math notranslate nohighlight">\(n\)</span>th-1 Fibonacci number</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># there are two base cases here!</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># in both base cases, just return 1</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># otherwise, follow the recursive rule</span>
+        <span class="k">return</span> <span class="n">calculate_fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">calculate_fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">calculate_fibonacci</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711,28657,46368,75025,121393,196418,317811,514229,832040,
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is a lot to say about recursive functions and how they work, but for now try to really understand how the one above works. If you really understand that simple case, other ones are going to be easy.</p>
+</div>
+</div>
+<div class="section" id="functions-as-objects">
+<h2>Functions as objects<a class="headerlink" href="#functions-as-objects" title="Permalink to this headline">¶</a></h2>
+<p>We have refreshed briefly how to define functions above. Functions in python are <em>first class citizens</em>, meaning that they can be treated as objects themselves: passed as arguments of functions, destroyed, transformed in all the same ways as other objects.</p>
+<p>Let’s see a simple example. Suppose that you have a function <span class="math notranslate nohighlight">\(f\)</span> that takes an integer and returns an integer, but you don’t know exactly what it does to that integer. But whatever it does, you want another function that does the same thing as <span class="math notranslate nohighlight">\(f\)</span> but then adds 3 to the result.</p>
+<p>Well, we can define a function <span class="math notranslate nohighlight">\(g\)</span> that takes a function <span class="math notranslate nohighlight">\(f\)</span> <em>as an argument</em> and returns another function from integer to integer, that first calls <span class="math notranslate nohighlight">\(f\)</span> on the integer and then adds three:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify_f</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="c1"># define a function that runs func and then adds 3</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>
+    <span class="c1"># return that function</span>
+    <span class="k">return</span> <span class="n">g</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see <code class="docutils literal notranslate"><span class="pre">modify_f</span></code> in action:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define an f that take an int and returns an int</span>
+<span class="c1"># (namely, the argument multiplied by two)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="c1"># get a modified function by running</span>
+<span class="c1"># g through modify_f</span>
+<span class="n">modified_f</span> <span class="o">=</span> <span class="n">modify_f</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># call the modified function</span>
+<span class="c1"># on an example</span>
+<span class="n">modified_f</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<p>The point of this example is that <code class="docutils literal notranslate"><span class="pre">modify_f</span></code> takes <em>a function</em> as an input and return <em>a function</em> as an output. You can use manipulate functions like that!</p>
+</div>
+<div class="section" id="recursion-without-recursion-note-more-difficult">
+<h2>Recursion without recursion (note: more difficult!)<a class="headerlink" href="#recursion-without-recursion-note-more-difficult" title="Permalink to this headline">¶</a></h2>
+<p>(For more explanation on the material in this section, see <a class="reference external" href="https://www.lambdacircle.com/the-y-and-z-combinators-in-python/">this page</a>)</p>
+<p>Note that things become complicated easily when we work with functions that take other functions as inputs. In those cases, you can define functions that <em>take themselves</em> (as well as other arguments). This actually allows us to do surprising things, like have the same power as recursion without using recursion directly, i.e., without calling a function in its own definition.</p>
+<p>For instance, consider the following function, which as you can see is not strictly speaking recursive:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">strange_fibonacci</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="c1"># takes a function f and</span>
+    <span class="c1"># defines a new function </span>
+    <span class="c1"># whose behaviour depends on</span>
+    <span class="c1"># the input function f</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">g</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now consider the following function which in a way encodes the recursion bit (but without being explicitly recursive: it’s not calling itself in its own definition):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># takes a function, calls the function on itself</span>
+<span class="n">recursive_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What <code class="docutils literal notranslate"><span class="pre">recursive_function</span></code> does is call a function on itself.</p>
+<p>When called with <code class="docutils literal notranslate"><span class="pre">strange_fibonacci</span></code> as an argument, it will effectively calculate <code class="docutils literal notranslate"><span class="pre">strange_fibonaccy(strange_fibonacci)</span></code>, and this will return the following function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="n">strange_fibonacci</span><span class="p">(</span><span class="n">strange_fibonacci</span><span class="p">)(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> 
+                <span class="n">strange_fibonacci</span><span class="p">(</span><span class="n">strange_fibonacci</span><span class="p">)(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+            <span class="p">)</span>
+</pre></div>
+</div>
+<p>which, when called with a specific integer, will define new <code class="docutils literal notranslate"><span class="pre">g</span></code>s and call them in a nested way.</p>
+<p>Let’s test it with a specific number:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recursive_function</span><span class="p">(</span><span class="n">strange_fibonacci</span><span class="p">)(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>89
+</pre></div>
+</div>
+</div>
+</div>
+<p>Can you figure out <em>exactly</em> what is happening here? It’s a bit mindbending.</p>
+<p>We can also get rid of the <code class="docutils literal notranslate"><span class="pre">f(f)</span></code> inside <code class="docutils literal notranslate"><span class="pre">strange_fibonacci</span></code>, since it still kind of feels like a type of recursion. To do that, we define the following function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apply_inside</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">g</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">g</span><span class="p">(</span><span class="n">g</span><span class="p">)(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How does <code class="docutils literal notranslate"><span class="pre">apply_inside</span></code> work?</p>
+<ul class="simple">
+<li><p>You pass it some function <span class="math notranslate nohighlight">\(f\)</span> (<span class="math notranslate nohighlight">\(f\)</span> takes a function as argument), and it returns another function, let’s call it <span class="math notranslate nohighlight">\(h\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(h\)</span> (i.e., the return value of <code class="docutils literal notranslate"><span class="pre">apply_inside</span></code>) is defined as <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">g:</span> <span class="pre">f(lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y)</span></code>, and so it is a function:</p>
+<ul>
+<li><p>from a function <span class="math notranslate nohighlight">\(g\)</span></p></li>
+<li><p>to the result of calling <span class="math notranslate nohighlight">\(f\)</span> (the original argument) on <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y)</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>This might become clearer with an example. Let’s define another version of our strange fibonacci function, this time without the <code class="docutils literal notranslate"><span class="pre">f(f)</span></code> bit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">strange_fibonacci</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="c1"># takes a function f and</span>
+    <span class="c1"># defines a new function </span>
+    <span class="c1"># whose behaviour depends on</span>
+    <span class="c1"># the input function f</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">g</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now consider <code class="docutils literal notranslate"><span class="pre">apply_inside(strange_fibonacci)</span></code>. How does it work? Well, we know from the definition of <code class="docutils literal notranslate"><span class="pre">apply_inside</span></code> that it will have value:</p>
+<p><code class="docutils literal notranslate"><span class="pre">apply_inside(strange_fibonacci)</span></code> = <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">g:</span> <span class="pre">strange_fibonacci(lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y))</span></code></p>
+<p>Note that now the argument of <code class="docutils literal notranslate"><span class="pre">strange_fibonacci</span></code> is <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y)</span></code>, which is a function from a number to a function applied to itself and then to the number. Within <code class="docutils literal notranslate"><span class="pre">strange_fibonacci</span></code>, the input function appears in the line <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">f(n-1)</span> <span class="pre">+</span> <span class="pre">f(n-2)</span></code>, which becomes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">(lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y))(n-1)</span> <span class="pre">+</span> <span class="pre">(lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y))(n-2)</span></code></p></li>
+</ul>
+<p>and therefore:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">g(g)(n-1)</span> <span class="pre">+</span> <span class="pre">g(g)(n-2)</span></code></p></li>
+</ul>
+<p>And this is just a version of the <code class="docutils literal notranslate"><span class="pre">f(f)</span></code> bit we had at the beginning, which we have now successfully isolated into its own function (apply inside)!</p>
+<p>Let’s make sure this works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recursive_function</span><span class="p">(</span><span class="n">apply_inside</span><span class="p">(</span><span class="n">strange_fibonacci</span><span class="p">))(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>89
+</pre></div>
+</div>
+</div>
+</div>
+<p>This section was a bit mental gymnastics to give you an idea of how messy things can get when higher-order functions are involved (i.e., function that take functions as arguments). We will see a lot of higher-order functions in the rest of the semester, so try to become comfortable with them!</p>
 </div>
 <div class="section" id="plotting-in-matplotlib">
 <h2>Plotting in Matplotlib<a class="headerlink" href="#plotting-in-matplotlib" title="Permalink to this headline">¶</a></h2>
+<p>Since we’ll be want to plot things in the second half of the course, it makes sense to introduce some simple cases now. We’ll be using the most popular plotting library for python, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. We usually import it as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
 </div>
-<div class="section" id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="what-is-a-class-intuitively">
-<h3>What is a class, intuitively?<a class="headerlink" href="#what-is-a-class-intuitively" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="how-to-define-a-class">
-<h3>How to define a class<a class="headerlink" href="#how-to-define-a-class" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="instantiating-an-object-from-a-class">
-<h3>Instantiating an ‘object’ from a ‘class’<a class="headerlink" href="#instantiating-an-object-from-a-class" title="Permalink to this headline">¶</a></h3>
+<p>Usually, we’ll initialize a new plot with the following line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+</pre></div>
 </div>
+<p>What <code class="docutils literal notranslate"><span class="pre">plt.subplots()</span></code> does is create a new figure object and a new <code class="docutils literal notranslate"><span class="pre">axes</span></code> object. The figure object is the whole figure, which can contain one or more axes. If you are unfamiliar with the <code class="docutils literal notranslate"><span class="pre">plt.subplots</span></code> interface, have a look <a class="reference external" href="https://matplotlib.org/3.5.0/api/_as_gen/matplotlib.pyplot.subplots.html">here</a>.</p>
+<p>The axes are objects that have a bunch of methods, corresponding e.g. to different types of plots that can be called on them. Let’s see an example of the <code class="docutils literal notranslate"><span class="pre">scatter</span></code> method of axes, which is used to make scatter plots:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># create some new data to plot</span>
+<span class="c1"># don&#39;t worry too much if you don&#39;t understand this line</span>
+<span class="n">x_scatter</span><span class="p">,</span> <span class="n">y_scatter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># create a scatterplot with the given</span>
+<span class="c1"># x and y coordinates</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_scatter</span><span class="p">,</span> <span class="n">y_scatter</span><span class="p">)</span>
+
+<span class="c1"># show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3_lab_71_0.png" src="_images/3_lab_71_0.png" />
+</div>
+</div>
+<p>Another important function is to draw line plots, called simply <code class="docutils literal notranslate"><span class="pre">plot</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># create some new data to plot</span>
+<span class="c1"># don&#39;t worry too much if you don&#39;t understand this line</span>
+<span class="n">x_line</span> <span class="o">=</span> <span class="n">y_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># create a line plot with the given</span>
+<span class="c1"># x and y coordinates</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_line</span><span class="p">,</span> <span class="n">y_line</span><span class="p">)</span>
+
+<span class="c1"># show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3_lab_73_0.png" src="_images/3_lab_73_0.png" />
+</div>
+</div>
+<p>Since we will be dealing with discrete variables a lot, it will be useful to also draw barplot, with the method <code class="docutils literal notranslate"><span class="pre">bar</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># create some new data to plot</span>
+<span class="c1"># don&#39;t worry too much if you don&#39;t understand this line</span>
+<span class="n">x_bar</span> <span class="o">=</span> <span class="n">y_bar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># create a bar plot with the given</span>
+<span class="c1"># x and height values</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_bar</span><span class="p">,</span> <span class="n">y_bar</span><span class="p">)</span>
+
+<span class="c1"># show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3_lab_75_0.png" src="_images/3_lab_75_0.png" />
+</div>
+</div>
+<p>We will also need to know what we are plotting, so we need to change the labels on the x-axis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># create some new data to plot</span>
+<span class="c1"># don&#39;t worry too much if you don&#39;t understand this line</span>
+<span class="n">x_bar</span> <span class="o">=</span> <span class="n">y_bar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># create a bar plot with the given</span>
+<span class="c1"># x and height values</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_bar</span><span class="p">,</span> <span class="n">y_bar</span><span class="p">)</span>
+
+<span class="c1"># define some labels for each x value</span>
+<span class="c1"># don&#39;t worry if you don&#39;t understand this line</span>
+<span class="n">x_tick_labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;lab-</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_bar</span><span class="p">))]</span>
+
+<span class="c1"># tell plt that we&#39;ll specify one tick for each bar</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_bar</span><span class="p">)))</span>
+
+<span class="c1"># set the tick labels</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">x_tick_labels</span><span class="p">)</span>
+
+<span class="c1"># show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3_lab_77_0.png" src="_images/3_lab_77_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="classes-what-s-the-idea">
+<h2>Classes, what’s the idea?<a class="headerlink" href="#classes-what-s-the-idea" title="Permalink to this headline">¶</a></h2>
+<p>We talked above about how we use functions because we don’t want to rewrite the same stuff over and over again. But suppose that you don’t want to just repeat a function, but a whole collection of functions and properties that can depend on each other. Then, you could define a class. In this light, a class is a <em>template for an object</em>, where an object has specific values for those variables that you left unspecified in the class.</p>
+<p>Let’s consider an example to make the explanation above clearer (as it often happens, the definitions are interdependent and the best way is to see how the terms are used in practice). Suppose we want to write a program that models students at a university. A very natural way of structuring this program is to have variables that correspond to students, e.g., one variable called <code class="docutils literal notranslate"><span class="pre">mark</span></code> for Mark, etc.</p>
+<p>What type should these variables be? Clearly they’re not integers, or strings, or floats. Ideally we’d want to have a <em>student</em> type with its own methods that we can freely define. In other words, we want to have a <code class="docutils literal notranslate"><span class="pre">Student</span></code> class (Note: class names always start with a capital letter in pyhon by convention), which can produce specific <code class="docutils literal notranslate"><span class="pre">student</span></code> objects (<code class="docutils literal notranslate"><span class="pre">mark</span></code>, etc.). Here’s how we can define it in python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a class is defined with the keyword &#39;class&#39;</span>
+<span class="c1"># followed by the name of the class </span>
+<span class="c1"># (remember: first letter capitalized!)</span>
+<span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    
+    <span class="c1"># __init__ is a special function</span>
+    <span class="c1"># that gets called when a new object</span>
+    <span class="c1"># is created from the class.</span>
+    <span class="c1"># &#39;self&#39; contains the properties</span>
+    <span class="c1"># and methods defined in the class itself</span>
+    <span class="c1"># and is passed to every function in the class</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="c1"># define some class attributed</span>
+        <span class="c1"># to store data about the student</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grades</span> <span class="o">=</span> <span class="p">[]</span>
+        
+    <span class="c1"># define a new function that we can </span>
+    <span class="c1"># use to record new grades that a student got.</span>
+    <span class="c1"># This function takes a grade and</span>
+    <span class="c1"># adds it to the student&#39;s record.</span>
+    <span class="k">def</span> <span class="nf">add_grade</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grade</span><span class="p">):</span>
+        <span class="c1"># The grades record is a list.</span>
+        <span class="c1"># Append the new grade to the list!</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grades</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">average_grade</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Calculate the average of the grades</span>
+        <span class="c1"># recorded in the grades list</span>
+        <span class="c1"># and return the resulting mean.</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grades</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can see the notation for instantiating a specific object (in this case, a student called ‘Mark’) from a class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># an object is defined by calling </span>
+<span class="c1"># the class name with the arguments</span>
+<span class="c1"># defined in the __init__ function</span>
+<span class="n">mark</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s1">&#39;mark&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+
+<span class="c1"># add some grade to Mark</span>
+<span class="n">mark</span><span class="o">.</span><span class="n">add_grade</span><span class="p">(</span><span class="mf">1.3</span><span class="p">)</span>
+<span class="n">mark</span><span class="o">.</span><span class="n">add_grade</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># print Mark&#39;s average grade</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mark</span><span class="o">.</span><span class="n">average_grade</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.15
+</pre></div>
+</div>
+</div>
+</div>
+<p>You don’t need to understand everything about classes, and you won’t have to define one from scratch, but we’ll have to adapt them as part of working with Piantadosi’s LOTlib3 library. If you want to read more about classes in python <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html">here is the documentation</a> and here is <a class="reference external" href="https://towardsdatascience.com/introduction-to-python-classes-da526ff745df">another explanation of the basic idea</a>.</p>
 </div>
 <div class="section" id="error-handling">
 <h2>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="what-s-an-error-and-what-types-of-errors-are-there">
-<h3>What’s an error and what types of errors are there?<a class="headerlink" href="#what-s-an-error-and-what-types-of-errors-are-there" title="Permalink to this headline">¶</a></h3>
+<p>As you have already seen above, if something goes wrong sometimes python raises an <em>error</em>. For instance, above we have encountered <code class="docutils literal notranslate"><span class="pre">RecursionError:</span> <span class="pre">maximum</span> <span class="pre">recursion</span> <span class="pre">depth</span> <span class="pre">exceeded</span></code>. However, there are other types of errors in python, for instance if you try to get an element from an index that’s too high for a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
 </div>
-<div class="section" id="try-except">
-<h3>try … except …<a class="headerlink" href="#try-except" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [102],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="ne">IndexError</span>: list index out of range
+</pre></div>
 </div>
 </div>
+</div>
+<p>In general, errors help us understand what went wrong with our code. However, in python they can also be used as part of the program flow. Specifically, we might predict a situation that causes a specific error and write in the code what we want to happen is such a situation occurs. Here’s how we do it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># warn python that the indented code</span>
+<span class="c1"># might contain an error</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+<span class="c1"># tell python what to do in case</span>
+<span class="c1"># a specific kind of error occurs</span>
+<span class="c1"># In this case, an IndexError</span>
+<span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finished: There are fewer than 10 elements in the list!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1, 2, 4, 5, Finished: There are fewer than 10 elements in the list!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s another error you should be familiar with (it will come up again later in the course!)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">Input In [107],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
+
+<span class="ne">ZeroDivisionError</span>: division by zero
+</pre></div>
+</div>
+</div>
+</div>
+<p>And how we can deal with it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>undefined
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="first-homeworks-set">
+<h1>First homeworks set<a class="headerlink" href="#first-homeworks-set" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Write a function to sum three numbers.</p></li>
+<li><p>Write a <span class="math notranslate nohighlight">\(\lambda\)</span> function to sum three numbers.</p></li>
+<li><p>Write a recursive function that calculates the factorial function for <span class="math notranslate nohighlight">\(n\)</span>, written <span class="math notranslate nohighlight">\(n!\)</span>, and defined as follows:</p></li>
+</ul>
+<p>\begin{align}
+1! &amp;= 1 \
+n! &amp;= n \times (n-1)!
+\end{align}</p>
+<ul class="simple">
+<li><p>Write a recursive function <code class="docutils literal notranslate"><span class="pre">interpret</span></code> that takes a string that consists of a series of <code class="docutils literal notranslate"><span class="pre">¬</span></code> followed by a single <code class="docutils literal notranslate"><span class="pre">a</span></code> (<code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬¬a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬¬¬a</span></code>, etc) and is defined as follows:</p></li>
+</ul>
+<p>\begin{align}
+\text{interpret}(x) &amp;= 1                             &amp; \text{if } x = \text{‘a’} \
+&amp;= 1 - \text{interpret(x[1:])}   &amp; \text{else}
+\end{align}
+(do you see how this corresponds to the semantics of Boolean negation?)</p>
+<ul class="simple">
+<li><p>Rewrite the factorial function and <code class="docutils literal notranslate"><span class="pre">interpret</span></code> using <code class="docutils literal notranslate"><span class="pre">recursive_function</span></code> and <code class="docutils literal notranslate"><span class="pre">apply_inside</span></code> rather than explicit recursion.</p></li>
+<li><p>Make a scatterplot of the first 10 strings interpreted by <code class="docutils literal notranslate"><span class="pre">interpret</span></code>  (<code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬¬a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬¬¬a</span></code>, etc): the x-axis shows the strings in order and the y-axis shows the result of <code class="docutils literal notranslate"><span class="pre">interpret</span></code> for the corresponding string.</p></li>
+<li><p>Define a <code class="docutils literal notranslate"><span class="pre">Teacher</span></code> class that contains a record of the students that the teacher taught to, as well as the average grade the teacher gave to all the students.</p></li>
+<li><p>Google how to read a text file and print out its content. Write code that does this, but using the <code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">except</span> <span class="pre">...</span></code> statements prints ‘File does not exist!’ if the file does not exist.</p></li>
+</ul>
 </div>
 
     <script type="text/x-thebe-config">
