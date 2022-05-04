@@ -31,13 +31,21 @@ parts:
     - file: 3_topfile
       title: Week 3 - LoT Hypothesis II
       sections:
+        - file: 3_lecture
+          title: Lecture
         - file: 3_lab
           title: Lab
+        - file: 3_reading
+          title: Reading
+        - file: 3_supplementaryLecture
+          title: Supplementary content
     - file: 4_topfile
       title: Week 4 - Formal Grammars
       sections:
         - file: 4_lab
           title: Lab
+        - file: 4_reading
+          title: Reading
     - file: 5_topfile
       title: Week 5 - Semantics
       sections:

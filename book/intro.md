@@ -20,7 +20,7 @@ with Markov Chain Monte Carlo algorithms. The second section focuses on learning
 1. Part 1: Foundations
 	1. Introduction 
 		- Lecture: 
-			- Introduction to the course and overview
+			- Introduction to the course and to the idea of an LoT
 	2. Philosophy week 1
 		- Lecture: 
 			- The Language of Thought: what's the idea?
@@ -31,14 +31,14 @@ with Markov Chain Monte Carlo algorithms. The second section focuses on learning
 			- The Language of Thought (continued)
 		- Lab: 
 			- Introduction to python (continued)
-	4. Formal languages 1
+	4. Formal languages
 		- Lecture: 
-			- Formal grammar, formal languages, and typed lambda calculus
+			- Formal grammar, formal languages, (probabilistic) context free grammars
 		- Lab:
 			- Defining formal grammars in python
-	5. Formal languages 2
+	5. Formal semantics
 		- Lecture:
-			- Context free grammars, probabilistic context free grammars, & their interpretation
+			- Lambda calculus, type theory, semantics & compositional semantics for grammars
 		- Lab: 
 			- Lambda calculus & functions as objects
 	6. Bayesian foundations 1
