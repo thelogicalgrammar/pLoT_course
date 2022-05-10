@@ -407,13 +407,13 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-new-piece-of-python-syntax-generators">
-   A new piece of python syntax: generators
+  <a class="reference internal nav-link" href="#using-dictionaries">
+   Using dictionaries
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-dictionaries">
-   Using dictionaries
+  <a class="reference internal nav-link" href="#a-new-piece-of-python-syntax-generators">
+   A new piece of python syntax: generators
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -459,13 +459,13 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-new-piece-of-python-syntax-generators">
-   A new piece of python syntax: generators
+  <a class="reference internal nav-link" href="#using-dictionaries">
+   Using dictionaries
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-dictionaries">
-   Using dictionaries
+  <a class="reference internal nav-link" href="#a-new-piece-of-python-syntax-generators">
+   A new piece of python syntax: generators
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -501,11 +501,185 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="formal-grammars">
 <h1>Formal Grammars<a class="headerlink" href="#formal-grammars" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="a-new-piece-of-python-syntax-generators">
-<h2>A new piece of python syntax: generators<a class="headerlink" href="#a-new-piece-of-python-syntax-generators" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">choice</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="using-dictionaries">
 <h2>Using dictionaries<a class="headerlink" href="#using-dictionaries" title="Permalink to this headline">¶</a></h2>
+<p>One simple and intuitive way of implementing a grammar in python is as a dictionary:</p>
+<ul class="simple">
+<li><p>The keys are the left hand side rules</p></li>
+<li><p>The values are lists containing the possible strings that can be substituted by the key</p></li>
+</ul>
+<blockquote>
+<div><p><strong>NOTE</strong>: To see why we need to use lists as values rather than using a different key for each rule, try to repeat the same key more than once. What happens?</p>
+</div></blockquote>
+<p>For instance, let’s write the grammar with the following rules:
+$<span class="math notranslate nohighlight">\(
+S \rightarrow aS | bS | \epsilon
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;aS&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;bS&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;&#39;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One thing we can do with this way of defining grammars is writing a function that randomly applies rule until we get to a string consisting only of terminals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># always start with the starting symbol</span>
+<span class="n">current_sentence</span> <span class="o">=</span> <span class="s1">&#39;S&#39;</span>
+<span class="c1"># while there is a non-terminal in the sentence</span>
+<span class="k">while</span> <span class="s1">&#39;S&#39;</span> <span class="ow">in</span> <span class="n">current_sentence</span><span class="p">:</span>
+    <span class="c1"># substitute the first occurrence of S</span>
+    <span class="c1"># with a randomly chosen substitution rule</span>
+    <span class="n">current_sentence</span> <span class="o">=</span> <span class="n">current_sentence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+        <span class="s1">&#39;S&#39;</span><span class="p">,</span> 
+        <span class="n">choice</span><span class="p">((</span><span class="n">grammar</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">])),</span>
+        <span class="c1"># NOTE: in this particular case there will always</span>
+        <span class="c1"># only be one S, but this is not true for </span>
+        <span class="c1"># all grammars!</span>
+        <span class="mi">1</span>
+    <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;String: &#39;</span><span class="p">,</span> <span class="n">current_sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>String:  abaaa
+</pre></div>
+</div>
+</div>
+</div>
+<p>Write a function that takes a grammar, a set of terminals, and a set of nonterminals, and determines where the grammar is in the Chomsky hierarchy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your function here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-new-piece-of-python-syntax-generators">
+<h2>A new piece of python syntax: generators<a class="headerlink" href="#a-new-piece-of-python-syntax-generators" title="Permalink to this headline">¶</a></h2>
+<p>Before we move onto defining classes to model grammars, which allow richer structures than dictionaries, we need to briefly talk about generators. A generator is basically <em>a function with a memory</em>, which can return multiple things in succession. Suppose you have a generator called <code class="docutils literal notranslate"><span class="pre">gen</span></code>. A typical use case is to use it in a construction like <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">gen():</span></code>, where <code class="docutils literal notranslate"><span class="pre">i</span></code> will take on in succession the values returned by the generator.</p>
+<p>The definition is almost like a function, except generators have the keyword <code class="docutils literal notranslate"><span class="pre">yield</span></code> where functions have <code class="docutils literal notranslate"><span class="pre">return</span></code>, and the execution doesn’t stop at the return but can continue as long as future yield are possible.</p>
+<p>The simple example is a generator that first yields (returns) 1 and then 2:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simple_generator</span><span class="p">():</span>
+    <span class="c1"># when getting things out of a generator,</span>
+    <span class="c1"># the generator will return in the order</span>
+    <span class="c1"># the yield statements are encountered</span>
+    
+    <span class="c1"># This is encountered first</span>
+    <span class="k">yield</span> <span class="mi">1</span>
+    <span class="c1"># Then this is encountered</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">simple_generator</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+</pre></div>
+</div>
+</div>
+</div>
+<p>A slightly more complex generator simply counts the odd integers starting with 1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">odd_counter</span><span class="p">():</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">odd_counter</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that generators can also call themselves, like functions. Then we get recursive generators:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can you figure out what this generator does?</span>
+<span class="k">def</span> <span class="nf">recursive_gen</span><span class="p">(</span><span class="n">current_options</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">new_options</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">current_options</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">i</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">new_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="nb">sum</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">n</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">new_options</span><span class="p">]):</span>
+        <span class="k">return</span> 
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">recursive_gen</span><span class="p">(</span><span class="n">new_options</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">i</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">recursive_gen</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">]],</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 2, 2]
+[1, 1, 2, 2]
+[1, 2, 1, 2]
+[1, 2, 2, 1]
+[2, 1, 1, 2]
+[2, 1, 2, 1]
+[2, 2, 1, 1]
+[1, 1, 1, 1, 2]
+[1, 1, 1, 2, 1]
+[1, 1, 2, 1, 1]
+[1, 2, 1, 1, 1]
+[2, 1, 1, 1, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Try to write the recursive_gen just as a normal function with <code class="docutils literal notranslate"><span class="pre">return</span></code> statements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="using-classes">
 <h2>Using classes<a class="headerlink" href="#using-classes" title="Permalink to this headline">¶</a></h2>
@@ -549,20 +723,50 @@ const thebe_selector_output = ".output, .cell_output"
 <h3>Finding minimal formulas (more difficult!)<a class="headerlink" href="#finding-minimal-formulas-more-difficult" title="Permalink to this headline">¶</a></h3>
 <p>Now add another method <code class="docutils literal notranslate"><span class="pre">compute_first</span></code> to the class above which generates the <code class="docutils literal notranslate"><span class="pre">n</span></code> shortest strings in the language.</p>
 <p>You should be able to run for instance (given the palindrome grammar above):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">compute_first</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">compute_first</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Which should print out:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aa</span>
 <span class="n">bb</span>
-<span class="n">abba</span>
 <span class="n">aaaa</span>
+<span class="n">abba</span>
 <span class="n">baab</span>
+<span class="n">bbbb</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p><strong>HINT</strong>: Think about this as exploring a tree (branches separating whenever more than one rule can be applied), and use the power of recursion to explore the tree. The recursive function can take a ‘present’ layer (the strings at the current nesting level) and progressively build the next layer by applying every rule to every sentence with nonterminals in the current layer, while yielding the sentences that only contain terminals. Then, yield the results of running the function on the next layer in a loop.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### Test compute_first here!</span>
+
+<span class="k">def</span> <span class="nf">enumerate_palindromes</span><span class="p">(</span><span class="n">layer</span><span class="p">):</span>
+    <span class="c1"># your function here</span>
+
+
+<span class="k">def</span> <span class="nf">compute_first</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">enumerate_palindromes</span><span class="p">([</span><span class="s1">&#39;S&#39;</span><span class="p">])):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compute_first</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aa
+bb
+aaaa
+abba
 </pre></div>
 </div>
 </div>
