@@ -48,6 +48,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -399,6 +401,46 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-new-piece-of-python-syntax-generators">
+   A new piece of python syntax: generators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-dictionaries">
+   Using dictionaries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-classes">
+   Using classes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-a-grammars-class">
+     Defining a grammars class
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-minimal-formulas-more-difficult">
+     Finding minimal formulas (more difficult!)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probabilistic-context-free-grammar">
+     Probabilistic context-free grammar
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -411,6 +453,46 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-new-piece-of-python-syntax-generators">
+   A new piece of python syntax: generators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-dictionaries">
+   Using dictionaries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-classes">
+   Using classes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-a-grammars-class">
+     Defining a grammars class
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-minimal-formulas-more-difficult">
+     Finding minimal formulas (more difficult!)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probabilistic-context-free-grammar">
+     Probabilistic context-free grammar
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -419,6 +501,114 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="formal-grammars">
 <h1>Formal Grammars<a class="headerlink" href="#formal-grammars" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-new-piece-of-python-syntax-generators">
+<h2>A new piece of python syntax: generators<a class="headerlink" href="#a-new-piece-of-python-syntax-generators" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="using-dictionaries">
+<h2>Using dictionaries<a class="headerlink" href="#using-dictionaries" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="using-classes">
+<h2>Using classes<a class="headerlink" href="#using-classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="defining-a-grammars-class">
+<h3>Defining a grammars class<a class="headerlink" href="#defining-a-grammars-class" title="Permalink to this headline">¶</a></h3>
+<p>Write a Grammar class to create context-free grammars. The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method should take a <code class="docutils literal notranslate"><span class="pre">start</span></code> argument with the starting nonterminal symbol.</p>
+<p>The class should also have the following method (i.e., function):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">add_rule</span></code>: add a rule to the grammar. The arguments of <code class="docutils literal notranslate"><span class="pre">add_rule</span></code> are:</p>
+<ol class="simple">
+<li><p>The nonterminal on the left-hand side of the rule</p></li>
+<li><p>The string on the right side of the rule, containing <code class="docutils literal notranslate"><span class="pre">%s</span></code> wherever a non-terminal appears</p></li>
+<li><p>A list of non-terminal symbols, one for each <code class="docutils literal notranslate"><span class="pre">%s</span></code>, saying which non-terminals correspond to each %s.</p></li>
+</ol>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### your class definition here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once this is defined, you should be able to run the following code to define the grammar for palindrome which we discussed in class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span> <span class="o">=</span> <span class="n">Grammar</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;a</span><span class="si">%s</span><span class="s1">a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">])</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;b</span><span class="si">%s</span><span class="s1">b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">])</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### Define the palindrome grammar here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="finding-minimal-formulas-more-difficult">
+<h3>Finding minimal formulas (more difficult!)<a class="headerlink" href="#finding-minimal-formulas-more-difficult" title="Permalink to this headline">¶</a></h3>
+<p>Now add another method <code class="docutils literal notranslate"><span class="pre">compute_first</span></code> to the class above which generates the <code class="docutils literal notranslate"><span class="pre">n</span></code> shortest strings in the language.</p>
+<p>You should be able to run for instance (given the palindrome grammar above):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">compute_first</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which should print out:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aa</span>
+<span class="n">bb</span>
+<span class="n">abba</span>
+<span class="n">aaaa</span>
+<span class="n">baab</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### Test compute_first here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="probabilistic-context-free-grammar">
+<h3>Probabilistic context-free grammar<a class="headerlink" href="#probabilistic-context-free-grammar" title="Permalink to this headline">¶</a></h3>
+<p>Expand the Grammar class once more so that <code class="docutils literal notranslate"><span class="pre">add_rule</span></code> takes one more argument: The (unnormalized) probability of applying the rule rather than the other rules with the same left-hand side.</p>
+<p>The following code for instance redefines the palindrome grammar above but with probabilities:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span> <span class="o">=</span> <span class="n">Grammar</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;a</span><span class="si">%s</span><span class="s1">a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;b</span><span class="si">%s</span><span class="s1">b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### your class definition here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add a method <code class="docutils literal notranslate"><span class="pre">generate</span></code> to Grammar to generate a random string in the language by iteratively applying the rules according to the defined probabilities. The following code should run (but possibly give a different answer on different runs):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>printing e.g.,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aabbaa</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### Test generate here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What happens when we increase…</p>
+<ul class="simple">
+<li><p>the probability of the rule <span class="math notranslate nohighlight">\(S \rightarrow aSa\)</span>?</p></li>
+<li><p>the probability of the rule <span class="math notranslate nohighlight">\(S \rightarrow bSb\)</span>?</p></li>
+<li><p>the probability of the rule <span class="math notranslate nohighlight">\(S \rightarrow \epsilon\)</span>?</p></li>
+</ul>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
