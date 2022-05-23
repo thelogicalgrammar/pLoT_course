@@ -249,6 +249,11 @@ const thebe_selector_output = ".output, .cell_output"
      Lab
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="5_reading.html">
+     Reading
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -562,7 +567,7 @@ S \rightarrow aS | bS | \epsilon
 </div>
 </div>
 </div>
-<p>Write a function that takes a grammar, a set of terminals, and a set of nonterminals, and determines where the grammar is in the Chomsky hierarchy:</p>
+<p>Write a function that takes a grammar, a set of terminals, and a set of nonterminals, and determines where the grammar is in the Chomsky hierarchy (Spend about 20 minutes on this - if you see that you can do it, leave it!):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your function here</span>
@@ -640,7 +645,7 @@ S \rightarrow aS | bS | \epsilon
         <span class="k">else</span><span class="p">:</span>
             <span class="n">new_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">new_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="nb">sum</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">n</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">new_options</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="nb">sum</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">&gt;</span><span class="n">n</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">new_options</span><span class="p">]):</span>
         <span class="k">return</span> 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">recursive_gen</span><span class="p">(</span><span class="n">new_options</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="k">yield</span> <span class="n">i</span>
@@ -650,19 +655,22 @@ S \rightarrow aS | bS | \epsilon
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">recursive_gen</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">]],</span> <span class="mi">6</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">recursive_gen</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">]],</span> <span class="mi">6</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 2, 2]
+[3, 1, 2]
+[3, 2, 1]
 [1, 1, 2, 2]
 [1, 2, 1, 2]
 [1, 2, 2, 1]
 [2, 1, 1, 2]
 [2, 1, 2, 1]
 [2, 2, 1, 1]
+[3, 1, 1, 1]
 [1, 1, 1, 1, 2]
 [1, 1, 1, 2, 1]
 [1, 1, 2, 1, 1]
@@ -683,6 +691,9 @@ S \rightarrow aS | bS | \epsilon
 </div>
 <div class="section" id="using-classes">
 <h2>Using classes<a class="headerlink" href="#using-classes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><strong>NOTE</strong>: Before you work on the exercise in ‘Defining a grammar class’ please have a look at the rest of the notebook. This should give you an idea of what you need to do with that class, and therefore how to structure them internally.</p>
+</div></blockquote>
 <div class="section" id="defining-a-grammars-class">
 <h3>Defining a grammars class<a class="headerlink" href="#defining-a-grammars-class" title="Permalink to this headline">¶</a></h3>
 <p>Write a Grammar class to create context-free grammars. The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method should take a <code class="docutils literal notranslate"><span class="pre">start</span></code> argument with the starting nonterminal symbol.</p>

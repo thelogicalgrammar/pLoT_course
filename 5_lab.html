@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Probabilistic Context Free Grammars &#8212; The pLoT: A course</title>
+    <title>Formal semantics &#8212; The pLoT: A course</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -48,10 +48,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Sixth week" href="6_topfile.html" />
+    <link rel="next" title="Reading" href="5_reading.html" />
     <link rel="prev" title="Fifth week" href="5_topfile.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -247,6 +249,11 @@ const thebe_selector_output = ".output, .cell_output"
      Lab
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="5_reading.html">
+     Reading
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -399,6 +406,24 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-arithmetic-as-a-cfg">
+   Basic arithmetic as a CFG
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-grammar-for-shapes">
+   A grammar for shapes
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -406,19 +431,272 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Probabilistic Context Free Grammars</h1>
+                <h1>Formal semantics</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-arithmetic-as-a-cfg">
+   Basic arithmetic as a CFG
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-grammar-for-shapes">
+   A grammar for shapes
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="probabilistic-context-free-grammars">
-<h1>Probabilistic Context Free Grammars<a class="headerlink" href="#probabilistic-context-free-grammars" title="Permalink to this headline">¶</a></h1>
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip3 install ColabTurtlePlus
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ColabTurtlePlus
+  Downloading ColabTurtlePlus-2.0.1-py3-none-any.whl (31 kB)
+Installing collected packages: ColabTurtlePlus
+Successfully installed ColabTurtlePlus-2.0.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">choice</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">ColabTurtlePlus</span> <span class="kn">import</span> <span class="n">Turtle</span> <span class="k">as</span> <span class="n">t</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="formal-semantics">
+<h1>Formal semantics<a class="headerlink" href="#formal-semantics" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">arr</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">apply_rule</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">grammar</span><span class="p">):</span>
+    <span class="n">probs</span><span class="p">,</span> <span class="n">subs</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">grammar</span><span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)])</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="n">choice</span><span class="p">(</span><span class="n">subs</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">normalize</span><span class="p">(</span><span class="n">probs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">sub</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="basic-arithmetic-as-a-cfg">
+<h2>Basic arithmetic as a CFG<a class="headerlink" href="#basic-arithmetic-as-a-cfg" title="Permalink to this headline">¶</a></h2>
+<p>We will use <span class="math notranslate nohighlight">\(\lambda\)</span> expressions to encode the meaning of our operators. Thankfully this is made quite easy by Python’s lambda syntax, which we have seen a couple of weeks ago.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s define some meanings!</span>
+<span class="n">plusOne</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">one</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plusOne</span><span class="p">(</span><span class="n">plusOne</span><span class="p">(</span><span class="n">one</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’s <code class="docutils literal notranslate"><span class="pre">eval</span></code> function plays the role of the interpretation function which we discussed in class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;plusOne(plusOne(one))&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CFG_arithmetic</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;&lt;S&gt;&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;plusOne(&lt;S&gt;)&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">tuple</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complete</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">grammar</span><span class="p">):</span>
+    
+    <span class="k">while</span> <span class="s1">&#39;&lt;&#39;</span> <span class="ow">in</span> <span class="n">sentence</span><span class="p">:</span>
+        <span class="n">sentence</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
+            <span class="s1">&#39;&lt;(.*?)&gt;&#39;</span><span class="p">,</span> 
+            <span class="k">lambda</span> <span class="n">match</span><span class="p">:</span> <span class="n">apply_rule</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">grammar</span><span class="p">),</span> 
+            <span class="n">sentence</span>
+        <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">sentence</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generate_random_sentences</span><span class="p">(</span><span class="n">CFG_arithmetic</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;plusOne(plusOne(plusOne(plusOne(plusOne(plusOne(one))))))&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot distribution of numbers obtained with this grammar</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="nb">eval</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">generate_random_sentences</span><span class="p">(</span><span class="n">CFG_arithmetic</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the frequency of <span class="math notranslate nohighlight">\(n\)</span> is <span class="math notranslate nohighlight">\(2^{-n}\)</span>. Can you tell why?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5_lab_16_0.png" src="_images/5_lab_16_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="a-grammar-for-shapes">
+<h2>A grammar for shapes<a class="headerlink" href="#a-grammar-for-shapes" title="Permalink to this headline">¶</a></h2>
+<p>Instead of defining meanings ourselves, we can rely on already existing libraries, even if they were not meant to be used with a CFG. For instance, consider Python’s ‘turtle’ library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;&lt;drawing&gt;&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;&lt;movement&gt;&lt;drawing&gt;&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">pass&#39;</span><span class="p">),</span>
+        <span class="c1"># (1, &#39;\tt.home()&#39;)</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;&lt;movement&gt;&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">t.forward(&lt;distance&gt;) </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">t.backward(&lt;distance&gt;) </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">t.right(&lt;angle&gt;) </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">t.left(&lt;angle&gt;) </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">),</span>
+        <span class="c1"># (0.5, &#39;\tt.face(&lt;angle&gt;) \n&#39;),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">t.circle(&lt;distance&gt;,&lt;angle&gt;) </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;&lt;distance&gt;&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;20&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;30&#39;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;&lt;angle&gt;&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;30&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;60&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;90&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;170&#39;</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">instructions</span> <span class="o">=</span> <span class="n">complete</span><span class="p">(</span><span class="s1">&#39;&lt;drawing&gt;&#39;</span><span class="p">,</span> <span class="n">grammar</span><span class="p">)</span>
+
+<span class="n">program</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">t.clearscreen()</span>
+<span class="s2">t.initializeTurtle()</span>
+<span class="s2">t.hideturtle()</span>
+<span class="s2">t.color(&#39;black&#39;)</span>
+<span class="s2">t.speed(13)</span>
+<span class="s2">for i in range(20):</span>
+<span class="si">{</span><span class="n">instructions</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">if -10 &gt; t.getx() &gt; 10:</span>
+<span class="s2">    t.home()</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">exec</span><span class="p">(</span><span class="n">program</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+      <svg width="800" height="600">  
+        <rect width="100%" height="100%" style="fill:white;stroke:;stroke-width:1"/>
+
+
+        <path d="M 400.0 300.0 A 10 10 0 0 0 410.0 290.0" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="410.0" y1="290.0" x2="410.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="410.0" y1="280.0" x2="380.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="280.0" x2="380.0" y2="260.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="260.0" x2="380.0" y2="290.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="290.0" x2="365.0" y2="315.981" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 365.0 315.981 A 10 10 0 0 0 368.66 329.641" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="368.66" y1="329.641" x2="377.32" y2="334.641" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="377.32" y1="334.641" x2="392.32" y2="308.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="392.32" y1="308.66" x2="409.641" y2="318.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="409.641" y1="318.66" x2="383.66" y2="303.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="383.66" y1="303.66" x2="368.66" y2="277.679" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 368.66 277.679 A 10 10 0 0 0 355.0 274.019" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="355.0" y1="274.019" x2="346.34" y2="279.019" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="346.34" y1="279.019" x2="361.34" y2="305.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="361.34" y1="305.0" x2="344.019" y2="315.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="344.019" y1="315.0" x2="370.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="370.0" y1="300.0" x2="400.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 400.0 300.0 A 10 10 0 0 0 410.0 290.0" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="410.0" y1="290.0" x2="410.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="410.0" y1="280.0" x2="380.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="280.0" x2="380.0" y2="260.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="260.0" x2="380.0" y2="290.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="290.0" x2="365.0" y2="315.981" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 365.0 315.981 A 10 10 0 0 0 368.66 329.641" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="368.66" y1="329.641" x2="377.32" y2="334.641" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="377.32" y1="334.641" x2="392.32" y2="308.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="392.32" y1="308.66" x2="409.641" y2="318.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="409.641" y1="318.66" x2="383.66" y2="303.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="383.66" y1="303.66" x2="368.66" y2="277.679" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 368.66 277.679 A 10 10 0 0 0 355.0 274.019" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="355.0" y1="274.019" x2="346.34" y2="279.019" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="346.34" y1="279.019" x2="361.34" y2="305.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="361.34" y1="305.0" x2="344.019" y2="315.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="344.019" y1="315.0" x2="370.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="370.0" y1="300.0" x2="400.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 400.0 300.0 A 10 10 0 0 0 410.0 290.0" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="410.0" y1="290.0" x2="410.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="410.0" y1="280.0" x2="380.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="280.0" x2="380.0" y2="260.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="260.0" x2="380.0" y2="290.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="290.0" x2="365.0" y2="315.981" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 365.0 315.981 A 10 10 0 0 0 368.66 329.641" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="368.66" y1="329.641" x2="377.32" y2="334.641" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="377.32" y1="334.641" x2="392.32" y2="308.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="392.32" y1="308.66" x2="409.641" y2="318.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="409.641" y1="318.66" x2="383.66" y2="303.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="383.66" y1="303.66" x2="368.66" y2="277.679" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 368.66 277.679 A 10 10 0 0 0 355.0 274.019" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="355.0" y1="274.019" x2="346.34" y2="279.019" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="346.34" y1="279.019" x2="361.34" y2="305.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="361.34" y1="305.0" x2="344.019" y2="315.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="344.019" y1="315.0" x2="370.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="370.0" y1="300.0" x2="400.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 400.0 300.0 A 10 10 0 0 0 410.0 290.0" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="410.0" y1="290.0" x2="410.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="410.0" y1="280.0" x2="380.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="280.0" x2="380.0" y2="260.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="260.0" x2="380.0" y2="290.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="290.0" x2="365.0" y2="315.981" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 365.0 315.981 A 10 10 0 0 0 368.66 329.641" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="368.66" y1="329.641" x2="377.32" y2="334.641" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="377.32" y1="334.641" x2="392.32" y2="308.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="392.32" y1="308.66" x2="409.641" y2="318.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="409.641" y1="318.66" x2="383.66" y2="303.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="383.66" y1="303.66" x2="368.66" y2="277.679" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 368.66 277.679 A 10 10 0 0 0 355.0 274.019" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="355.0" y1="274.019" x2="346.34" y2="279.019" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="346.34" y1="279.019" x2="361.34" y2="305.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="361.34" y1="305.0" x2="344.019" y2="315.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="344.019" y1="315.0" x2="370.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="370.0" y1="300.0" x2="400.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 400.0 300.0 A 10 10 0 0 0 410.0 290.0" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="410.0" y1="290.0" x2="410.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="410.0" y1="280.0" x2="380.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="280.0" x2="380.0" y2="260.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="260.0" x2="380.0" y2="290.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="290.0" x2="365.0" y2="315.981" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 365.0 315.981 A 10 10 0 0 0 368.66 329.641" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="368.66" y1="329.641" x2="377.32" y2="334.641" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="377.32" y1="334.641" x2="392.32" y2="308.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="392.32" y1="308.66" x2="409.641" y2="318.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="409.641" y1="318.66" x2="383.66" y2="303.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="383.66" y1="303.66" x2="368.66" y2="277.679" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 368.66 277.679 A 10 10 0 0 0 355.0 274.019" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="355.0" y1="274.019" x2="346.34" y2="279.019" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="346.34" y1="279.019" x2="361.34" y2="305.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="361.34" y1="305.0" x2="344.019" y2="315.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="344.019" y1="315.0" x2="370.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="370.0" y1="300.0" x2="400.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 400.0 300.0 A 10 10 0 0 0 410.0 290.0" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="410.0" y1="290.0" x2="410.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="410.0" y1="280.0" x2="380.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="280.0" x2="380.0" y2="260.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="260.0" x2="380.0" y2="290.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="290.0" x2="365.0" y2="315.981" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 365.0 315.981 A 10 10 0 0 0 368.66 329.641" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="368.66" y1="329.641" x2="377.32" y2="334.641" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="377.32" y1="334.641" x2="392.32" y2="308.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="392.32" y1="308.66" x2="409.641" y2="318.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="409.641" y1="318.66" x2="383.66" y2="303.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="383.66" y1="303.66" x2="368.66" y2="277.679" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 368.66 277.679 A 10 10 0 0 0 355.0 274.019" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="355.0" y1="274.019" x2="346.34" y2="279.019" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="346.34" y1="279.019" x2="361.34" y2="305.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="361.34" y1="305.0" x2="344.019" y2="315.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="344.019" y1="315.0" x2="370.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="370.0" y1="300.0" x2="400.0" y2="300.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 400.0 300.0 A 10 10 0 0 0 410.0 290.0" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="410.0" y1="290.0" x2="410.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="410.0" y1="280.0" x2="380.0" y2="280.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="280.0" x2="380.0" y2="260.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="260.0" x2="380.0" y2="290.0" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="380.0" y1="290.0" x2="365.0" y2="315.981" stroke-linecap="round" style="stroke:black;stroke-width:1" /><path d="M 365.0 315.981 A 10 10 0 0 0 368.66 329.641" stroke-linecap="round" 
+            fill="transparent" fill-opacity="0" style="stroke:black;stroke-width:1"/><line x1="368.66" y1="329.641" x2="377.32" y2="334.641" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="377.32" y1="334.641" x2="392.32" y2="308.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="392.32" y1="308.66" x2="409.641" y2="318.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="409.641" y1="318.66" x2="383.66" y2="303.66" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="383.66" y1="303.66" x2="378.66" y2="294.99974596215566" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="378.66" y1="294.99974596215566" x2="373.66" y2="286.3394919243113" stroke-linecap="round" style="stroke:black;stroke-width:1" /><line x1="373.66" y1="286.3394919243113" x2="368.66" y2="277.6792378864669" stroke-linecap="round" style="stroke:black;stroke-width:1" />
+
+
+        <g id="classic" visibility="hidden" transform="rotate(150.0,368.66,277.6792378864669) translate(368.66, 277.6792378864669)">
+<polygon points="-5,-4.5 0,-2.5 5,-4.5 0,4.5" transform="skewX(0) scale(1,1)" style="stroke:black;fill:black;stroke-width:1" />
+</g>
+      </svg>
+</div></div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -453,10 +731,10 @@ const thebe_selector_output = ".output, .cell_output"
             <p class="prev-next-title">Fifth week</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="6_topfile.html" title="next page">
+    <a class='right-next' id="next-link" href="5_reading.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Sixth week</p>
+        <p class="prev-next-title">Reading</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
