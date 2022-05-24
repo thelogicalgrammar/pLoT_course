@@ -1,7 +1,9 @@
 #!/bin/sh
 
 # convert powerpoints to pdfs and put them in this folder
-libreoffice --headless --convert-to pdf lectures/*.pptx --outdir lectures/
+# UPDATE: deactivating this because it didn't render maths well.
+# Doing it manually instead.
+# libreoffice --headless --convert-to pdf lectures/*.pptx --outdir lectures/
 
 
 jupyter-book build --all ./

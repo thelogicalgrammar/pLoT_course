@@ -51,8 +51,12 @@ parts:
     - file: 5_topfile
       title: Week 5 - Semantics
       sections:
+        - file: 5_lecture
+          title: Lecture
         - file: 5_lab
           title: Lab
+        - file: 5_reading
+          title: Reading
     - file: 6_topfile
       title: Week 6 - Bayes I
       sections:
