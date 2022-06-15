@@ -48,11 +48,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introduction to the pLoT" href="8_lab.html" />
-    <link rel="prev" title="Seventh week" href="7_topfile.html" />
+    <link rel="next" title="Reading" href="7_reading.html" />
+    <link rel="prev" title="Lecture" href="7_lecture.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -296,9 +298,19 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="7_lecture.html">
+     Lecture
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="7_reading.html">
+     Reading
     </a>
    </li>
   </ul>
@@ -419,6 +431,44 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-metropolis-hastings-algorithm">
+   The Metropolis-Hastings algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-samples-from-an-unnormalized-normal-distribution">
+   Getting samples from an unnormalized normal distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-mhmc-for-bayesian-inference-categorization-in-continuous-space">
+   Using MHMC for Bayesian inference: categorization in continuous space
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-mhmc-in-discrete-spaces">
+   Using MHMC in discrete spaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework">
+   Homework
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implemented-mhmc">
+   Implemented MHMC
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -431,6 +481,44 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-metropolis-hastings-algorithm">
+   The Metropolis-Hastings algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-samples-from-an-unnormalized-normal-distribution">
+   Getting samples from an unnormalized normal distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-mhmc-for-bayesian-inference-categorization-in-continuous-space">
+   Using MHMC for Bayesian inference: categorization in continuous space
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-mhmc-in-discrete-spaces">
+   Using MHMC in discrete spaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework">
+   Homework
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implemented-mhmc">
+   Implemented MHMC
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -439,6 +527,673 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="bayes-part-ii">
 <h1>Bayes (Part II)<a class="headerlink" href="#bayes-part-ii" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-metropolis-hastings-algorithm">
+<h2>The Metropolis-Hastings algorithm<a class="headerlink" href="#the-metropolis-hastings-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>In the lecture this week, we have seen the <em>Metropolis-Hastings</em> algorithm, which allows us to get samples from an <em>unnormalized</em> distribution function, i.e., a function that returns a probability multiplied by some constant factor. Note that this can be any distribution (although in practice we will need it to get samples from an unnormalized posterior).</p>
+<p>First of all, have a look at the description of the algorithm and try to implement it as described here.</p>
+<blockquote>
+<div><p><strong><strong>NOTE</strong></strong> You can find the implemented algo at the bottom of this notebook, but please try by yourself before looking at it!</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mcmc</span><span class="p">(</span><span class="n">nsamples</span><span class="p">,</span> <span class="n">unnorm_prob_f</span><span class="p">,</span> <span class="n">proposalf</span><span class="p">,</span> <span class="n">burnin</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nsamples: int</span>
+<span class="sd">        Number of samples to draw (includes burnin)</span>
+<span class="sd">    unnorm_prob_f: func</span>
+<span class="sd">        Function taking a point in the support and</span>
+<span class="sd">        returning its unnormalized probability</span>
+<span class="sd">    proposalf: func</span>
+<span class="sd">        Function that takes current position</span>
+<span class="sd">        and returns a proposal for where to move next</span>
+<span class="sd">    burnin: int</span>
+<span class="sd">        Number of initial samples to exclude</span>
+<span class="sd">    initial: float or func</span>
+<span class="sd">        If float, starts from that point.</span>
+<span class="sd">        If func, starts from the output of initial()</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        A list of samples</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># set initial point in variable &#39;current&#39; and </span>
+    <span class="c1"># calculate current probability (&#39;curr_prob&#39;)</span>
+    <span class="c1"># ADD CODE HERE</span>
+    
+    <span class="c1"># we put the samples in list &#39;states&#39;</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsamples</span><span class="p">):</span>
+        
+        <span class="c1"># append current position to states</span>
+        <span class="c1"># ADD CODE HERE</span>
+        
+        <span class="c1"># proposes a new point</span>
+        <span class="c1"># ADD CODE HERE</span>
+        
+        <span class="c1"># calculate unnormalized probability </span>
+        <span class="c1"># at proposed point</span>
+        <span class="c1"># ADD CODE HERE</span>
+        
+        <span class="c1"># calculates probability of acceptance </span>
+        <span class="c1"># in variable &#39;acceptance&#39;</span>
+        <span class="c1"># ADD CODE HERE</span>
+        
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">acceptance</span><span class="p">:</span>
+            <span class="c1"># if acceptance is higher than random btw 0 and 1,</span>
+            <span class="c1"># accept move, else stay where you are (i.e. do nothing)</span>
+            <span class="c1"># ADD CODE HERE</span>
+    
+    <span class="c1"># return list of samples</span>
+    <span class="k">return</span> <span class="n">states</span><span class="p">[</span><span class="n">burnin</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This algorithm has a lot of pros:</p>
+<ul class="simple">
+<li><p>Suprisingly simple to implement</p></li>
+<li><p>If we get enough samples it is guaranteed to converge to the true posterior!</p></li>
+<li><p>Works for both continuous and discrete parameter spaces
+But it also has some cons:</p></li>
+<li><p>Can be very slow to converge</p></li>
+<li><p>Does not work well with highly dimensional spaces</p></li>
+<li><p>There is no way to tell if it converged to the true posterior</p></li>
+</ul>
+<p>In general, we should get as many samples as possible and run multiple chains with different initial points, to see if they converged to the same distribution.</p>
+</div>
+<div class="section" id="getting-samples-from-an-unnormalized-normal-distribution">
+<h2>Getting samples from an unnormalized normal distribution<a class="headerlink" href="#getting-samples-from-an-unnormalized-normal-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The simplest application is to get samples from a distribution that we can calculate exactly, and see if the algorithm converges to it. Let’s take the standard normal distribution, which has density function:</p>
+<div class="math notranslate nohighlight">
+\[
+\varphi (z)= \frac {1}{\sqrt {2\pi }} e^{-{\frac {z^{2}}{2}}}
+\]</div>
+<p>let’s write a function to calculate this probability density:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Probability density of normal distribution at x</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">numerator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">numerator</span><span class="o">/</span><span class="n">denominator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And let’s test this function to make sure it does what we expect:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">normal</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7_lab_10_0.png" src="_images/7_lab_10_0.png" />
+</div>
+</div>
+<p>Now suppose that we didn’t have the explicit formula for the distribution, but rather some black-box function where <span class="math notranslate nohighlight">\(\varphi\)</span> is multiplied by an unknown constant <span class="math notranslate nohighlight">\(K\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\varphi' (z)= K \frac {1}{\sqrt {2\pi }} e^{-{\frac {z^{2}}{2}}}
+\]</div>
+<blockquote>
+<div><p><strong><strong>NOTE</strong></strong>: If <span class="math notranslate nohighlight">\(K\)</span> is equal to the normalization constant <span class="math notranslate nohighlight">\(\sqrt {2\pi }\)</span>, <span class="math notranslate nohighlight">\(\varphi' (z)\)</span> becomes just <span class="math notranslate nohighlight">\(e^{-{\frac {z^{2}}{2}}}\)</span>. This is essentially the trick we will use to sample from the posterior, where we don’t have the posterior as such, but we can calculate the posterior multiplied by <span class="math notranslate nohighlight">\(P(D)\)</span>.</p>
+</div></blockquote>
+<p>Now we can use our mcmc function above to take samples from the distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span> <span class="o">=</span> <span class="n">mcmc</span><span class="p">(</span>
+    <span class="c1"># Number of samples</span>
+    <span class="mi">100000</span><span class="p">,</span>
+    <span class="c1"># Unnormalized density function</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="c1"># Proposal function from point x</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can plot a histogram of the samples and compare it to the true distribution, and if you wrote the MCMC function correctly, they should look very close:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot a histogram of the samples</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># also plot the true distribution, just to be sure!</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">normal</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7_lab_14_0.png" src="_images/7_lab_14_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="using-mhmc-for-bayesian-inference-categorization-in-continuous-space">
+<h2>Using MHMC for Bayesian inference: categorization in continuous space<a class="headerlink" href="#using-mhmc-for-bayesian-inference-categorization-in-continuous-space" title="Permalink to this headline">¶</a></h2>
+<p>Now recall the categorization case that we saw in class: we observe some samples from an unknown category, and we have to form a posterior over the position of the unseen category’s boundaries. The case we have seen in class has discrete boundaries, and therefore we could in theory calculate the posterior directly: consider all the possible hypotheses (categories) <span class="math notranslate nohighlight">\(H\)</span>, calculate <span class="math notranslate nohighlight">\(P(H) P(D \mid H)\)</span>, and sum it all to find <span class="math notranslate nohighlight">\(P(D)\)</span>.</p>
+<p>However, now imagine the case where we have a <em>continuous</em> space, and so infinitely many categories. The probability density of sampling a certain observation from a category is still 0 if the observation lies outside the category and <span class="math notranslate nohighlight">\(1/|H|\)</span> otherwise, but now the category <span class="math notranslate nohighlight">\(H\)</span> can have a float size (e.g., category [-1, 0.5] has size 1.5). Now it becomes difficult to calculate the <span class="math notranslate nohighlight">\(P(D)\)</span>, because we can’t easily integrate over all categories!</p>
+<p>However, if we define some prior over hypotheses (i.e. the categories), we can still easily calculate the numerator of the posterior, namely <span class="math notranslate nohighlight">\(P(H) P(D \mid H)\)</span>, for specific categories. A simple prior can be defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+p(H) = \phi(x=l_H, \mu=0, \sigma=10) \; \phi(x=u_H, \mu=0, \sigma=10)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi\)</span> is the probability density function of a normal distribution, <span class="math notranslate nohighlight">\(l_H\)</span> is the lower bound, and <span class="math notranslate nohighlight">\(u_H\)</span> is the upper bound.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prior_f</span><span class="p">(</span><span class="n">boundaries</span><span class="p">):</span>
+    <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="n">boundaries</span>
+    <span class="k">return</span> <span class="n">normal</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">normal</span><span class="p">(</span><span class="n">ub</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Likelihood can be defined as discussed above:</p>
+<div class="math notranslate nohighlight">
+\[
+p(D \mid H) = \prod_{d \in D} \left( |H|^{-1} \text{ if } d \in H \text{ else } 0 \right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is a set of observations (points from the unobserved category).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">likelihood_f</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">boundaries</span><span class="p">):</span>
+    <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="n">boundaries</span>
+    <span class="n">compatible</span> <span class="o">=</span> <span class="nb">all</span><span class="p">([</span><span class="n">lb</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ub</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">compatible</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">ub</span><span class="o">-</span><span class="n">lb</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the prior and the likelihood as defined above, we can write a function that given some data returns the unnormalized posterior function (i.e. a function form a category to the unnormalized posterior probability of the category given the data):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">define_unnorm_posterior</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">unnorm_posterior</span><span class="p">(</span><span class="n">boundaries</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">likelihood_f</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">boundaries</span><span class="p">)</span> <span class="o">*</span> 
+            <span class="n">prior_f</span><span class="p">(</span><span class="n">boundaries</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">unnorm_posterior</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we just need a proposal function that takes a current category and proposes a new one. The proposal function here does this by moving the category up or down and stretching it by some amount:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">proposal_f</span><span class="p">(</span><span class="n">current_boundaries</span><span class="p">):</span>
+    <span class="c1"># transform boundaries linearly</span>
+    <span class="c1"># (i.e., move up and down and stretch)</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+    <span class="c1"># we want the stretch to be always positive</span>
+    <span class="c1"># to preserve order of upper and lower bound</span>
+    <span class="c1"># (otherwise all samples with wrong order would</span>
+    <span class="c1"># have prob 0 in the likelihood function)</span>
+    <span class="c1"># Moreover, a stretching by some value x</span>
+    <span class="c1"># should be as likely as a contraction by x</span>
+    <span class="c1"># To preserve symmetry!</span>
+    <span class="n">stretch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">shift</span> <span class="o">+</span> <span class="n">stretch</span><span class="o">*</span><span class="n">current_boundaries</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check the distribution of the upper and lower bounds of the proposals starting from category [-1,1]:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">proposed</span> <span class="o">=</span> <span class="p">[</span><span class="n">proposal_f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span>
+<span class="n">lbs</span><span class="p">,</span> <span class="n">ubs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">proposed</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">lbs</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ubs</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7_lab_25_0.png" src="_images/7_lab_25_0.png" />
+</div>
+</div>
+<p>Now we are ready to run approximate Bayesian inference on some data! Let’s define some data first:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Take samples from the posterior distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span> <span class="o">=</span> <span class="n">mcmc</span><span class="p">(</span>
+    <span class="c1"># Number of samples</span>
+    <span class="mi">500000</span><span class="p">,</span>
+    <span class="c1"># Unnormalized density function</span>
+    <span class="n">define_unnorm_posterior</span><span class="p">(</span><span class="n">observations</span><span class="p">),</span>
+    <span class="c1"># Proposal function from point x</span>
+    <span class="n">proposal_f</span><span class="p">,</span>
+    <span class="n">initial</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2721/2883728898.py:42: RuntimeWarning: invalid value encountered in double_scalars
+  acceptance = min(move_prob/curr_prob,1)
+/tmp/ipykernel_2721/2883728898.py:42: RuntimeWarning: divide by zero encountered in double_scalars
+  acceptance = min(move_prob/curr_prob,1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot the posterior distributions of upper and lower bound:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lbs</span><span class="p">,</span> <span class="n">ubs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">lbs</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lower bound&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ubs</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Upper bound&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">observations</span><span class="p">,</span> 
+    <span class="p">[</span><span class="mf">1.</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">observations</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;observations&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7_lab_32_0.png" src="_images/7_lab_32_0.png" />
+</div>
+</div>
+<blockquote>
+<div><p><strong>QUESTION</strong> What happens if we add more observations? Do you see the size effect in continuous space?</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>EXERCISE</strong> (if there is time left at the end) Write a version of this inference model for 2-d space, where categories are squares and observations are points in 2d space.</p>
+</div></blockquote>
+</div>
+<div class="section" id="using-mhmc-in-discrete-spaces">
+<h2>Using MHMC in discrete spaces<a class="headerlink" href="#using-mhmc-in-discrete-spaces" title="Permalink to this headline">¶</a></h2>
+<p>We can use Metropolis-Hastings for discrete hypotheses spaces too! The basic idea is the same: we move around the space of hypotheses, calculating the unnormalized posterior for each point, and accepting new moves according to the rule described in the algo. The only complication is that we can’t use the normal distribution centered at the current position as a proposal distribution, but we must come up with something different.</p>
+<p>As an example which will be useful in the future, consider the space of sentences generated by a PCFG as the space of hypotheses. For instance, the following PCFG:</p>
+<div class="math notranslate nohighlight">
+\[
+S \rightarrow a | b | Sa | Sb
+\]</div>
+<p>with uniform substitution probabilities (each <span class="math notranslate nohighlight">\(1/3\)</span>). The space of hypotheses then would be: ‘a’, ‘b’, ‘aa’, ‘ab’, ‘ba’, ‘bb’, and so on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complete</span><span class="p">(</span><span class="n">incomplete_sentence</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">incomplete_sentence</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;Sa&#39;</span><span class="p">,</span> <span class="s1">&#39;Sb&#39;</span><span class="p">]</span>
+    <span class="k">while</span> <span class="s1">&#39;S&#39;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">options</span><span class="p">)</span> <span class="o">+</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test function</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">&#39;Saa&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;aaa&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The probability of a specific sentence of length <span class="math notranslate nohighlight">\(n\)</span> then is <span class="math notranslate nohighlight">\(4^{-n}\)</span> (can you see why?). Let’s verify by sampling a bunch of sentences and finding the proportion of times we sample each one:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">complete</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<span class="n">sentences</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">argsort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">counts</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">sentences</span><span class="p">[</span><span class="n">argsort</span><span class="p">]</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">argsort</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sentences</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="n">counts</span><span class="p">[:</span><span class="mi">20</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7_lab_41_0.png" src="_images/7_lab_41_0.png" />
+</div>
+</div>
+<p>Based on this, it is easy to calculate the probability of each sentence:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prior_f</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">4</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example of prior calculation</span>
+<span class="n">prior_f</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.25
+</pre></div>
+</div>
+</div>
+</div>
+<p>We want to learn the sentence that produces some data. If we can see the sentence directly, this is easy: just look at the sentence and we’re done. However, suppose that we can’t see the sentence directly, but we see a ‘noisy’ version of it, where possibly some characters have been added at the end, where:</p>
+<ul class="simple">
+<li><p>nothing is added with probability 1/3.</p></li>
+<li><p>‘a’ and ‘b’ are added with probability 1/3 each.</p></li>
+</ul>
+<p>We can calculate the resulting observation probability:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">likelihood_f</span><span class="p">(</span><span class="n">observations</span><span class="p">,</span> <span class="n">sentence</span><span class="p">):</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">observation</span> <span class="ow">in</span> <span class="n">observations</span><span class="p">:</span>
+        <span class="c1"># Calculates probability of observation given true sentence</span>
+        <span class="k">if</span> <span class="n">observation</span> <span class="o">==</span> <span class="n">sentence</span><span class="p">:</span>
+            <span class="n">likelihood</span> <span class="o">*=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+        <span class="k">elif</span> <span class="n">observation</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+            <span class="n">likelihood</span> <span class="o">*=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">**</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">likelihood</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test the function</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">likelihood_f</span><span class="p">([</span><span class="s1">&#39;abaa&#39;</span><span class="p">,</span> <span class="s1">&#39;abaaa&#39;</span><span class="p">,</span> <span class="s1">&#39;aba&#39;</span><span class="p">],</span> <span class="s1">&#39;ab&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">likelihood_f</span><span class="p">([</span><span class="s1">&#39;abaa&#39;</span><span class="p">,</span> <span class="s1">&#39;abaaa&#39;</span><span class="p">,</span> <span class="s1">&#39;abab&#39;</span><span class="p">],</span> <span class="s1">&#39;ab&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">likelihood_f</span><span class="p">([</span><span class="s1">&#39;abaa&#39;</span><span class="p">,</span> <span class="s1">&#39;abaaa&#39;</span><span class="p">,</span> <span class="s1">&#39;abab&#39;</span><span class="p">],</span> <span class="s1">&#39;abb&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001371742112482853
+0.00045724737082761767
+0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Like in the example above, we can now calculate the unnormalized posterior:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">define_unnorm_posterior</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">unnorm_posterior</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">likelihood_f</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span> <span class="o">*</span> 
+            <span class="n">prior_f</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">unnorm_posterior</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we need a proposal distribution, which brings us from a current sentence to a possible next step. For MHMC to work as written above, it has to be the case that the probability of going from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(x'\)</span> is the same as the probability of going from <span class="math notranslate nohighlight">\(x'\)</span> to <span class="math notranslate nohighlight">\(x\)</span>. If this is not the case, we need to multiply the value of <code class="docutils literal notranslate"><span class="pre">acceptance</span></code> in <code class="docutils literal notranslate"><span class="pre">mcmc</span></code> by <span class="math notranslate nohighlight">\(\frac{P(x' \rightarrow x) }{ P(x \rightarrow x')}\)</span> to balance things out.</p>
+<p>In practice, we will use the <em>subtree-regeneration</em> transition distribution proposed at p.153 in Goodman, Noah D., Joshua B. Tenenbaum, Jacob Feldman, and Thomas L. Griffiths. “A Rational Analysis of Rule-Based Concept Learning.” Cognitive Science 32, no. 1 (2008): 108–54. <a class="reference external" href="https://doi.org/10.1080/03640210701802071">https://doi.org/10.1080/03640210701802071</a>. It works as follows, starting from current sentence <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<ul class="simple">
+<li><p>Sample a node <span class="math notranslate nohighlight">\(n\)</span> at random from the parse tree of <span class="math notranslate nohighlight">\(x\)</span></p></li>
+<li><p>Remove everything below <span class="math notranslate nohighlight">\(n\)</span> and replace <span class="math notranslate nohighlight">\(n\)</span> with appropriate non-terminal, generating a tree <span class="math notranslate nohighlight">\(y\)</span> containing non-terminals.</p></li>
+<li><p>Complete <span class="math notranslate nohighlight">\(y\)</span> with the PCFG, obtaining new sentence <span class="math notranslate nohighlight">\(x'\)</span>.</p></li>
+<li><p>The acceptance probability from <code class="docutils literal notranslate"><span class="pre">mcmc</span></code> then gets additionally multiplied by:</p></li>
+</ul>
+<p>\begin{align}
+\frac{p(x’ \rightarrow x)}{p(x \rightarrow x’)}
+&amp;=
+\frac{ P(\text{sampling node <span class="math notranslate nohighlight">\(n\)</span> from <span class="math notranslate nohighlight">\(x'\)</span>}) }{ P(\text{sampling node <span class="math notranslate nohighlight">\(n\)</span> from <span class="math notranslate nohighlight">\(x'\)</span>}) }
+\frac{ P(x \mid \text{PCFG}) }{ P(x’ \mid \text{PCFG}) } \
+&amp;= \frac{|x’|^{-1}}{|x|^{-1}} \frac{4^{-|x|}}{4^{-|x’|}} \
+&amp;= \frac{|x|}{|x’|} \frac{4^{-|x|}}{4^{-|x’|}}
+\end{align}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transition_f</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+    <span class="n">truncated</span> <span class="o">=</span> <span class="s1">&#39;S&#39;</span> <span class="o">+</span> <span class="n">current</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">complete</span><span class="p">(</span><span class="n">truncated</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test the function</span>
+<span class="n">transition_f</span><span class="p">(</span><span class="s1">&#39;aba&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;bbb&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">acceptance_f</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">proposed</span><span class="p">,</span> <span class="n">unnorm_prob_f</span><span class="p">):</span>
+    <span class="n">move_when_lower</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">unnorm_prob_f</span><span class="p">(</span><span class="n">proposed</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">current</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.25</span><span class="o">**</span><span class="nb">len</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+        <span class="o">/</span>
+        <span class="p">(</span><span class="n">unnorm_prob_f</span><span class="p">(</span><span class="n">current</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">proposed</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.25</span><span class="o">**</span><span class="nb">len</span><span class="p">(</span><span class="n">proposed</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span>
+        <span class="n">move_when_lower</span><span class="p">,</span>
+        <span class="mi">1</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mcmc</span><span class="p">(</span><span class="n">nsamples</span><span class="p">,</span> <span class="n">unnorm_prob_f</span><span class="p">,</span> <span class="n">proposalf</span><span class="p">,</span> <span class="n">burnin</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Same as mcmc above but with different acceptance_f</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">current</span> <span class="o">=</span> <span class="n">initial</span><span class="p">()</span> <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span> <span class="k">else</span> <span class="n">initial</span>
+    <span class="n">curr_prob</span> <span class="o">=</span> <span class="n">unnorm_prob_f</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsamples</span><span class="p">):</span>
+        <span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+        <span class="n">movement</span> <span class="o">=</span> <span class="n">proposalf</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+        <span class="n">move_prob</span> <span class="o">=</span> <span class="n">unnorm_prob_f</span><span class="p">(</span><span class="n">movement</span><span class="p">)</span>
+        <span class="n">acceptance</span> <span class="o">=</span> <span class="n">acceptance_f</span><span class="p">(</span>
+            <span class="n">current</span><span class="p">,</span> 
+            <span class="n">movement</span><span class="p">,</span>
+            <span class="n">unnorm_prob_f</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">acceptance</span><span class="p">:</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">movement</span>
+            <span class="n">curr_prob</span> <span class="o">=</span> <span class="n">move_prob</span>
+    <span class="k">return</span> <span class="n">states</span><span class="p">[</span><span class="n">burnin</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define some observations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aabaab&#39;</span><span class="p">,</span> <span class="s1">&#39;aaba&#39;</span><span class="p">,</span> <span class="s1">&#39;aabaaaa&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Take samples with our algorithm:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span> <span class="o">=</span> <span class="n">mcmc</span><span class="p">(</span>
+    <span class="mi">100000</span><span class="p">,</span>
+    <span class="n">define_unnorm_posterior</span><span class="p">(</span><span class="n">observations</span><span class="p">),</span>
+    <span class="n">transition_f</span><span class="p">,</span>
+    <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;a&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the posterior distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentences</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">argsort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">counts</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">sentences</span><span class="p">[</span><span class="n">argsort</span><span class="p">]</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">argsort</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sentences</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">counts</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7_lab_60_0.png" src="_images/7_lab_60_0.png" />
+</div>
+</div>
+<p>Various things to be noticed:</p>
+<ul class="simple">
+<li><p>The most likely sentence is the longest sentence that all the observations share, namely ‘aaba’</p></li>
+<li><p>The second most likely is ‘aab’, because it would be a ‘suspicious’ coincidence if all observations independently produced an ‘a’ right after ‘aab’, if the true sentence is indeed ‘aab’.</p></li>
+<li><p>Same, but even more so, applies to ‘aa’ and ‘a’.</p></li>
+<li><p>So even though ‘aaba’ is a priori less likely than ‘a’, it get a higher posterior probability because of the likelihood!</p></li>
+</ul>
+</div>
+<div class="section" id="homework">
+<h2>Homework<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h2>
+<p>Third (and last) homeworks set! Consider the following CFG (interpret it as a PCFG with uniform probabilities), where each sentence from this grammar is an integer:
+$<span class="math notranslate nohighlight">\(
+S \rightarrow 1 | S+1 | S-1
+\)</span><span class="math notranslate nohighlight">\(
+Note that there are multiple way to arrive at the same integer. E.g. \)</span>I(1+1-1)=I(1)$.</p>
+<ol class="simple">
+<li><p>Write a function <code class="docutils literal notranslate"><span class="pre">prior_f</span></code> that takes a sentence produced by the PCFG and returns its probability in the PCFG.</p></li>
+</ol>
+<p>Assume that there is a true (unknown) sentence <span class="math notranslate nohighlight">\(H\)</span> that we are trying to infer based on some observations <span class="math notranslate nohighlight">\({o_1, \dots, o_n}\)</span>. The observations aren’t just the integer defined by the sentence, but rather each observation is equal to the integer defined by the sentence plus some normally distributed noise. The likelihood function therefore is as follows:
+$<span class="math notranslate nohighlight">\(
+p(o \mid H) = P(H \mid \text{PCFG}) \; \phi(x= o-I(H), \mu=0, \sigma=2.)
+\)</span><span class="math notranslate nohighlight">\(
+as usual, \)</span>I<span class="math notranslate nohighlight">\( is the interpretation function, \)</span>\phi$ is the density function of the normal distribution. For instance if the true sentence was <code class="docutils literal notranslate"><span class="pre">1+1</span></code>, we might observe 1.94.</p>
+<ol class="simple">
+<li><p>Write a function <code class="docutils literal notranslate"><span class="pre">likelihood_f</span></code> that calculates the probability of a list of observations given a sentence.</p></li>
+</ol>
+<blockquote>
+<div><p><strong>HINT</strong> First find the integer <span class="math notranslate nohighlight">\(i\)</span> defined by the sentence, then for each observation find the difference between <span class="math notranslate nohighlight">\(i\)</span> and the observation, then find the probability of those differences (given that they are samples from a normal with <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(\sigma=2\)</span>), and multiply those probabilities together.</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Write a function to calculate the unnormalized posterior. This is essentially what the <code class="docutils literal notranslate"><span class="pre">define_unnorm_posterior</span></code> function above does.</p></li>
+<li><p>Write a transition function: a function that takes a current sentence <span class="math notranslate nohighlight">\(x\)</span> and returns a randomly generated proposal <span class="math notranslate nohighlight">\(x'\)</span>. You can modify the subtree-regeneration above to adapt it to this case.</p></li>
+<li><p>Using mcmc, draw 100000 samples from <span class="math notranslate nohighlight">\(P(H \mid D)\)</span>.</p></li>
+</ol>
+</div>
+<div class="section" id="implemented-mhmc">
+<h2>Implemented MHMC<a class="headerlink" href="#implemented-mhmc" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mcmc</span><span class="p">(</span><span class="n">nsamples</span><span class="p">,</span> <span class="n">unnorm_prob_f</span><span class="p">,</span> <span class="n">proposalf</span><span class="p">,</span> <span class="n">burnin</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nsamples: int</span>
+<span class="sd">        Number of samples to draw (includes burnin)</span>
+<span class="sd">    unnorm_prob_f: func</span>
+<span class="sd">        Function taking a point in the support and</span>
+<span class="sd">        returning its unnormalized probability</span>
+<span class="sd">    proposalf: func</span>
+<span class="sd">        Function that takes current position</span>
+<span class="sd">        and returns a proposal for where to move next</span>
+<span class="sd">    burnin: int</span>
+<span class="sd">        Number of initial samples to exclude</span>
+<span class="sd">    initial: float or func</span>
+<span class="sd">        If float, starts from that point.</span>
+<span class="sd">        If func, starts from the output of initial()</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        A list of samples</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">current</span> <span class="o">=</span> <span class="n">initial</span><span class="p">()</span> <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span> <span class="k">else</span> <span class="n">initial</span>
+    <span class="n">curr_prob</span> <span class="o">=</span> <span class="n">unnorm_prob_f</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+    
+    <span class="c1"># we put the samples in list &#39;states&#39;</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsamples</span><span class="p">):</span>
+        
+        <span class="c1"># append current position to states</span>
+        <span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+        
+        <span class="c1"># proposes a new point</span>
+        <span class="n">movement</span> <span class="o">=</span> <span class="n">proposalf</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+        
+        <span class="c1"># calculate unnormalized probability </span>
+        <span class="c1"># at proposed point</span>
+        <span class="n">move_prob</span> <span class="o">=</span> <span class="n">unnorm_prob_f</span><span class="p">(</span><span class="n">movement</span><span class="p">)</span>
+        
+        <span class="c1"># calculates probability of acceptance</span>
+        <span class="n">acceptance</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">move_prob</span><span class="o">/</span><span class="n">curr_prob</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># if acceptance is higher than random btw 0 and 1,</span>
+        <span class="c1"># accept move, else stay where you are (i.e. do nothing)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">acceptance</span><span class="p">:</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">movement</span>
+            <span class="n">curr_prob</span> <span class="o">=</span> <span class="n">move_prob</span>
+    
+    <span class="c1"># return list of samples</span>
+    <span class="k">return</span> <span class="n">states</span><span class="p">[</span><span class="n">burnin</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -466,17 +1221,17 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="7_topfile.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="7_lecture.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Seventh week</p>
+            <p class="prev-next-title">Lecture</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="8_lab.html" title="next page">
+    <a class='right-next' id="next-link" href="7_reading.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to the pLoT</p>
+        <p class="prev-next-title">Reading</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
