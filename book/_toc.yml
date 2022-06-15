@@ -60,13 +60,21 @@ parts:
     - file: 6_topfile
       title: Week 6 - Bayes I
       sections:
+        - file: 6_lecture
+          title: Lecture
         - file: 6_lab
           title: Lab
+        - file: 6_reading
+          title: Reading
     - file: 7_topfile
       title: Week 7 - Bayes II
       sections:
+        - file: 7_lecture
+          title: Lecture
         - file: 7_lab
           title: Lab
+        - file: 7_reading
+          title: Reading
 
 - caption: The probabilistic LoT
   chapters:
