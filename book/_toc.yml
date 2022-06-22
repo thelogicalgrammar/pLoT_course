@@ -79,3 +79,8 @@ parts:
 - caption: The probabilistic LoT
   chapters:
     - file: 8_lab
+      title: Lab
+    - file: 8_lecture
+      title: Lecture
+    - file: 8_reading
+      title: Reading
