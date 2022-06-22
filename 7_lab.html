@@ -324,7 +324,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="8_lab.html">
-   Introduction to the pLoT
+   Lab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="8_lecture.html">
+   Lecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="8_reading.html">
+   Reading
   </a>
  </li>
 </ul>
@@ -1119,7 +1129,7 @@ Note that there are multiple way to arrive at the same integer. E.g. \)</span>I(
 </ol>
 <p>Assume that there is a true (unknown) sentence <span class="math notranslate nohighlight">\(H\)</span> that we are trying to infer based on some observations <span class="math notranslate nohighlight">\({o_1, \dots, o_n}\)</span>. The observations aren’t just the integer defined by the sentence, but rather each observation is equal to the integer defined by the sentence plus some normally distributed noise. The likelihood function therefore is as follows:
 $<span class="math notranslate nohighlight">\(
-p(o \mid H) = P(H \mid \text{PCFG}) \; \phi(x= o-I(H), \mu=0, \sigma=2.)
+p(o \mid H) = \phi(x= o-I(H), \mu=0, \sigma=2.)
 \)</span><span class="math notranslate nohighlight">\(
 as usual, \)</span>I<span class="math notranslate nohighlight">\( is the interpretation function, \)</span>\phi$ is the density function of the normal distribution. For instance if the true sentence was <code class="docutils literal notranslate"><span class="pre">1+1</span></code>, we might observe 1.94.</p>
 <ol class="simple">

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to the pLoT &#8212; The pLoT: A course</title>
+    <title>Lab for 8th week &#8212; The pLoT: A course</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,6 +51,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lecture" href="8_lecture.html" />
     <link rel="prev" title="Reading" href="7_reading.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -321,7 +322,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Introduction to the pLoT
+   Lab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="8_lecture.html">
+   Lecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="8_reading.html">
+   Reading
   </a>
  </li>
 </ul>
@@ -365,9 +376,9 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/8_lab.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/8_lab.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -401,28 +412,6 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/thelogicalgrammar/pLoT_course/master?urlpath=tree/book/8_lab.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/thelogicalgrammar/pLoT_course/blob/master/book/8_lab.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
-
         </div>
 
         <!-- Table of contents -->
@@ -435,7 +424,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to the pLoT</h1>
+                <h1>Lab for 8th week</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -446,8 +435,19 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-the-plot">
-<h1>Introduction to the pLoT<a class="headerlink" href="#introduction-to-the-plot" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="lab-for-8th-week">
+<h1>Lab for 8th week<a class="headerlink" href="#lab-for-8th-week" title="Permalink to this headline">¶</a></h1>
+<p>This week we’re learning about Piantadosi’s LOTlib3 library!
+In particular, we’ll go through Piantadosi’s own tutorial,
+which you can find <a class="reference external" href="https://github.com/piantado/LOTlib3/blob/master/Documentation/Tutorial.md">here</a>.</p>
+<p>The tutorial is in a markdown file.
+To run the code, create a new notebook and run the following line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!git clone https://github.com/piantado/LOTlib3
+import LOTlib3
+from LOTlib3.Grammar import Grammar
+</pre></div>
+</div>
+<p>This will download the library in the colab directory and import LOTlib3.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -459,16 +459,16 @@ const thebe_selector_output = ".output, .cell_output"
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "plot"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "plot",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'plot'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -481,6 +481,13 @@ const thebe_selector_output = ".output, .cell_output"
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Reading</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="8_lecture.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
