@@ -349,6 +349,60 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="9_topfile.html">
+   Week 9 - Categorization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="9_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="9_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="9_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="10_topfile.html">
+   Week 10 - Handwritten symbols &amp; Kinship
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -741,7 +795,7 @@ p(D \mid H) = \prod_{d \in D} \left( |H|^{-1} \text{ if } d \in H \text{ else } 
     <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="n">boundaries</span>
     <span class="n">compatible</span> <span class="o">=</span> <span class="nb">all</span><span class="p">([</span><span class="n">lb</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ub</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">compatible</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">ub</span><span class="o">-</span><span class="n">lb</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">ub</span><span class="o">-</span><span class="n">lb</span><span class="p">)</span><span class="o">**</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
 </pre></div>
