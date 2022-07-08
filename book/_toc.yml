@@ -81,27 +81,36 @@ parts:
     - file: 8_topfile
       title: Week 8 - LOTlib3
       sections:
-      - file: 8_lab
-        title: Lab
       - file: 8_lecture
         title: Lecture
+      - file: 8_lab
+        title: Lab
       - file: 8_reading
         title: Reading
     - file: 9_topfile
       title: Week 9 - Categorization
       sections:
-      - file: 9_lab
-        title: Lab
       - file: 9_lecture
         title: Lecture
+      - file: 9_lab
+        title: Lab
       - file: 9_reading
         title: Reading
     - file: 10_topfile
-      title: Week 10 - Handwritten symbols & Kinship
+      title: Week 10 - Case studies I
       sections:
-      - file: 10_lab
-        title: Lab
       - file: 10_lecture
         title: Lecture
+      - file: 10_lab
+        title: Lab
       - file: 10_reading
+        title: Reading
+    - file: 11_topfile
+      title: Week 11 - Case studies II
+      sections:
+      - file: 11_lecture
+        title: Lecture
+      - file: 11_lab
+        title: Lab
+      - file: 11_reading
         title: Reading
