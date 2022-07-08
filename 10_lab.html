@@ -51,8 +51,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture" href="10_lecture.html" />
-    <link rel="prev" title="Tenth week" href="10_topfile.html" />
+    <link rel="next" title="Reading" href="10_reading.html" />
+    <link rel="prev" title="Lecture" href="10_lecture.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -331,13 +331,13 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="8_lab.html">
-     Lab
+    <a class="reference internal" href="8_lecture.html">
+     Lecture
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="8_lecture.html">
-     Lecture
+    <a class="reference internal" href="8_lab.html">
+     Lab
     </a>
    </li>
    <li class="toctree-l2">
@@ -358,13 +358,13 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="9_lab.html">
-     Lab
+    <a class="reference internal" href="9_lecture.html">
+     Lecture
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="9_lecture.html">
-     Lecture
+    <a class="reference internal" href="9_lab.html">
+     Lab
     </a>
    </li>
    <li class="toctree-l2">
@@ -384,18 +384,45 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_lecture.html">
+     Lecture
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Lab
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_lecture.html">
+    <a class="reference internal" href="10_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="11_topfile.html">
+   Week 11 - Further case studies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_lecture.html">
      Lecture
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_reading.html">
+    <a class="reference internal" href="11_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_reading.html">
      Reading
     </a>
    </li>
@@ -705,16 +732,16 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&lt;&lt;OBJECT: shape=triangle color=red &gt; -&gt; False&gt;,
-       &lt;&lt;OBJECT: shape=square color=blue &gt; -&gt; False&gt;,
-       &lt;&lt;OBJECT: shape=square color=red &gt; -&gt; True&gt;,
-       &lt;&lt;OBJECT: shape=square color=blue &gt; -&gt; False&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&lt;&lt;OBJECT: shape=square color=blue &gt; -&gt; False&gt;,
        &lt;&lt;OBJECT: shape=triangle color=red &gt; -&gt; False&gt;,
        &lt;&lt;OBJECT: shape=triangle color=red &gt; -&gt; False&gt;,
+       &lt;&lt;OBJECT: shape=square color=blue &gt; -&gt; False&gt;,
        &lt;&lt;OBJECT: shape=square color=red &gt; -&gt; True&gt;,
-       &lt;&lt;OBJECT: shape=square color=blue &gt; -&gt; False&gt;,
-       &lt;&lt;OBJECT: shape=square color=blue &gt; -&gt; False&gt;,
-       &lt;&lt;OBJECT: shape=square color=red &gt; -&gt; True&gt;], dtype=object)
+       &lt;&lt;OBJECT: shape=triangle color=red &gt; -&gt; False&gt;,
+       &lt;&lt;OBJECT: shape=triangle color=blue &gt; -&gt; False&gt;,
+       &lt;&lt;OBJECT: shape=triangle color=blue &gt; -&gt; False&gt;,
+       &lt;&lt;OBJECT: shape=triangle color=blue &gt; -&gt; False&gt;,
+       &lt;&lt;OBJECT: shape=square color=blue &gt; -&gt; False&gt;], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -747,22 +774,24 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DEFAULT_FEATURE_WEIGHT</span> <span class="o">=</span> <span class="mf">5.</span>
 
-<span class="n">DNF</span> <span class="o">=</span> <span class="n">Grammar</span><span class="p">()</span>
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;START&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;DISJ&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;START&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;START&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;START&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">Grammar</span><span class="p">()</span>
+<span class="c1"># NOTE: empty name argument is interpreted as a function with an &#39;empty&#39; name</span>
+<span class="c1"># so it just works to add brackets around DISJ</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;START&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;DISJ&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;START&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;START&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;START&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
 
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;DISJ&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="p">[</span><span class="s1">&#39;CONJ&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;DISJ&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;DISJ&#39;</span><span class="p">,</span> <span class="s1">&#39;or_&#39;</span><span class="p">,</span>  <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">,</span> <span class="s1">&#39;DISJ&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;DISJ&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="p">[</span><span class="s1">&#39;CONJ&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;DISJ&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;DISJ&#39;</span><span class="p">,</span> <span class="s1">&#39;or_&#39;</span><span class="p">,</span>  <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">,</span> <span class="s1">&#39;DISJ&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
 
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;CONJ&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;CONJ&#39;</span><span class="p">,</span> <span class="s1">&#39;and_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">,</span> <span class="s1">&#39;CONJ&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;CONJ&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;CONJ&#39;</span><span class="p">,</span> <span class="s1">&#39;and_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">,</span> <span class="s1">&#39;CONJ&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
 
 <span class="c1"># A pre-predicate is how we treat negation</span>
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">,</span> <span class="s1">&#39;not_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
-<span class="n">DNF</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="p">[</span><span class="s1">&#39;PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">,</span> <span class="s1">&#39;not_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;PRE-PREDICATE&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="p">[</span><span class="s1">&#39;PREDICATE&#39;</span><span class="p">],</span> <span class="n">DEFAULT_FEATURE_WEIGHT</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -809,7 +838,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>is_shape_(x, &#39;triangle&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>not_(is_color_(x, &#39;red&#39;))
 </pre></div>
 </div>
 </div>
@@ -817,10 +846,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="hypothesis">
 <h2>Hypothesis<a class="headerlink" href="#hypothesis" title="Permalink to this headline">¶</a></h2>
-<p>The hypothesis class inherits from <code class="docutils literal notranslate"><span class="pre">RationalRulesPrior</span></code>, which implements a model from Goodman et al 2008, <em>A Rational Analysis of Rule-Based Concept Learning</em>.</p>
+<p>The hypothesis class in Piantadosi’s code inherits from <code class="docutils literal notranslate"><span class="pre">RationalRulesPrior</span></code>, which implements a model from Goodman et al 2008, <em>A Rational Analysis of Rule-Based Concept Learning</em>. However, we found that that wasn’t working right so I am just removing it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyHypothesis</span><span class="p">(</span><span class="n">RationaRulesPrior</span><span class="p">,</span> <span class="n">BinaryLikelihood</span><span class="p">,</span> <span class="n">LOTHypothesis</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyHypothesis</span><span class="p">(</span><span class="n">BinaryLikelihood</span><span class="p">,</span> <span class="n">LOTHypothesis</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         
         <span class="c1"># note that our grammar defined above is passed to </span>
@@ -842,7 +871,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lambda x: not_(is_shape_(x, &#39;triangle&#39;))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lambda x: is_color_(x, &#39;green&#39;)
 </pre></div>
 </div>
 </div>
@@ -850,12 +879,13 @@ const thebe_selector_output = ".output, .cell_output"
 <p>And use them, e.g., to calculate the likelihood of some data (here, the data sampled above):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypothesis</span><span class="o">.</span><span class="n">compute_likelihood</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">make_data</span><span class="p">()</span>
+<span class="n">hypothesis</span><span class="o">.</span><span class="n">compute_likelihood</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-7.602402834667129
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.0005001250416822429
 </pre></div>
 </div>
 </div>
@@ -960,17 +990,17 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="10_topfile.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="10_lecture.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Tenth week</p>
+            <p class="prev-next-title">Lecture</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="10_lecture.html" title="next page">
+    <a class='right-next' id="next-link" href="10_reading.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture</p>
+        <p class="prev-next-title">Reading</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
