@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture &#8212; The pLoT: A course</title>
+    <title>Encoding binary sequences &#8212; The pLoT: A course</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Bayes (Part II)" href="7_lab.html" />
-    <link rel="prev" title="Seventh week" href="7_topfile.html" />
+    <link rel="next" title="Reading" href="12_reading.html" />
+    <link rel="prev" title="Lecture" href="12_lecture.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -123,7 +123,7 @@ const thebe_selector_output = ".output, .cell_output"
   Foundations
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="1_topfile.html">
    Week 1 - Introduction and Plan
@@ -286,18 +286,18 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="7_topfile.html">
    Week 7 - Bayes II
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
   <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="7_lecture.html">
      Lecture
     </a>
    </li>
@@ -319,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
   The probabilistic LoT
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="8_topfile.html">
    Week 8 - LOTlib3
@@ -433,23 +433,23 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="12_topfile.html">
    Week 12 - DreamCoder and Conclusions
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
   <label for="toctree-checkbox-12">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="12_lecture.html">
      Lecture
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_lab.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Lab
     </a>
    </li>
@@ -501,9 +501,9 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/7_lecture.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/12_lab.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -521,7 +521,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/thelogicalgrammar/pLoT_course/issues/new?title=Issue%20on%20page%20%2F7_lecture.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/thelogicalgrammar/pLoT_course/issues/new?title=Issue%20on%20page%20%2F12_lab.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -537,11 +537,51 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/thelogicalgrammar/pLoT_course/master?urlpath=tree/book/12_lab.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/thelogicalgrammar/pLoT_course/blob/master/book/12_lab.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The model
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -549,21 +589,119 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lecture</h1>
+                <h1>Encoding binary sequences</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The model
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture">
-<h1>Lecture<a class="headerlink" href="#lecture" title="Permalink to this headline">¶</a></h1>
-<p>You can download the ppt file <a class="reference external" href="https://thelogicalgrammar.github.io/pLoT_course/7_bayesII.pptx">here</a>.</p>
-<iframe src='https://thelogicalgrammar.github.io/pLoT_course/7_bayesII.pdf' width='100%' height='600px' frameborder='0'>
+  <div class="tex2jax_ignore mathjax_ignore section" id="encoding-binary-sequences">
+<h1>Encoding binary sequences<a class="headerlink" href="#encoding-binary-sequences" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># in colab</span>
+    <span class="kn">import</span> <span class="nn">google.colab</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;In colab, downloading LOTlib3&#39;</span><span class="p">)</span>
+    <span class="o">!</span>git clone https://github.com/piantado/LOTlib3
+<span class="k">except</span><span class="p">:</span>
+    <span class="c1"># not in colab</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Not in colab!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Not in colab!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<p>First we need to import a bunch of stuff:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">LOTlib3.Miscellaneous</span> <span class="kn">import</span> <span class="n">q</span><span class="p">,</span> <span class="n">random</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Grammar</span> <span class="kn">import</span> <span class="n">Grammar</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.DataAndObjects</span> <span class="kn">import</span> <span class="n">FunctionData</span><span class="p">,</span> <span class="n">Obj</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Hypotheses.LOTHypothesis</span> <span class="kn">import</span> <span class="n">LOTHypothesis</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Hypotheses.Likelihoods.BinaryLikelihood</span> <span class="kn">import</span> <span class="n">BinaryLikelihood</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Eval</span> <span class="kn">import</span> <span class="n">primitive</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Miscellaneous</span> <span class="kn">import</span> <span class="n">qq</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.TopN</span> <span class="kn">import</span> <span class="n">TopN</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Samplers.MetropolisHastings</span> <span class="kn">import</span> <span class="n">MetropolisHastingsSampler</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-model">
+<h2>The model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
+<p>In the past few weeks, we have worker together through a few models in LOTlib3, but you still haven’t had a chance to see how to develop a model from scratch. Therefore, this week let’s try to replicate the model in Planton et al (2021) from scratch!</p>
+<p>The grammar is the following:</p>
+<ul class="simple">
+<li><p>Staying where one is (<code class="docutils literal notranslate"><span class="pre">+0</span></code>)</p></li>
+<li><p>Moving to the other item (denoted <code class="docutils literal notranslate"><span class="pre">b</span></code>)</p></li>
+<li><p>Repetition</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">^n</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is a number</p></li>
+<li><p>Possibly with a variation in the starting point</p></li>
+<li><p>Denoted by <code class="docutils literal notranslate"><span class="pre">&lt;x&gt;</span></code> where x is an elementary instruction, either <code class="docutils literal notranslate"><span class="pre">+0</span></code> or <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+</ul>
+</li>
+<li><p>Embedding of expressions is represented by brackets (<code class="docutils literal notranslate"><span class="pre">[.</span> <span class="pre">.</span> <span class="pre">..]</span></code>) and concatenation by commas (<code class="docutils literal notranslate"><span class="pre">,</span></code>)</p></li>
+</ul>
+<p>Each sentence generated by this grammar represents a binary sequence.</p>
+<p>Example from the paper:</p>
+<p><img alt="image.png" src="attachment:2b7a1160-099a-45ca-9ef3-5c8a361c84b3.png" /></p>
+<blockquote>
+<div><p><strong><strong>AIMS</strong></strong></p>
+<ul class="simple">
+<li><p>Write the grammar described in the paper</p></li>
+<li><p>Define the appropriate Hypothesis class in LOTlib3</p></li>
+<li><p>Run inference on <em>partial</em> sequences</p>
+<ul>
+<li><p>e.g., we only see the first few elements of the sequence and we have to guess the rest</p></li>
+</ul>
+</li>
+<li><p>Run inference on <em>noisy</em> sequences</p>
+<ul>
+<li><p>e.g., we see the full sequence, but some elements might have been switched</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -575,33 +713,33 @@ const thebe_selector_output = ".output, .cell_output"
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "plot"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "plot",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'plot'</script>
 
               </div>
               
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="7_topfile.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="12_lecture.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Seventh week</p>
+            <p class="prev-next-title">Lecture</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="7_lab.html" title="next page">
+    <a class='right-next' id="next-link" href="12_reading.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bayes (Part II)</p>
+        <p class="prev-next-title">Reading</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
