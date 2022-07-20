@@ -112,5 +112,16 @@ parts:
         title: Lecture
       - file: 11_lab
         title: Lab
+      - file: 11_lab_solved
+        title: Lab (Solved)
       - file: 11_reading
+        title: Reading
+    - file: 12_topfile
+      title: Week 12 - DreamCoder and Conclusions
+      sections:
+      - file: 12_lecture
+        title: Lecture
+      - file: 12_lab
+        title: Lab
+      - file: 12_reading
         title: Reading
