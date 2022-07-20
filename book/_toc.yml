@@ -123,5 +123,7 @@ parts:
         title: Lecture
       - file: 12_lab
         title: Lab
+      - file: 12_lab_solved
+        title: Lab (Solved)
       - file: 12_reading
         title: Reading
