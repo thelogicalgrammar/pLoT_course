@@ -1,0 +1,1343 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning functions &#8212; The pLoT: A course</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reading" href="12_reading.html" />
+    <link rel="prev" title="Learning functions" href="12_lab.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">The pLoT: A course</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="evaluation.html">
+   Evaluations &amp; project topics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="howto.html">
+   Running code in labs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgments.html">
+   Acknowledgments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="askquestion.html">
+   Ask a question!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Foundations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="1_topfile.html">
+   Week 1 - Introduction and Plan
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="1_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="1_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="2_topfile.html">
+   Week 2 - LoT Hypothesis I
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="3_topfile.html">
+   Week 3 - LoT Hypothesis II
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="3_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="3_lab.html">
+     Python refresher: Part II
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="3_reading.html">
+     Reading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="3_supplementaryLecture.html">
+     Supplementary content
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="4_topfile.html">
+   Week 4 - Formal Grammars
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="4_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="4_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="4_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="5_topfile.html">
+   Week 5 - Semantics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="5_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="5_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="5_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="6_topfile.html">
+   Week 6 - Bayes I
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="6_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="6_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="6_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="7_topfile.html">
+   Week 7 - Bayes II
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="7_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="7_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="7_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The probabilistic LoT
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="8_topfile.html">
+   Week 8 - LOTlib3
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="8_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="8_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="8_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="9_topfile.html">
+   Week 9 - Categorization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="9_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="9_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="9_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="10_topfile.html">
+   Week 10 - Case studies I
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="11_topfile.html">
+   Week 11 - Case studies II
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_lab_solved.html">
+     Lab (Solved)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="12_topfile.html">
+   Week 12 - DreamCoder and Conclusions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_lecture.html">
+     Lecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_lab.html">
+     Lab
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lab (Solved)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_reading.html">
+     Reading
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/12_lab_solved.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/thelogicalgrammar/pLoT_course"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/thelogicalgrammar/pLoT_course/issues/new?title=Issue%20on%20page%20%2F12_lab_solved.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/thelogicalgrammar/pLoT_course/master?urlpath=tree/book/12_lab_solved.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/thelogicalgrammar/pLoT_course/blob/master/book/12_lab_solved.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-task">
+   The task
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-the-grammar">
+   Define the grammar
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-hypothesis">
+   Defining hypothesis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitting-hypothesis-to-the-data">
+   Fitting hypothesis to the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recovering-fs-above">
+   Recovering fs above
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f1">
+     f1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f2">
+     f2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f3">
+     f3
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Learning functions</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-task">
+   The task
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-the-grammar">
+   Define the grammar
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-hypothesis">
+   Defining hypothesis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitting-hypothesis-to-the-data">
+   Fitting hypothesis to the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recovering-fs-above">
+   Recovering fs above
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f1">
+     f1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f2">
+     f2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f3">
+     f3
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="learning-functions">
+<h1>Learning functions<a class="headerlink" href="#learning-functions" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># in colab</span>
+    <span class="kn">import</span> <span class="nn">google.colab</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;In colab, downloading LOTlib3&#39;</span><span class="p">)</span>
+    <span class="o">!</span>git clone https://github.com/piantado/LOTlib3
+<span class="k">except</span><span class="p">:</span>
+    <span class="c1"># not in colab</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Not in colab!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Not in colab!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<p>First we need to import a bunch of stuff:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">LOTlib3.Miscellaneous</span> <span class="kn">import</span> <span class="n">q</span><span class="p">,</span> <span class="n">random</span><span class="p">,</span> <span class="n">Infinity</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Grammar</span> <span class="kn">import</span> <span class="n">Grammar</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.DataAndObjects</span> <span class="kn">import</span> <span class="n">FunctionData</span><span class="p">,</span> <span class="n">Obj</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Hypotheses.LOTHypothesis</span> <span class="kn">import</span> <span class="n">LOTHypothesis</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Hypotheses.Likelihoods.BinaryLikelihood</span> <span class="kn">import</span> <span class="n">BinaryLikelihood</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Eval</span> <span class="kn">import</span> <span class="n">primitive</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Miscellaneous</span> <span class="kn">import</span> <span class="n">qq</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.TopN</span> <span class="kn">import</span> <span class="n">TopN</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Samplers.MetropolisHastings</span> <span class="kn">import</span> <span class="n">MetropolisHastingsSampler</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-task">
+<h2>The task<a class="headerlink" href="#the-task" title="Permalink to this headline">¶</a></h2>
+<p>The aim here is to define a language that recovers the explicit form for a mathematical function most likely to have generated a certain set of input-output pairs.</p>
+<p>For instance, to start with we might want: addition, product, power, log, exp.</p>
+<p>If we want to make it fancier, we can add recursion up to a level (which allows us to do e.g. series)</p>
+<blockquote>
+<div><p><strong><strong>AIMS</strong></strong></p>
+<ul class="simple">
+<li><p>Pick a set of mathematical primitives that seem likely</p></li>
+<li><p>Define a grammar</p></li>
+<li><p>Define likelihood, e.g., sum of squares minimization</p></li>
+<li><p>Run inference algo on the example datasets below!</p></li>
+</ul>
+</div></blockquote>
+<p>Copying data from other notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span> <span class="mf">1.</span>        <span class="p">,</span>  <span class="mf">0.96693628</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">1.65517241</span><span class="p">,</span>  <span class="mf">0.44488931</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">2.31034483</span><span class="p">,</span>  <span class="mf">0.11111997</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">2.96551724</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05388751</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">3.62068966</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.08770159</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">4.27586207</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.34701368</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">4.93103448</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5312597</span> <span class="p">],</span>
+    <span class="p">[</span> <span class="mf">5.5862069</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.56654964</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">6.24137931</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.98309806</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">6.89655172</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.87024759</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">7.55172414</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.02468311</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">8.20689655</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.07690071</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">8.86206897</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3229659</span> <span class="p">],</span>
+    <span class="p">[</span> <span class="mf">9.51724138</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.26628302</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">10.17241379</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.26076366</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">10.82758621</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.29232939</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">11.48275862</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.47545188</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">12.13793103</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.53730544</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">12.79310345</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.72121669</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">13.44827586</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.59430107</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">14.10344828</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.6440229</span> <span class="p">],</span>
+    <span class="p">[</span><span class="mf">14.75862069</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.74346587</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">15.4137931</span> <span class="p">,</span> <span class="o">-</span><span class="mf">1.89063419</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">16.06896552</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.87860771</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">16.72413793</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.73337155</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">17.37931034</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.74285824</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">18.03448276</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.82462328</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">18.68965517</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.13664592</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">19.34482759</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.87158473</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">20.</span>        <span class="p">,</span> <span class="o">-</span><span class="mf">1.96221768</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">f2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">1.00000000e+00</span><span class="p">,</span> <span class="mf">3.71191585e+00</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.65517241e+00</span><span class="p">,</span> <span class="mf">9.24602588e+00</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">2.31034483e+00</span><span class="p">,</span> <span class="mf">1.71111810e+01</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">2.96551724e+00</span><span class="p">,</span> <span class="mf">2.74461376e+01</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">3.62068966e+00</span><span class="p">,</span> <span class="mf">4.04248405e+01</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">4.27586207e+00</span><span class="p">,</span> <span class="mf">5.58883272e+01</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">4.93103448e+00</span><span class="p">,</span> <span class="mf">7.39602616e+01</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">5.58620690e+00</span><span class="p">,</span> <span class="mf">9.45716098e+01</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">6.24137931e+00</span><span class="p">,</span> <span class="mf">1.17768463e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">6.89655172e+00</span><span class="p">,</span> <span class="mf">1.43745608e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">7.55172414e+00</span><span class="p">,</span> <span class="mf">1.72014815e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">8.20689655e+00</span><span class="p">,</span> <span class="mf">2.03113066e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">8.86206897e+00</span><span class="p">,</span> <span class="mf">2.36586296e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">9.51724138e+00</span><span class="p">,</span> <span class="mf">2.72592478e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.01724138e+01</span><span class="p">,</span> <span class="mf">3.11500578e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.08275862e+01</span><span class="p">,</span> <span class="mf">3.52680831e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.14827586e+01</span><span class="p">,</span> <span class="mf">3.96347343e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.21379310e+01</span><span class="p">,</span> <span class="mf">4.42937224e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.27931034e+01</span><span class="p">,</span> <span class="mf">4.91952665e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.34482759e+01</span><span class="p">,</span> <span class="mf">5.43415913e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.41034483e+01</span><span class="p">,</span> <span class="mf">5.97790718e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.47586207e+01</span><span class="p">,</span> <span class="mf">6.54449584e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.54137931e+01</span><span class="p">,</span> <span class="mf">7.13693393e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.60689655e+01</span><span class="p">,</span> <span class="mf">7.75636386e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.67241379e+01</span><span class="p">,</span> <span class="mf">8.39996211e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.73793103e+01</span><span class="p">,</span> <span class="mf">9.07024122e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.80344828e+01</span><span class="p">,</span> <span class="mf">9.76727694e+02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.86896552e+01</span><span class="p">,</span> <span class="mf">1.04889184e+03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.93448276e+01</span><span class="p">,</span> <span class="mf">1.12381860e+03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">2.00000000e+01</span><span class="p">,</span> <span class="mf">1.20102847e+03</span><span class="p">]</span>
+<span class="p">])</span>
+
+
+<span class="n">f3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span>   <span class="mf">1.</span>        <span class="p">,</span>    <span class="mf">3.4938151</span> <span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">1.65517241</span><span class="p">,</span>    <span class="mf">5.44628788</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">2.31034483</span><span class="p">,</span>    <span class="mf">6.53998577</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">2.96551724</span><span class="p">,</span>    <span class="mf">7.67421996</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">3.62068966</span><span class="p">,</span>    <span class="mf">7.89516258</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">4.27586207</span><span class="p">,</span>    <span class="mf">8.02252067</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">4.93103448</span><span class="p">,</span>    <span class="mf">7.55957521</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">5.5862069</span> <span class="p">,</span>    <span class="mf">6.68554562</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">6.24137931</span><span class="p">,</span>    <span class="mf">5.49661335</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">6.89655172</span><span class="p">,</span>    <span class="mf">3.78650889</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">7.55172414</span><span class="p">,</span>    <span class="mf">1.76357834</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">8.20689655</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.95288503</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">8.86206897</span><span class="p">,</span>   <span class="o">-</span><span class="mf">3.56660826</span><span class="p">],</span>
+    <span class="p">[</span>   <span class="mf">9.51724138</span><span class="p">,</span>   <span class="o">-</span><span class="mf">7.30943747</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">10.17241379</span><span class="p">,</span>  <span class="o">-</span><span class="mf">11.0152518</span> <span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">10.82758621</span><span class="p">,</span>  <span class="o">-</span><span class="mf">15.41306886</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">11.48275862</span><span class="p">,</span>  <span class="o">-</span><span class="mf">20.02607231</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">12.13793103</span><span class="p">,</span>  <span class="o">-</span><span class="mf">25.05703701</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">12.79310345</span><span class="p">,</span>  <span class="o">-</span><span class="mf">30.66109506</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">13.44827586</span><span class="p">,</span>  <span class="o">-</span><span class="mf">36.58291196</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">14.10344828</span><span class="p">,</span>  <span class="o">-</span><span class="mf">43.09300853</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">14.75862069</span><span class="p">,</span>  <span class="o">-</span><span class="mf">49.80759178</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">15.4137931</span> <span class="p">,</span>  <span class="o">-</span><span class="mf">57.20869912</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">16.06896552</span><span class="p">,</span>  <span class="o">-</span><span class="mf">64.76773707</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">16.72413793</span><span class="p">,</span>  <span class="o">-</span><span class="mf">72.90556438</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">17.37931034</span><span class="p">,</span>  <span class="o">-</span><span class="mf">81.42918673</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">18.03448276</span><span class="p">,</span>  <span class="o">-</span><span class="mf">90.50159589</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">18.68965517</span><span class="p">,</span>  <span class="o">-</span><span class="mf">99.98277275</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">19.34482759</span><span class="p">,</span> <span class="o">-</span><span class="mf">109.61216676</span><span class="p">],</span>
+    <span class="p">[</span>  <span class="mf">20.</span>        <span class="p">,</span> <span class="o">-</span><span class="mf">120.07684039</span><span class="p">]</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Displaying data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;f</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/12_lab_solved_12_0.png" src="_images/12_lab_solved_12_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/12_lab_solved_12_2.png" src="_images/12_lab_solved_12_2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/12_lab_solved_12_4.png" src="_images/12_lab_solved_12_4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="define-the-grammar">
+<h2>Define the grammar<a class="headerlink" href="#define-the-grammar" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@primitive</span>
+<span class="k">def</span> <span class="nf">log_</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Grammar</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">+</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">],</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;(-</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">],</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">],</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">*</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">],</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">**</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">],</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;log_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">],</span> <span class="mf">1.</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S -&gt; x	w/ p=3.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="defining-hypothesis">
+<h2>Defining hypothesis<a class="headerlink" href="#defining-hypothesis" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normal_density</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="n">normalization</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FunctionHyp</span><span class="p">(</span><span class="n">LOTHypothesis</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">LOTHypothesis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> 
+            <span class="n">grammar</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> 
+            <span class="n">display</span><span class="o">=</span><span class="s1">&#39;lambda x: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>   
+            
+    <span class="k">def</span> <span class="nf">compute_single_likelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datum</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        NOTE: cases where we need to return prob 0: </span>
+<span class="sd">        - division by 0</span>
+<span class="sd">        - log of 0</span>
+<span class="sd">        - complex part is not 0</span>
+<span class="sd">        - overflow in calculation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">y_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">datum</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">complex</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="n">Infinity</span>
+            
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y_hat</span> <span class="o">-</span> <span class="n">datum</span><span class="o">.</span><span class="n">output</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">10e10</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="n">Infinity</span>
+            
+            <span class="n">logprob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
+                <span class="n">normal_density</span><span class="p">(</span>
+                    <span class="n">datum</span><span class="o">.</span><span class="n">output</span><span class="p">,</span>
+                    <span class="n">y_hat</span><span class="p">,</span> 
+                    <span class="mf">1.</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">logprob</span>
+        
+        <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">ZeroDivisionError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="ne">OverflowError</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">Infinity</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fitting-hypothesis-to-the-data">
+<h2>Fitting hypothesis to the data<a class="headerlink" href="#fitting-hypothesis-to-the-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">xs</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FunctionData</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">output</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7ff8fa408430&gt;
+</pre></div>
+</div>
+<img alt="_images/12_lab_solved_22_1.png" src="_images/12_lab_solved_22_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topn</span> <span class="o">=</span> <span class="n">TopN</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">FunctionHyp</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">h1</span> <span class="ow">in</span> <span class="n">MetropolisHastingsSampler</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">topn</span> <span class="o">&lt;&lt;</span> <span class="n">h1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">topn</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">posterior_score</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">prior</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">likelihood</span><span class="p">),</span> 
+        <span class="n">i</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.2242075264123894e-32 1.5524472545339268e-06 2.7209990639460335e-26 lambda x: ((x/1)**3)
+4.2242075264123894e-32 1.5524472545339268e-06 2.7209990639460335e-26 lambda x: ((x**1)**3)
+4.2242075264123894e-32 1.5524472545339268e-06 2.7209990639460335e-26 lambda x: (x**(1*3))
+8.448415052824795e-32 3.1048945090678596e-06 2.7209990639460335e-26 lambda x: ((x+0)**3)
+8.448415052824795e-32 3.1048945090678596e-06 2.7209990639460335e-26 lambda x: ((0+x)**3)
+8.448415052824795e-32 3.1048945090678596e-06 2.7209990639460335e-26 lambda x: ((-(-x))**3)
+8.448415052824795e-32 3.1048945090678596e-06 2.7209990639460335e-26 lambda x: (x**(0+3))
+3.379366021130363e-31 1.2419578036271418e-05 2.720999063946381e-26 lambda x: ((x**2)*x)
+3.0414294190173123e-30 0.00011177620232644284 2.720999063946381e-26 lambda x: ((x*x)*x)
+1.2022118580228194e-29 0.0004418273692014243 2.7209990639460335e-26 lambda x: (x**3)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="recovering-fs-above">
+<h2>Recovering fs above<a class="headerlink" href="#recovering-fs-above" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="f1">
+<h3>f1<a class="headerlink" href="#f1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data1</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FunctionData</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">output</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">f1</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topn</span> <span class="o">=</span> <span class="n">TopN</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">FunctionHyp</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">h1</span> <span class="ow">in</span> <span class="n">MetropolisHastingsSampler</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">data1</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">topn</span> <span class="o">&lt;&lt;</span> <span class="n">h1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">topn</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">posterior_score</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">prior</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">likelihood</span><span class="p">),</span> 
+        <span class="n">i</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6260504736405028e-08 2.1819313570058165e-08 0.7452344769781715 lambda x: (-log_(((x+0)/3)))
+2.032154962684583e-08 3.4704253186746956e-07 0.05855636632632202 lambda x: (-log_((2**log_(x))))
+2.1194894870977892e-08 1.3014094945030098e-07 0.16286107455418494 lambda x: (-log_((x/log_(7))))
+3.400796156783955e-08 4.363862714011626e-08 0.7793086949927576 lambda x: (-log_(((x+x)/5)))
+3.426163230687842e-08 1.1568084395582305e-07 0.2961737754952965 lambda x: (-log_((x/log_(8))))
+4.582103973987705e-08 1.0411275956024088e-07 0.44010974191270397 lambda x: (-log_((x/log_(9))))
+2.2696964844663247e-07 2.4839156072542857e-06 0.09137574875078952 lambda x: (-log_((x/4)))
+2.9464772005047395e-07 0.0035136964406253983 8.38569082530163e-05 lambda x: (-1)
+8.771111897518796e-07 4.139859345423809e-06 0.21186980439841194 lambda x: (-log_((x/2)))
+2.3138744355375844e-06 3.1048945090678596e-06 0.7452344769781715 lambda x: (-log_((x/3)))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff8ebd20bb0&gt;]
+</pre></div>
+</div>
+<img alt="_images/12_lab_solved_30_1.png" src="_images/12_lab_solved_30_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="f2">
+<h3>f2<a class="headerlink" href="#f2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data2</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FunctionData</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">output</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">f2</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topn</span> <span class="o">=</span> <span class="n">TopN</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">FunctionHyp</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">h1</span> <span class="ow">in</span> <span class="n">MetropolisHastingsSampler</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">topn</span> <span class="o">&lt;&lt;</span> <span class="n">h1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It didn’t quite manage to recover it! Maybe try running more samples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">topn</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">posterior_score</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">prior</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">likelihood</span><span class="p">),</span> 
+        <span class="n">i</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0 5.20563797801204e-07 0.0 lambda x: (log_((1/0))+x)
+0.0 6.584771388429113e-08 0.0 lambda x: (log_(((x*x)/0))+x)
+0.0 3.123382786807228e-06 0.0 lambda x: (log_((x/0))+x)
+0.0 3.47042531867469e-07 0.0 lambda x: (log_((2/0))+x)
+0.0 1.041127595602408e-06 0.0 lambda x: (log_((2/x))+x)
+0.0 0.00014815275212236306 0.0 lambda x: (log_(0)+x)
+0.0 3.8791096257899265e-11 0.0 lambda x: (log_(0)+(log_((x**(x*x)))**0))
+0.0 0.0 0.0 lambda x: (log_((-(9+(log_((((1+x)**(-x))+(-(log_((x**((log_(((log_(1)/1)+x))**(0/(-(-(x**x)))))+(((log_(x)**0)+(log_(2)/6))/x))))*7))))/6))))+(log_((x**(x*x)))**0))
+0.0 0.0 0.0 lambda x: (log_((-(9+(log_((((1+x)**(-x))+(-(log_((x**((log_(((log_(1)/1)+x))**(0/(-(-(x**x)))))+(((log_(x)**0)+(x/6))/x))))*7))))/6))))+(log_((x**(x*x)))**0))
+0.0 0.0 0.0 lambda x: (log_((-(9+(log_((((1+x)**(-x))+(-(log_((x**((log_(x)**(0/(-(-(x**x)))))+(((log_(x)**0)+(x/6))/x))))*7))))/6))))+(log_((x**(x*x)))**0))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="c1"># y_hat = -np.log(x/3)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="c1"># plt.plot(x, y_hat, color=&#39;red&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff8eb563160&gt;]
+</pre></div>
+</div>
+<img alt="_images/12_lab_solved_36_1.png" src="_images/12_lab_solved_36_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="f3">
+<h3>f3<a class="headerlink" href="#f3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data3</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FunctionData</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">output</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">f3</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topn</span> <span class="o">=</span> <span class="n">TopN</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">FunctionHyp</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">h1</span> <span class="ow">in</span> <span class="n">MetropolisHastingsSampler</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">data3</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">topn</span> <span class="o">&lt;&lt;</span> <span class="n">h1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">topn</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">posterior_score</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">prior</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">likelihood</span><span class="p">),</span> 
+        <span class="n">i</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.5633e-319 4.9272858943829863e-23 1.1290769819862322e-296 lambda x: (((-x)/5)*(x+log_((log_(9)**((-(3*(3+1)))+x)))))
+1.3025651072045499e-137 2.4188997377983393e-26 5.384948730409537e-112 lambda x: (((-x)/5)*(x+log_((((1*2)+1)**((-(3*(3+1)))+x)))))
+9.962314620286416e-134 5.8747019205416375e-27 1.6957991664993362e-107 lambda x: (((-x)/5)*(x+log_((4**((-(3*4))+(x/((x/x)+(-(-0)))))))))
+3.0764761194029836e-133 1.8141748033487692e-26 1.6957991664993362e-107 lambda x: (((-x)/5)*(x+log_((((1*3)+1)**((-(3*(3+1)))+x)))))
+7.004534788680389e-131 4.1305214243854454e-24 1.6957991664993362e-107 lambda x: (((-x)/5)*(x+log_((((1*3)+1)**((-(3*4))+x)))))
+3.18959131822274e-128 1.8808779843942615e-21 1.6957991664993362e-107 lambda x: (((-x)/5)*((-(-x))+log_((4**((-(3*4))+x)))))
+4.538797491645367e-126 2.676494706041661e-19 1.6957991664993362e-107 lambda x: (((-x)/5)*(x+log_((4**((-(3*4))+x)))))
+1.4552175436922316e-58 3.9418287155063925e-23 3.69173205818834e-36 lambda x: (((-x)/5)*(x+log_((4**((-(3*4))+(x/log_(3)))))))
+2.361861710050358e-44 1.9786270753185584e-25 1.1936871477764948e-19 lambda x: (((-x)/5)*((x+0)+log_((6**((-(3*4))+(x/log_(3)))))))
+3.3609359117402724e-42 2.815591939647446e-23 1.1936871477764948e-19 lambda x: (((-x)/5)*(x+log_((6**((-(3*4))+(x/log_(3)))))))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span>   <span class="mi">4</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="p">(((</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">6</span><span class="o">**</span><span class="p">((</span><span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="mi">4</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">log_</span><span class="p">(</span><span class="mi">3</span><span class="p">)))))))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff8fa357d30&gt;]
+</pre></div>
+</div>
+<img alt="_images/12_lab_solved_41_1.png" src="_images/12_lab_solved_41_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="12_lab.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Learning functions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="12_reading.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Reading</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Fausto Carcassi<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
