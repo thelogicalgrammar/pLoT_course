@@ -44,7 +44,10 @@ html:
   use_repository_button: true
 
 # prevent jupyter-book from adding LOTlib3 to build_
-exclude_patterns: [LOTlib3, update_book.sh]
+exclude_patterns: [
+    LOTlib3, 
+    update_book.sh
+]
 
 google_analytics:
   mytrackingcode: G-WNHEQ7TJ4F
