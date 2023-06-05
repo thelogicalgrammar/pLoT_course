@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Lab for 9th week &#8212; The pLoT: A course</title>
+    <title>The LOTlib3 library - continued &#8212; The pLoT: A course</title>
   
   
   
@@ -288,6 +288,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/thelogicalgrammar/pLoT_course/blob/master/book/9_lab.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -343,7 +374,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/9_lab.md" target="_blank"
+      <li><a href="_sources/9_lab.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -353,7 +384,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -412,7 +443,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -423,11 +456,25 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab for 9th week</h1>
+    <h1>The LOTlib3 library - continued</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primitives">Primitives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonterminals-in-the-grammar">Nonterminals in the grammar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-best-hypotheses">The best hypotheses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypotheses-as-functions">Hypotheses as functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambdas">Lambdas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#here-s-where-things-get-crazy">Here’s where things get crazy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-functions">Recursive functions</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -437,19 +484,476 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-for-9th-week">
-<h1>Lab for 9th week<a class="headerlink" href="#lab-for-9th-week" title="Permalink to this headline">#</a></h1>
-<p>Since we did not finish it last week, this week we will go through the second
-half of Piantadosi’s tutorial,
-which you can find <a class="reference external" href="https://github.com/piantado/LOTlib3/blob/master/Documentation/Tutorial.md">here</a>.</p>
-<p>The tutorial is in a markdown file.
-To run the code, create a new notebook and run the following line:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!git clone https://github.com/piantado/LOTlib3
-import LOTlib3
-from LOTlib3.Grammar import Grammar
+  <section class="tex2jax_ignore mathjax_ignore" id="the-lotlib3-library-continued">
+<h1>The LOTlib3 library - continued<a class="headerlink" href="#the-lotlib3-library-continued" title="Permalink to this headline">#</a></h1>
+<blockquote>
+<div><p><strong><strong>NOTE</strong></strong> This is based on Piantadosi’s introduction to LOTlib3, which you can find <a class="reference external" href="https://github.com/piantado/LOTlib3/blob/master/Documentation/Tutorial.md">here</a>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># in colab</span>
+    <span class="kn">import</span> <span class="nn">google.colab</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;In colab, downloading LOTlib3&#39;</span><span class="p">)</span>
+    <span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/thelogicalgrammar/LOTlib3
+<span class="k">except</span><span class="p">:</span>
+    <span class="c1"># not in colab</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Not in colab!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This will download the library in the colab directory and import LOTlib3.</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Not in colab!
+</pre></div>
+</div>
+</div>
+</div>
+<section id="primitives">
+<h2>Primitives<a class="headerlink" href="#primitives" title="Permalink to this headline">#</a></h2>
+<p>LOTlib3 also builds in a number of primitive operations, which live in LOTlib3.Primitives. When these are supplied as the <FUNCTION> in grammar rule, they act as functions that get called. <strong>By convention, LOTlib3 internal primitives end in an underscore</strong>. Here is an example equivalent to the grammar above, but using LOTlib3 function calls.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;plus_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;times_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;divide_(float(</span><span class="si">%s</span><span class="s1">),float(</span><span class="si">%s</span><span class="s1">))&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;neg_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that when these are rendered into strings, they appear as function calls (and not just string substitutions to make python code) as in</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times_</span><span class="p">(</span><span class="n">plus_</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">neg_</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="n">plus_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are many functions built-in to python, including a number of operations for manipulating sets, numbers, and logic. The code for <code class="docutils literal notranslate"><span class="pre">divide_</span></code> shows that it does not cast its arguments to floats: here we have to do so using string substitution as above.  For simple thing it is up to you to decide if you like to use the built in python operators (e.g. ‘+’) or the LOTLib3 primitive (‘plus_’) as they are basically the same.</p>
+<p>You can also create new primitives which extends the functionality of LOTlib3 in many interesting way. To make a custom function accessible to LOTlib3’s evaluator, use the <code class="docutils literal notranslate"><span class="pre">&#64;primitive</span></code> decorator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">LOTlib3.Eval</span> <span class="kn">import</span> <span class="n">primitive</span>
+
+<span class="nd">@primitive</span>
+<span class="k">def</span> <span class="nf">my_stupid_primitive_</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">90253</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now if you use <code class="docutils literal notranslate"><span class="pre">my_stupid_primitive_</span></code> in a grammar rule, it can be “run” just like any normal python code</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;my_stupid_primitive_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is generally more friendly to give it an underscore to make sure it’s not confused for a normal python function.</p>
+</section>
+<section id="nonterminals-in-the-grammar">
+<h2>Nonterminals in the grammar<a class="headerlink" href="#nonterminals-in-the-grammar" title="Permalink to this headline">#</a></h2>
+<p>It may not have been obvious in the above examples, but the <NONTERMINAL> part of each grammar rule can be viewed as specifying the <em>return type</em> of the function that rule correspond to, while the <ARGUMENTS> can be viewed as the types of the arguments. Thus, what a grammar mainly does is ensure that the primitives all get arguments of the correct types.</p>
+<p>Let’s see another example: suppose we had two kinds of things: booleans (BOOL) and numbers (EXPR). We might write a grammar like this</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;plus_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;times_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Use something that renders into if statements in real python</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> if </span><span class="si">%s</span><span class="s1"> else </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;BOOL&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Now how do we get a boolean?</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;BOOL&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> &gt; </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;BOOL&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> &gt;= </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># And a terminal</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, the second argument to the <code class="docutils literal notranslate"><span class="pre">if</span></code> line must be a BOOL, and so we have given LOTlib3 a way to create code that returns BOOLs. It just happens that this code is a comparison of numbers, or EXPRs.</p>
+</section>
+<section id="the-best-hypotheses">
+<h2>The best hypotheses<a class="headerlink" href="#the-best-hypotheses" title="Permalink to this headline">#</a></h2>
+<p>Very often, models in LOTlib3 approximate the full posterior distribution P(H|D) using the highest posterior hypotheses. There are two main ways to do this. One is a class named <code class="docutils literal notranslate"><span class="pre">LOTlib3.TopN</span></code> which acts like a set–you can add to it, but it keeps only the ones with highest posterior_score (or whatever “key” is set). It will return them to you in a sorted order:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">LOTlib3.TopN</span> <span class="kn">import</span> <span class="n">TopN</span>
+
+<span class="n">tn</span> <span class="o">=</span> <span class="n">TopN</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># store the top N</span>
+
+<span class="n">h0</span> <span class="o">=</span> <span class="n">MyHypothesis</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">MetropolisHastingsSampler</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">tn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">tn</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">posterior_score</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There’s also a friendly way to interface with <code class="docutils literal notranslate"><span class="pre">TopN</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">MetropolisHastingsSampler</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">tn</span> <span class="o">&lt;&lt;</span> <span class="n">h</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might notice running this that productions the results in the output 12 are given high posterior scores.  However, it still might be the case that very simple and short programs like just a single number output (like 0) are still the “top” hypothesis.  This shows the importance of thinking about the nature of your prior and the likelihood function for your problem.</p>
+</section>
+<section id="hypotheses-as-functions">
+<h2>Hypotheses as functions<a class="headerlink" href="#hypotheses-as-functions" title="Permalink to this headline">#</a></h2>
+<p>Remember how we made <code class="docutils literal notranslate"><span class="pre">display=&quot;lambda:</span> <span class="pre">%s&quot;</span></code> in the definition of MyHypothesis? That stated that a hypothesis was not a function of any arguments since the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> has no arguments. You may have noticed that when a hypothesis is converting to a string (for printing or evaling) it acquires this additional <code class="docutils literal notranslate"><span class="pre">lambda</span></code> on the outside, indicating that the hypothesis was a function of no arguments, or a <a class="reference external" href="https://en.wikipedia.org/wiki/Thunk">thunk</a>.</p>
+<p>Here is a new listing where a class like MyHypothesis requires an argument. Now, when it renders, it comes with a <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span></code> in front, rather than just a <code class="docutils literal notranslate"><span class="pre">lambda</span></code>. There are two other primary changes: the grammar now has to allow the argument (<code class="docutils literal notranslate"><span class="pre">x</span></code>) to be produced in expressions, and the <code class="docutils literal notranslate"><span class="pre">datum.input</span></code> has to provide an argument, which gets bound to <code class="docutils literal notranslate"><span class="pre">x</span></code> when the function is evaluated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">######################################## </span>
+<span class="c1">## Define a grammar</span>
+<span class="c1">######################################## </span>
+
+<span class="kn">from</span> <span class="nn">LOTlib3.Grammar</span> <span class="kn">import</span> <span class="n">Grammar</span>
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">Grammar</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;EXPR&#39;</span><span class="p">)</span>
+
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> + </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> * </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(float(</span><span class="si">%s</span><span class="s1">) / float(</span><span class="si">%s</span><span class="s1">))&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(-</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Now define how the grammar uses x. The string &#39;x&#39; must</span>
+<span class="c1"># be the same as used in the args below</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> 
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">10.0</span><span class="o">/</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Hypotheses.LOTHypothesis</span> <span class="kn">import</span> <span class="n">LOTHypothesis</span>
+
+<span class="c1">######################################## </span>
+<span class="c1">## Define the hypothesis</span>
+<span class="c1">######################################## </span>
+
+<span class="c1"># define a </span>
+<span class="k">class</span> <span class="nc">MyHypothesisX</span><span class="p">(</span><span class="n">LOTHypothesis</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">LOTHypothesis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grammar</span><span class="o">=</span><span class="n">grammar</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="s2">&quot;lambda x: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># try to do it from the superclass</span>
+            <span class="k">return</span> <span class="n">LOTHypothesis</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+            <span class="c1"># and if we get an error, return nan</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute_single_likelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datum</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">(</span><span class="o">*</span><span class="n">datum</span><span class="o">.</span><span class="n">input</span><span class="p">)</span> <span class="o">==</span> <span class="n">datum</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">log</span><span class="p">((</span><span class="mf">1.0</span><span class="o">-</span><span class="n">datum</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span> <span class="o">+</span> <span class="n">datum</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">log</span><span class="p">((</span><span class="mf">1.0</span><span class="o">-</span><span class="n">datum</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span><span class="p">)</span>
+
+<span class="c1">######################################## </span>
+<span class="c1">## Define the data</span>
+<span class="c1">######################################## </span>
+
+<span class="kn">from</span> <span class="nn">LOTlib3.DataAndObjects</span> <span class="kn">import</span> <span class="n">FunctionData</span>
+
+<span class="c1"># Now our data takes input x=3 and maps it to 12</span>
+<span class="c1"># What could the function be?</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span> <span class="n">FunctionData</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">output</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span> <span class="p">]</span>
+
+<span class="c1">######################################## </span>
+<span class="c1">## Actually run</span>
+<span class="c1">######################################## </span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Samplers.MetropolisHastings</span> <span class="kn">import</span> <span class="n">MetropolisHastingsSampler</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.TopN</span> <span class="kn">import</span> <span class="n">TopN</span>
+
+<span class="n">tn</span> <span class="o">=</span> <span class="n">TopN</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> 
+<span class="n">h0</span> <span class="o">=</span> <span class="n">MyHypothesisX</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">MetropolisHastingsSampler</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">tn</span> <span class="o">&lt;&lt;</span> <span class="n">h</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Why does this matter? Well now instead of just explaining the data we saw, we can use the hypothesis to generalize to <em>new</em>, unseen data. For instance, we can take each hypothesis and see what it has to say about other numbers</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tn</span> <span class="o">=</span> <span class="n">TopN</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> 
+<span class="n">h0</span> <span class="o">=</span> <span class="n">MyHypothesisX</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">MetropolisHastingsSampler</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">tn</span> <span class="o">&lt;&lt;</span> <span class="n">h</span>
+
+<span class="c1"># And now for each top N hypothesis, we&#39;ll see what it maps 0..9 to </span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">tn</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">posterior_score</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, we have taken a single data point and used it to infer a function that can <em>generalize</em> to new, unseen data or arguments. Note, though, that there is no requirement that <code class="docutils literal notranslate"><span class="pre">x</span></code> is used in each hypothesis. (If we wanted that, a LOTlib3ian way to do it would be to modify the prior to assign trees that don’t use <code class="docutils literal notranslate"><span class="pre">x</span></code> to have <code class="docutils literal notranslate"><span class="pre">-Infinity</span></code> log prior).</p>
+<p>Just for fun here, let’s take the posterior predictive and see how likely we are to generalize this function to each other number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## First let&#39;s make a bunch of hypotheses</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.TopN</span> <span class="kn">import</span> <span class="n">TopN</span>
+
+<span class="n">tn</span> <span class="o">=</span> <span class="n">TopN</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> 
+
+<span class="n">h0</span> <span class="o">=</span> <span class="n">MyHypothesisX</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">MetropolisHastingsSampler</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100000</span><span class="p">):</span> <span class="c1"># run more steps</span>
+    <span class="n">tn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+
+<span class="c1"># store these in a list (tn.get_all is defaultly a generator)</span>
+<span class="n">hypotheses</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tn</span><span class="o">.</span><span class="n">get_all</span><span class="p">())</span>
+
+<span class="c1"># Compute the normalizing constant</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Miscellaneous</span> <span class="kn">import</span> <span class="n">logsumexp</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">logsumexp</span><span class="p">([</span><span class="n">h</span><span class="o">.</span><span class="n">posterior_score</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hypotheses</span><span class="p">])</span>
+
+<span class="c1">## Now compute a matrix of how likely each input is to go</span>
+<span class="c1">## to each output</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># an MxM matrix of values</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="c1"># The probability of generalizing</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">M</span><span class="p">,</span><span class="n">M</span><span class="p">))</span>
+
+<span class="c1"># Now add in each hypothesis&#39; predictive</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hypotheses</span><span class="p">:</span>
+    <span class="c1"># the (normalized) posterior probability of this hypothesis</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">posterior_score</span> <span class="o">-</span> <span class="n">z</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">h</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+        <span class="c1"># only keep those that are in the right range</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">output</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">:</span>
+            <span class="n">G</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">output</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">p</span>
+
+<span class="c1"># And show the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array_str</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see from the complexity of this array which shows the probabilities for different outputs given different inputs, observing that some (unseen) function maps 3-&gt;12 gives rise to nontrivial beliefs about the function underlying this transformation.</p>
+</section>
+<section id="lambdas">
+<h2>Lambdas<a class="headerlink" href="#lambdas" title="Permalink to this headline">#</a></h2>
+<p>The power of this kind of representation comes not only from an ability to learn such simple functions, but to also learn functions with new kinds of abstractions. In programming languages, the simplest kind of abstraction is a variable–a value that is stored for later use. The variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is created above on the level of a LOTHypothesis, but where things get more interesting is when the lower down values in a grammar can be used to define variables. Let’s look at a grammar with two additional pieces</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">LOTlib3.Grammar</span> <span class="kn">import</span> <span class="n">Grammar</span>
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">Grammar</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;EXPR&#39;</span><span class="p">)</span>
+
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> + </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> * </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(float(</span><span class="si">%s</span><span class="s1">) / float(</span><span class="si">%s</span><span class="s1">))&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(-</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> 
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># We&#39;ll make these lower probability so we can see more lambdas below</span>
+    <span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">5.0</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># And allow lambda abstraction</span>
+<span class="c1"># First we define the application of a new nonterminal, FUNC, to a term EXPR</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">)(</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;FUNC&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># Here, FUNC should be thought of as a function</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;FUNC&#39;</span><span class="p">,</span> <span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">bv_type</span><span class="o">=</span><span class="s1">&#39;EXPR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">lambda</span></code> is a special LOTlib3 keyword that <em>introduces a bound variable</em> with a unique name in expanding the <ARGUMENT>s. In other words, when the grammar happens to sample a rule whose <FUNCTION> is <code class="docutils literal notranslate"><span class="pre">'lambda'</span></code>, it creates a new variable name, allows <code class="docutils literal notranslate"><span class="pre">bv_type</span></code> to expand to this variable, expands the <ARGUMENTS> to <code class="docutils literal notranslate"><span class="pre">lambda</span></code> (here, <code class="docutils literal notranslate"><span class="pre">EXPR</span></code>), and then removes the rule from the grammar. Let’s look at some productions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">generate</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now some of the trees contain <code class="docutils literal notranslate"><span class="pre">lambda</span></code> expressions, which bind a variable (defaultly rendered as <code class="docutils literal notranslate"><span class="pre">y1</span></code>). The variable <code class="docutils literal notranslate"><span class="pre">y1</span></code> can only be used below its corresponding lambda, making the grammar in LOTlib3 technically not context-free, but very weakly context-sensitive. The variables like <code class="docutils literal notranslate"><span class="pre">y1</span></code> are called <strong>bound variables</strong> in LOTlib3. Note that they are numbered by their height in the tree, making them unique to the nodes below, but neither sequential, nor unique in the whole tree (underlyingly, they have unique names no matter what, but not when rendered into strings).</p>
+<p>These bound variables count towards the prior (when using <code class="docutils literal notranslate"><span class="pre">grammar.log_probability</span></code>) in exactly the way they should: when a nonterminal (specified in <code class="docutils literal notranslate"><span class="pre">bv_type</span></code>) can expand to a given bound variable, that costs probability, and other expansions must lose probability. The default in LOTlib3 is to always renormalize the probabilities specified. Note that in the <code class="docutils literal notranslate"><span class="pre">add_rule</span></code> command, we can change the probability that a EXPR-&gt;yi rule has by passing in a bv_p argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make using yi 10x more likely than before</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;FUNC&#39;</span><span class="p">,</span> <span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">bv_type</span><span class="o">=</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="n">bv_p</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lambdas like these play the role of variable declarations in a normal programming language. But note that the variables aren’t guaranteed to be useful. In fact, very often variables are stupid, as in the expression</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">lambda</span> <span class="n">y1</span><span class="p">:</span> <span class="n">y1</span><span class="p">)((</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>where the lambda defines a variable that is used immediately without modification. This expression is therefore equivalent to</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>in terms of its function, but not in terms of its prior.</p>
+<p>We can also change the name that bound variables get by setting <code class="docutils literal notranslate"><span class="pre">bv_prefix</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;FUNC&#39;</span><span class="p">,</span> <span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">bv_type</span><span class="o">=</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="n">bv_prefix</span><span class="o">=</span><span class="s1">&#39;v&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>will make bound variables named <code class="docutils literal notranslate"><span class="pre">v1</span></code>, <code class="docutils literal notranslate"><span class="pre">v2</span></code>, etc.</p>
+</section>
+<section id="here-s-where-things-get-crazy">
+<h2>Here’s where things get crazy<a class="headerlink" href="#here-s-where-things-get-crazy" title="Permalink to this headline">#</a></h2>
+<p>Of course, the true art of lambdas is not just that they can define variables, but that the variables themselves can be functions! This corresponds to <em>function declarations</em> in ordinary programming languages. If this is foreign or weird, I’d suggest reading <a class="reference external" href="https://mitpress.mit.edu/sicp/">The Structure and Interpretation of Computer Programs</a>.</p>
+<p>To define lambdas as functions, we only need to specify a <code class="docutils literal notranslate"><span class="pre">bv_args</span></code> list in the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> declaration. <code class="docutils literal notranslate"><span class="pre">bv_args</span></code> is the type of arguments that are passed to each use of a bound variable each time it is used. But… then we have a problem of needing to bind that variable to something. If <code class="docutils literal notranslate"><span class="pre">yi</span></code> is itself a function of an EXPR, then its argument <em>also</em> has to be a function. That requires two lambdas. Here’s how it works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">LOTlib3.Grammar</span> <span class="kn">import</span> <span class="n">Grammar</span>
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">Grammar</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;EXPR&#39;</span><span class="p">)</span>
+
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> + </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> * </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(float(</span><span class="si">%s</span><span class="s1">) / float(</span><span class="si">%s</span><span class="s1">))&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(-</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>  
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">5.0</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Allow ourselves to define functions. This means creating a bound </span>
+<span class="c1"># variable that can be bound to a FUNC. Where, the bound variable</span>
+<span class="c1"># is defined (here, FUNCDEF) we are allowed to use it. </span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;((</span><span class="si">%s</span><span class="s1">)(</span><span class="si">%s</span><span class="s1">))&#39;</span><span class="p">,</span>  <span class="p">[</span><span class="s1">&#39;FUNCDEF&#39;</span><span class="p">,</span> <span class="s1">&#39;FUNC&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># The function definition has a bound variable who can be applied as</span>
+<span class="c1"># a function, whose arguments are an EXPR (set by the type of the FUNC above)</span>
+<span class="c1"># and whose name is F, and who when applied to an EXPR returns an EXPR</span>
+<span class="c1"># We&#39;ll also set bv_p here. Feel free to play with it and see what that does. </span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;FUNCDEF&#39;</span><span class="p">,</span> <span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">bv_type</span><span class="o">=</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="n">bv_args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="n">bv_prefix</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+
+<span class="c1"># and we have to say what a FUNC is. It&#39;s a function (lambda) from an EXPR to an EXPR</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;FUNC&#39;</span><span class="p">,</span> <span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">bv_type</span><span class="o">=</span><span class="s1">&#39;EXPR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at some hypotheses. Here, we’ll show only those that use <code class="docutils literal notranslate"><span class="pre">F1</span></code> as a function (thus contain the string <code class="docutils literal notranslate"><span class="pre">&quot;F1(&quot;</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span> 
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">50000</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;F1\(&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+        <span class="nb">print</span> <span class="n">t</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For instance, this code might generate the following expression, which is obscure, though acceptable, python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="k">lambda</span> <span class="n">F1</span><span class="p">:</span> <span class="n">F1</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">))(</span><span class="k">lambda</span> <span class="n">y1</span><span class="p">:</span> <span class="n">y1</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we have define a variable <code class="docutils literal notranslate"><span class="pre">F1</span></code> that really represents the <em>function</em> <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">y1:</span> <span class="pre">y1+3</span></code>. The value that is returned is the value of applying <code class="docutils literal notranslate"><span class="pre">F1</span></code> to the overall hypothesis value <code class="docutils literal notranslate"><span class="pre">x</span></code> plus <code class="docutils literal notranslate"><span class="pre">1</span></code>. Note that LOTlib3 here has correctly used <code class="docutils literal notranslate"><span class="pre">F1</span></code> in a context where an EXPR is needed (due to <code class="docutils literal notranslate"><span class="pre">bv_type='EXPR'</span></code> on <code class="docutils literal notranslate"><span class="pre">FUNCDEF</span></code>). It knows that the argument to <code class="docutils literal notranslate"><span class="pre">F1</span></code> is also an EXPR, which here happens to be expanded to <code class="docutils literal notranslate"><span class="pre">x+1</span></code>. It also knows that <code class="docutils literal notranslate"><span class="pre">F1</span></code> is itself a function, and it binds this function (through the outermost apply) to <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">y1:</span> <span class="pre">y1+3</span></code>. LOTlib3 knows that <code class="docutils literal notranslate"><span class="pre">F1</span></code> can only be used in the left hand side of this apply, and <code class="docutils literal notranslate"><span class="pre">y1</span></code> can only be used on the right. This holds even if multiple bound variables of different types are generated.</p>
+<p>This ability to define functions provides some of the most interesting learning dynamics for the model. A nice example is provided in LOTlib3.Examples.Magnetism, where learners take data and learn predicates classifying observable objects into two kinds, as well as laws stated over those kinds.</p>
+</section>
+<section id="recursive-functions">
+<h2>Recursive functions<a class="headerlink" href="#recursive-functions" title="Permalink to this headline">#</a></h2>
+<p>Well that’s wonderful, but what if we want a function to refer to <em>itself</em>? This is common in programming languages in the form of <a class="reference external" href="https://en.wikipedia.org/wiki/Recursion_%28computer_science%29">recursive</a> definitions. This takes a little finagling in the LOTlib3 internals (through ambitious use of the <a class="reference external" href="https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed_point_combinators_in_lambda_calculus">Y-combinator</a>) which you don’t have to worry about. There is a class that implements recursion straightforwardly: <code class="docutils literal notranslate"><span class="pre">RecursiveLOTHypothesis</span></code>. Internally, hypothesis of this type always have an argument (defaultly called <code class="docutils literal notranslate"><span class="pre">recurse_</span></code>) which binds to themselves!</p>
+<p>Here is a simple example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">######################################## </span>
+<span class="c1">## Define the grammar</span>
+<span class="c1">######################################## </span>
+
+<span class="kn">from</span> <span class="nn">LOTlib3.Grammar</span> <span class="kn">import</span> <span class="n">Grammar</span>
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">Grammar</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;EXPR&#39;</span><span class="p">)</span>
+
+<span class="c1"># for simplicity, two operations</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> + </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> * </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># we&#39;ll just allow two terminals for simplicity</span>
+<span class="c1"># We have to upweight them a little to keep things well-defined</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span> 
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span> 
+
+<span class="c1"># If we&#39;re going to allow recursion, we better have a base case</span>
+<span class="c1"># But this probably requires an &quot;if&quot; statement. LOTlib3&#39;s &quot;if_&quot; </span>
+<span class="c1"># primitive will do the trick</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1"> if </span><span class="si">%s</span><span class="s1"> else </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;BOOL&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPR&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># and we need to define a boolean. For now, let&#39;s just check</span>
+<span class="c1"># if x=1</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;BOOL&#39;</span><span class="p">,</span> <span class="s1">&#39;x==1&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># and the recursive operation -- I am myself a function</span>
+<span class="c1"># from EXPR to EXPR, so recurse should be as well</span>
+<span class="n">grammar</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;EXPR&#39;</span><span class="p">,</span> <span class="s1">&#39;recurse_&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x-1&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span> 
+
+<span class="c1">######################################## </span>
+<span class="c1">## Define the hypothesis</span>
+<span class="c1">######################################## </span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Hypotheses.RecursiveLOTHypothesis</span> <span class="kn">import</span> <span class="n">RecursiveLOTHypothesis</span>
+
+<span class="k">class</span> <span class="nc">MyRecursiveHypothesis</span><span class="p">(</span><span class="n">RecursiveLOTHypothesis</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">RecursiveLOTHypothesis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grammar</span><span class="o">=</span><span class="n">grammar</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="s2">&quot;lambda recurse_, x: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="c1">######################################## </span>
+<span class="c1">## Look at some examples</span>
+<span class="c1">######################################## </span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">LOTlib3.Eval</span> <span class="kn">import</span> <span class="n">RecursionDepthException</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50000</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">MyRecursiveHypothesis</span><span class="p">()</span>
+
+    <span class="c1"># Now when we call h, something funny may happen: we may get</span>
+    <span class="c1"># an exception for recursing too deep. If this happens for some </span>
+    <span class="c1"># reasonable xes, let&#39;s not print the hypothesis -- it must not </span>
+    <span class="c1"># be well-defined</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># try our function out</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="k">except</span> <span class="n">RecursionDepthException</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+    <span class="c1"># if we succeed, let&#39;s only show hypotheses that use recurse:</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;recurse_\(&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">h</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> 
+        <span class="nb">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that there is nothing special about the <code class="docutils literal notranslate"><span class="pre">recurse_</span></code> name: it can be changed by setting <code class="docutils literal notranslate"><span class="pre">recurse=...</span></code> in <code class="docutils literal notranslate"><span class="pre">RecursiveLOTHypothesis.__init__</span></code>, but then the name should also be changed in the grammar. In this tutorial, we have only looked at defining the grammar, not in inferring recursive hypotheses. LOTlib3.Examples.Number is an example of learning a genuinely recursive function from data.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -461,16 +965,16 @@ from LOTlib3.Grammar import Grammar
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "lot"
         },
         kernelOptions: {
-            name: "python3",
+            name: "lot",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'lot'</script>
 
                 </article>
               
@@ -510,6 +1014,26 @@ from LOTlib3.Grammar import Grammar
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primitives">Primitives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonterminals-in-the-grammar">Nonterminals in the grammar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-best-hypotheses">The best hypotheses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypotheses-as-functions">Hypotheses as functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambdas">Lambdas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#here-s-where-things-get-crazy">Here’s where things get crazy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-functions">Recursive functions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
