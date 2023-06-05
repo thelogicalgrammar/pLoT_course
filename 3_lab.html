@@ -1,47 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Python refresher: Part II &#8212; The pLoT: A course</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -50,753 +62,460 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3_lab';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Reading" href="3_reading.html" />
     <link rel="prev" title="Lecture" href="3_lecture.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">The pLoT: A course</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Introduction
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluations &amp; project topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto.html">Running code in labs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgments.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="askquestion.html">Ask a question!</a></li>
 </ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="evaluation.html">
-   Evaluations &amp; project topics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="howto.html">
-   Running code in labs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="acknowledgments.html">
-   Acknowledgments
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="askquestion.html">
-   Ask a question!
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Foundations
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="1_topfile.html">
-   Week 1 - Introduction and Plan
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="1_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="1_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="2_topfile.html">
-   Week 2 - LoT Hypothesis I
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="2_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="2_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="2_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="3_topfile.html">
-   Week 3 - LoT Hypothesis II
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="3_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Python refresher: Part II
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="3_reading.html">
-     Reading
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="3_supplementaryLecture.html">
-     Supplementary content
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="4_topfile.html">
-   Week 4 - Formal Grammars
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="4_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="4_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="4_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="5_topfile.html">
-   Week 5 - Semantics
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="5_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="5_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="5_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="6_topfile.html">
-   Week 6 - Bayes I
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="6_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="6_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="6_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="7_topfile.html">
-   Week 7 - Bayes II
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="7_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="7_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="7_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="1_topfile.html">Week 1 - Introduction and Plan</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="1_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_reading.html">Reading</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  The probabilistic LoT
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="2_topfile.html">Week 2 - LoT Hypothesis I</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_reading.html">Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="3_topfile.html">Week 3 - LoT Hypothesis II</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="3_lecture.html">Lecture</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Python refresher: Part II</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="3_reading.html">Reading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_supplementaryLecture.html">Supplementary content</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="4_topfile.html">Week 4 - Formal Grammars</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="4_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_reading.html">Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="5_topfile.html">Week 5 - Semantics</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="5_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_reading.html">Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="6_topfile.html">Week 6 - Bayes I</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="6_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_reading.html">Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="7_topfile.html">Week 7 - Bayes II</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="7_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_reading.html">Reading</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The probabilistic LoT</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="8_topfile.html">
-   Week 8 - LOTlib3
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="8_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="8_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="8_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="9_topfile.html">
-   Week 9 - Categorization
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="9_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="9_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="9_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="10_topfile.html">
-   Week 10 - Case studies I
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="11_topfile.html">
-   Week 11 - Case studies II
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11_lab_solved.html">
-     Lab (Solved)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="12_topfile.html">
-   Week 12 - DreamCoder and Conclusions
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_lecture.html">
-     Lecture
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_lab.html">
-     Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_lab_solved.html">
-     Lab (Solved)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_reading.html">
-     Reading
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="8_topfile.html">Week 8 - LOTlib3</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="8_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8_reading.html">Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="9_topfile.html">Week 9 - Categorization</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="9_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9_reading.html">Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10_topfile.html">Week 10 - Case studies I</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="10_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_reading.html">Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="11_topfile.html">Week 11 - Case studies II</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="11_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_lab_solved.html">Lab (Solved)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_reading.html">Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="12_topfile.html">Week 12 - DreamCoder and Conclusions</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="12_lecture.html">Lecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_lab.html">Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_lab_solved.html">Lab (Solved)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_reading.html">Reading</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/3_lab.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/thelogicalgrammar/pLoT_course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/thelogicalgrammar/pLoT_course/issues/new?title=Issue%20on%20page%20%2F3_lab.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-</div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+<div class="article-header-buttons">
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/thelogicalgrammar/pLoT_course/master?urlpath=tree/book/3_lab.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/thelogicalgrammar/pLoT_course/blob/master/book/3_lab.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
 
-        </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Python refresher: Part II
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#importing-and-using-libraries">
-     Importing and using libraries
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#what-is-a-library">
-       What is a library?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-do-we-import-and-use-libraries">
-       How do we import and use libraries?
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#functions">
-     Functions
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#motivation">
-       Motivation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#standard-function-definition-in-python">
-       Standard function definition in python
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#calling-a-function">
-       Calling a function
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#lambda-lambda-functions">
-       <span class="math notranslate nohighlight">
-        \(\lambda\)
-       </span>
-       (‘lambda’) functions
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#recursive-functions">
-       Recursive functions
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#functions-as-objects">
-     Functions as objects
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#recursion-without-recursion-note-more-difficult">
-     Recursion without recursion (note: more difficult!)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plotting-in-matplotlib">
-     Plotting in Matplotlib
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#classes-what-s-the-idea">
-     Classes, what’s the idea?
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#error-handling">
-     Error handling
-    </a>
-   </li>
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/thelogicalgrammar/pLoT_course/blob/master/book/3_lab.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
   </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-homeworks-set">
-   First homeworks set
-  </a>
- </li>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/thelogicalgrammar/pLoT_course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/thelogicalgrammar/pLoT_course/issues/new?title=Issue%20on%20page%20%2F3_lab.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3_lab.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python refresher: Part II</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python refresher: Part II</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-and-using-libraries">Importing and using libraries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-library">What is a library?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-import-and-use-libraries">How do we import and use libraries?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-function-definition-in-python">Standard function definition in python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-a-function">Calling a function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-lambda-functions"><span class="math notranslate nohighlight">\(\lambda\)</span> (‘lambda’) functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-functions">Recursive functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-as-objects">Functions as objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursion-without-recursion-note-more-difficult">Recursion without recursion (note: more difficult!)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-in-matplotlib">Plotting in Matplotlib</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-what-s-the-idea">Classes, what’s the idea?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error handling</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-homeworks-set">First homeworks set</a></li>
 </ul>
 
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Python refresher: Part II</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Python refresher: Part II
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#importing-and-using-libraries">
-     Importing and using libraries
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#what-is-a-library">
-       What is a library?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-do-we-import-and-use-libraries">
-       How do we import and use libraries?
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#functions">
-     Functions
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#motivation">
-       Motivation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#standard-function-definition-in-python">
-       Standard function definition in python
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#calling-a-function">
-       Calling a function
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#lambda-lambda-functions">
-       <span class="math notranslate nohighlight">
-        \(\lambda\)
-       </span>
-       (‘lambda’) functions
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#recursive-functions">
-       Recursive functions
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#functions-as-objects">
-     Functions as objects
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#recursion-without-recursion-note-more-difficult">
-     Recursion without recursion (note: more difficult!)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plotting-in-matplotlib">
-     Plotting in Matplotlib
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#classes-what-s-the-idea">
-     Classes, what’s the idea?
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#error-handling">
-     Error handling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-homeworks-set">
-   First homeworks set
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="python-refresher-part-ii">
-<h1>Python refresher: Part II<a class="headerlink" href="#python-refresher-part-ii" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-refresher-part-ii">
+<h1>Python refresher: Part II<a class="headerlink" href="#python-refresher-part-ii" title="Permalink to this headline">#</a></h1>
 <p>Last week, we have seen some basic python, which you should be familiar with by now. This includes comments, data types and some of the operators that can be used with them, and other tids and bits.</p>
 <p>This week, we’re going to look at some slightly more complex topics that are needed to work with the code in the second section of the course. Specifically, some concepts that we need to use Piantadosi’s LOTlib3 library.</p>
 <p>I expect the topics in this lab will be familiar to different extents to different people. Therefore, rather than explaining everything in huge detail, it’s easier if you just ask if you get stuck on a point, and we explore it more in detail.</p>
-<div class="section" id="importing-and-using-libraries">
-<h2>Importing and using libraries<a class="headerlink" href="#importing-and-using-libraries" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="what-is-a-library">
-<h3>What is a library?<a class="headerlink" href="#what-is-a-library" title="Permalink to this headline">¶</a></h3>
+<section id="importing-and-using-libraries">
+<h2>Importing and using libraries<a class="headerlink" href="#importing-and-using-libraries" title="Permalink to this headline">#</a></h2>
+<section id="what-is-a-library">
+<h3>What is a library?<a class="headerlink" href="#what-is-a-library" title="Permalink to this headline">#</a></h3>
 <p>Roughly, a library is a collection of useful stuff. This can include functions / variables / classes / other stuff. For instance, to do maths in python we usually import the ‘numpy’ library, to do plotting we use ‘matplotlib’ or ‘seaborn’, etc. LOTlib3, which we will use in the second half of this course, is one such library.</p>
 <p>Using libraries allows us to not rewrite stuff that someone else has already written.</p>
-</div>
-<div class="section" id="how-do-we-import-and-use-libraries">
-<h3>How do we import and use libraries?<a class="headerlink" href="#how-do-we-import-and-use-libraries" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="how-do-we-import-and-use-libraries">
+<h3>How do we import and use libraries?<a class="headerlink" href="#how-do-we-import-and-use-libraries" title="Permalink to this headline">#</a></h3>
 <p>To import a library we write <code class="docutils literal notranslate"><span class="pre">import</span></code> follows by the name of the library, as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
 </pre></div>
@@ -858,12 +577,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="motivation">
-<h3>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
+<section id="motivation">
+<h3>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h3>
 <p>Often when programming you repeatedly need some code that ‘does the same thing’, e.g. multiply two numbers, or take a string and transform it in some way. You can think of a function in python as a way of dealing with this without having to repeatedly write the same code (this is not all that a function is good for, but it is one thing that functions are good for). Basically, you give a name to the ‘piece of code’ that you repeatedly need, and use the name instead of the code itself.</p>
 <p>Let’s look at an example to understand this better. Suppose you have to write some code that takes a string, changes the first letter to ‘A’, and returns the first 10 characters. You can write it as follows:</p>
 <div class="cell docutils container">
@@ -931,9 +650,9 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p>We would like a way to only write them once and use them in two places. A natural solution to this is a function that takes a string and performs the transformation we want.</p>
-</div>
-<div class="section" id="standard-function-definition-in-python">
-<h3>Standard function definition in python<a class="headerlink" href="#standard-function-definition-in-python" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="standard-function-definition-in-python">
+<h3>Standard function definition in python<a class="headerlink" href="#standard-function-definition-in-python" title="Permalink to this headline">#</a></h3>
 <p>To define a function in python we do the following:</p>
 <ul class="simple">
 <li><p>start with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code></p></li>
@@ -962,9 +681,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="calling-a-function">
-<h3>Calling a function<a class="headerlink" href="#calling-a-function" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="calling-a-function">
+<h3>Calling a function<a class="headerlink" href="#calling-a-function" title="Permalink to this headline">#</a></h3>
 <p>Then, we can rewrite the above as:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -988,9 +707,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>Basically what we have done it <em>called</em> a function on a certain input (<code class="docutils literal notranslate"><span class="pre">transform_string(string)</span></code>), which is the same as running the input through the code in the function and getting the return values of the function.</p>
 <p>Now we only repeat one word rather than several lines, and also if it turns out we want to change the transformation later, we only need to do it once rather than changing it independently multiple times!</p>
-</div>
-<div class="section" id="lambda-lambda-functions">
-<h3><span class="math notranslate nohighlight">\(\lambda\)</span> (‘lambda’) functions<a class="headerlink" href="#lambda-lambda-functions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="lambda-lambda-functions">
+<h3><span class="math notranslate nohighlight">\(\lambda\)</span> (‘lambda’) functions<a class="headerlink" href="#lambda-lambda-functions" title="Permalink to this headline">#</a></h3>
 <p>At this point it is worth mentioning that there is another notation for defining functions that doesn’t use the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword. Namely, we write <code class="docutils literal notranslate"><span class="pre">lambda</span></code> followed by a space, zero or more comma-separated arguments, a colon, and a single statement.</p>
 <p>For example, suppose we want to sum two variables. We could define a function that does it as follows:</p>
 <div class="cell docutils container">
@@ -1024,9 +743,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>Lambda functions are usually a slightly more advanced topic, but they’ll come up a lot in the rest of the course, so it’s good to start getting used to them already.</p>
-</div>
-<div class="section" id="recursive-functions">
-<h3>Recursive functions<a class="headerlink" href="#recursive-functions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="recursive-functions">
+<h3>Recursive functions<a class="headerlink" href="#recursive-functions" title="Permalink to this headline">#</a></h3>
 <p>This is a slighlty mindbending concept: functions can <em>call themselves</em>. This means that inside a function <span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(f\)</span> itself can be called and the return value can be used inside <span class="math notranslate nohighlight">\(f\)</span>. Of course, this can easily lead to functions that never terminate, but rather keep calling themselves, forever increasing the level of nested calls. For instance, try to think what is happening here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1102,10 +821,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>There is a lot to say about recursive functions and how they work, but for now try to really understand how the one above works. If you really understand that simple case, other ones are going to be easy.</p>
-</div>
-</div>
-<div class="section" id="functions-as-objects">
-<h2>Functions as objects<a class="headerlink" href="#functions-as-objects" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="functions-as-objects">
+<h2>Functions as objects<a class="headerlink" href="#functions-as-objects" title="Permalink to this headline">#</a></h2>
 <p>We have refreshed briefly how to define functions above. Functions in python are <em>first class citizens</em>, meaning that they can be treated as objects themselves: passed as arguments of functions, destroyed, transformed in all the same ways as other objects.</p>
 <p>Let’s see a simple example. Suppose that you have a function <span class="math notranslate nohighlight">\(f\)</span> that takes an integer and returns an integer, but you don’t know exactly what it does to that integer. But whatever it does, you want another function that does the same thing as <span class="math notranslate nohighlight">\(f\)</span> but then adds 3 to the result.</p>
 <p>Well, we can define a function <span class="math notranslate nohighlight">\(g\)</span> that takes a function <span class="math notranslate nohighlight">\(f\)</span> <em>as an argument</em> and returns another function from integer to integer, that first calls <span class="math notranslate nohighlight">\(f\)</span> on the integer and then adds three:</p>
@@ -1145,9 +864,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>The point of this example is that <code class="docutils literal notranslate"><span class="pre">modify_f</span></code> takes <em>a function</em> as an input and return <em>a function</em> as an output. You can use manipulate functions like that!</p>
-</div>
-<div class="section" id="recursion-without-recursion-note-more-difficult">
-<h2>Recursion without recursion (note: more difficult!)<a class="headerlink" href="#recursion-without-recursion-note-more-difficult" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="recursion-without-recursion-note-more-difficult">
+<h2>Recursion without recursion (note: more difficult!)<a class="headerlink" href="#recursion-without-recursion-note-more-difficult" title="Permalink to this headline">#</a></h2>
 <p>(For more explanation on the material in this section, see <a class="reference external" href="https://www.lambdacircle.com/the-y-and-z-combinators-in-python/">this page</a>)</p>
 <p>Note that things become complicated easily when we work with functions that take other functions as inputs. In those cases, you can define functions that <em>take themselves</em> (as well as other arguments). This actually allows us to do surprising things, like have the same power as recursion without using recursion directly, i.e., without calling a function in its own definition.</p>
 <p>For instance, consider the following function, which as you can see is not strictly speaking recursive:</p>
@@ -1265,9 +984,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>This section was a bit mental gymnastics to give you an idea of how messy things can get when higher-order functions are involved (i.e., function that take functions as arguments). We will see a lot of higher-order functions in the rest of the semester, so try to become comfortable with them!</p>
-</div>
-<div class="section" id="plotting-in-matplotlib">
-<h2>Plotting in Matplotlib<a class="headerlink" href="#plotting-in-matplotlib" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="plotting-in-matplotlib">
+<h2>Plotting in Matplotlib<a class="headerlink" href="#plotting-in-matplotlib" title="Permalink to this headline">#</a></h2>
 <p>Since we’ll be want to plot things in the second half of the course, it makes sense to introduce some simple cases now. We’ll be using the most popular plotting library for python, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. We usually import it as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1300,7 +1019,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3_lab_71_0.png" src="_images/3_lab_71_0.png" />
+<img alt="_images/ec2379b49051f4eba771c950199cc000be4dd9bedcacfbe75ae3500cbae0dab3.png" src="_images/ec2379b49051f4eba771c950199cc000be4dd9bedcacfbe75ae3500cbae0dab3.png" />
 </div>
 </div>
 <p>Another important function is to draw line plots, called simply <code class="docutils literal notranslate"><span class="pre">plot</span></code>:</p>
@@ -1322,7 +1041,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3_lab_73_0.png" src="_images/3_lab_73_0.png" />
+<img alt="_images/e41c50704dfe0e95fad69af7e2f2159145953137a078899c4e083e25d3b1e9b9.png" src="_images/e41c50704dfe0e95fad69af7e2f2159145953137a078899c4e083e25d3b1e9b9.png" />
 </div>
 </div>
 <p>Since we will be dealing with discrete variables a lot, it will be useful to also draw barplot, with the method <code class="docutils literal notranslate"><span class="pre">bar</span></code>:</p>
@@ -1344,7 +1063,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3_lab_75_0.png" src="_images/3_lab_75_0.png" />
+<img alt="_images/ececc7fb0d1abe8df9c07e6e072b9a207c5c767835ee6c3ada8f66510b795a5b.png" src="_images/ececc7fb0d1abe8df9c07e6e072b9a207c5c767835ee6c3ada8f66510b795a5b.png" />
 </div>
 </div>
 <p>We will also need to know what we are plotting, so we need to change the labels on the x-axis:</p>
@@ -1376,12 +1095,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3_lab_77_0.png" src="_images/3_lab_77_0.png" />
+<img alt="_images/20a0a4dbc23d2083f65682d89bf34cf41e5dc49cc405df5e3a0a75d321075032.png" src="_images/20a0a4dbc23d2083f65682d89bf34cf41e5dc49cc405df5e3a0a75d321075032.png" />
 </div>
 </div>
-</div>
-<div class="section" id="classes-what-s-the-idea">
-<h2>Classes, what’s the idea?<a class="headerlink" href="#classes-what-s-the-idea" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="classes-what-s-the-idea">
+<h2>Classes, what’s the idea?<a class="headerlink" href="#classes-what-s-the-idea" title="Permalink to this headline">#</a></h2>
 <p>We talked above about how we use functions because we don’t want to rewrite the same stuff over and over again. But suppose that you don’t want to just repeat a function, but a whole collection of functions and properties that can depend on each other. Then, you could define a class. In this light, a class is a <em>template for an object</em>, where an object has specific values for those variables that you left unspecified in the class.</p>
 <p>Let’s consider an example to make the explanation above clearer (as it often happens, the definitions are interdependent and the best way is to see how the terms are used in practice). Suppose we want to write a program that models students at a university. A very natural way of structuring this program is to have variables that correspond to students, e.g., one variable called <code class="docutils literal notranslate"><span class="pre">mark</span></code> for Mark, etc.</p>
 <p>What type should these variables be? Clearly they’re not integers, or strings, or floats. Ideally we’d want to have a <em>student</em> type with its own methods that we can freely define. In other words, we want to have a <code class="docutils literal notranslate"><span class="pre">Student</span></code> class (Note: class names always start with a capital letter in pyhon by convention), which can produce specific <code class="docutils literal notranslate"><span class="pre">student</span></code> objects (<code class="docutils literal notranslate"><span class="pre">mark</span></code>, etc.). Here’s how we can define it in python:</p>
@@ -1447,9 +1166,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>You don’t need to understand everything about classes, and you won’t have to define one from scratch, but we’ll have to adapt them as part of working with Piantadosi’s LOTlib3 library. If you want to read more about classes in python <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html">here is the documentation</a> and here is <a class="reference external" href="https://towardsdatascience.com/introduction-to-python-classes-da526ff745df">another explanation of the basic idea</a>.</p>
-</div>
-<div class="section" id="error-handling">
-<h2>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="error-handling">
+<h2>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">#</a></h2>
 <p>As you have already seen above, if something goes wrong sometimes python raises an <em>error</em>. For instance, above we have encountered <code class="docutils literal notranslate"><span class="pre">RecursionError:</span> <span class="pre">maximum</span> <span class="pre">recursion</span> <span class="pre">depth</span> <span class="pre">exceeded</span></code>. However, there are other types of errors in python, for instance if you try to get an element from an index that’s too high for a list:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1530,10 +1249,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="first-homeworks-set">
-<h1>First homeworks set<a class="headerlink" href="#first-homeworks-set" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="first-homeworks-set">
+<h1>First homeworks set<a class="headerlink" href="#first-homeworks-set" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Write a function to sum three numbers.</p></li>
 <li><p>Write a <span class="math notranslate nohighlight">\(\lambda\)</span> function to sum three numbers.</p></li>
@@ -1576,7 +1295,7 @@ n! &amp;= n \times (n-1)!
 <ul class="simple">
 <li><p>Google how to read a text file and print out its content. Write code that does this, but using the <code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">except</span> <span class="pre">...</span></code> statements prints ‘File does not exist!’ if the file does not exist.</p></li>
 </ul>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1590,7 +1309,7 @@ n! &amp;= n \times (n-1)!
             mode: "plot"
         },
         kernelOptions: {
-            kernelName: "plot",
+            name: "plot",
             path: "./."
         },
         predefinedOutput: true
@@ -1598,44 +1317,127 @@ n! &amp;= n \times (n-1)!
     </script>
     <script>kernelName = 'plot'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="3_lecture.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lecture</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3_lecture.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="3_reading.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="3_reading.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Reading</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Fausto Carcassi<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
-
-
       </div>
-    </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python refresher: Part II</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-and-using-libraries">Importing and using libraries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-library">What is a library?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-import-and-use-libraries">How do we import and use libraries?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-function-definition-in-python">Standard function definition in python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-a-function">Calling a function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-lambda-functions"><span class="math notranslate nohighlight">\(\lambda\)</span> (‘lambda’) functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-functions">Recursive functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-as-objects">Functions as objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursion-without-recursion-note-more-difficult">Recursion without recursion (note: more difficult!)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-in-matplotlib">Plotting in Matplotlib</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-what-s-the-idea">Classes, what’s the idea?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error handling</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-homeworks-set">First homeworks set</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Fausto Carcassi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
