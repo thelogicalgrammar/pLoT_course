@@ -60,8 +60,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '5_lab';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -525,7 +523,7 @@ Successfully installed ColabTurtlePlus-2.0.1
 </div>
 </div>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="formal-semantics">
+<section id="formal-semantics">
 <h1>Formal semantics<a class="headerlink" href="#formal-semantics" title="Permalink to this headline">#</a></h1>
 <p>In the past few weeks, we have set up a picture where the mind encodes categories and other stuff with a Language of Thought, we have seen how we can formally define languages, and we have explored how they can be interpreted. However, you might not have realized yet how powerful these methods are in what they can express. This week, we’ll put it all together and see some case studies: a simple grammar for arithmetic, a grammar of shapes, and a grammar of sounds.</p>
 <p>Let’s start by defining a couple of useful functions (can ignore them for now and have a look when you encounter them below):</p>
@@ -617,12 +615,12 @@ Successfully installed ColabTurtlePlus-2.0.1
 </section>
 <section id="interpreting-the-grammar">
 <h3>Interpreting the grammar<a class="headerlink" href="#interpreting-the-grammar" title="Permalink to this headline">#</a></h3>
-<p>We will use <span class="math notranslate nohighlight">\(\lambda\)</span> expressions to encode the meaning of our operators. Thankfully this is made quite easy by Python’s lambda syntax, which we have seen a couple of weeks ago. We want to interpret the very simple arithmetic language defined above. We assume a type system with:</p>
+<p>We will use $\lambda$ expressions to encode the meaning of our operators. Thankfully this is made quite easy by Python’s lambda syntax, which we have seen a couple of weeks ago. We want to interpret the very simple arithmetic language defined above. We assume a type system with:</p>
 <ul class="simple">
-<li><p>One primitive type <span class="math notranslate nohighlight">\(n\)</span>, the type of integers.</p></li>
-<li><p>Function types defined inductively: <span class="math notranslate nohighlight">\(\langle \alpha, \beta \rangle\)</span> is the set of functions from things of type <span class="math notranslate nohighlight">\(\alpha\)</span> to things of type <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
+<li><p>One primitive type $n$, the type of integers.</p></li>
+<li><p>Function types defined inductively: $\langle \alpha, \beta \rangle$ is the set of functions from things of type $\alpha$ to things of type $\beta$.</p></li>
 </ul>
-<p>We can give meanings to all the terminals in our language. We do this in a dictionary: the keys are the terminals of our grammar and the values are the meanings, written as <span class="math notranslate nohighlight">\(\lambda\)</span> expressions:</p>
+<p>We can give meanings to all the terminals in our language. We do this in a dictionary: the keys are the terminals of our grammar and the values are the meanings, written as $\lambda$ expressions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meanings</span> <span class="o">=</span> <span class="p">{</span>
@@ -696,7 +694,7 @@ Successfully installed ColabTurtlePlus-2.0.1
 <img alt="_images/5e2250cf5cb55daaba800ba7b5fc724f9a7757f7220d1d06f2e660faf6ff12c8.png" src="_images/5e2250cf5cb55daaba800ba7b5fc724f9a7757f7220d1d06f2e660faf6ff12c8.png" />
 </div>
 </div>
-<p>Turns out the probability of each number <span class="math notranslate nohighlight">\(n\)</span> is <span class="math notranslate nohighlight">\(2^{-n}\)</span>. Can you tell why?</p>
+<p>Turns out the probability of each number $n$ is $2^{-n}$. Can you tell why?</p>
 </section>
 <section id="from-a-cfg-to-a-pcfg">
 <h3>From a CFG to a PCFG<a class="headerlink" href="#from-a-cfg-to-a-pcfg" title="Permalink to this headline">#</a></h3>

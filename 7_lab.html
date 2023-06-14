@@ -60,8 +60,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '7_lab';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -485,7 +484,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bayes-part-ii">
+  <section id="bayes-part-ii">
 <h1>Bayes (Part II)<a class="headerlink" href="#bayes-part-ii" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -575,10 +574,9 @@ But it also has some cons:</p></li>
 <section id="getting-samples-from-an-unnormalized-normal-distribution">
 <h2>Getting samples from an unnormalized normal distribution<a class="headerlink" href="#getting-samples-from-an-unnormalized-normal-distribution" title="Permalink to this headline">#</a></h2>
 <p>The simplest application is to get samples from a distribution that we can calculate exactly, and see if the algorithm converges to it. Let’s take the standard normal distribution, which has density function:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 \varphi (z)= \frac {1}{\sqrt {2\pi }} e^{-{\frac {z^{2}}{2}}}
-\]</div>
+$$</p>
 <p>let’s write a function to calculate this probability density:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -608,13 +606,12 @@ But it also has some cons:</p></li>
 <img alt="_images/2d31b291f622408d8688baddf48f2e2d69ff52be08e6e6a5d5cc4beb98fa35e5.png" src="_images/2d31b291f622408d8688baddf48f2e2d69ff52be08e6e6a5d5cc4beb98fa35e5.png" />
 </div>
 </div>
-<p>Now suppose that we didn’t have the explicit formula for the distribution, but rather some black-box function where <span class="math notranslate nohighlight">\(\varphi\)</span> is multiplied by an unknown constant <span class="math notranslate nohighlight">\(K\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-\varphi' (z)= K \frac {1}{\sqrt {2\pi }} e^{-{\frac {z^{2}}{2}}}
-\]</div>
+<p>Now suppose that we didn’t have the explicit formula for the distribution, but rather some black-box function where $\varphi$ is multiplied by an unknown constant $K$:</p>
+<p>$$
+\varphi’ (z)= K \frac {1}{\sqrt {2\pi }} e^{-{\frac {z^{2}}{2}}}
+$$</p>
 <blockquote>
-<div><p><strong><strong>NOTE</strong></strong>: If <span class="math notranslate nohighlight">\(K\)</span> is equal to the normalization constant <span class="math notranslate nohighlight">\(\sqrt {2\pi }\)</span>, <span class="math notranslate nohighlight">\(\varphi' (z)\)</span> becomes just <span class="math notranslate nohighlight">\(e^{-{\frac {z^{2}}{2}}}\)</span>. This is essentially the trick we will use to sample from the posterior, where we don’t have the posterior as such, but we can calculate the posterior multiplied by <span class="math notranslate nohighlight">\(P(D)\)</span>.</p>
+<div><p><strong><strong>NOTE</strong></strong>: If $K$ is equal to the normalization constant $\sqrt {2\pi }$, $\varphi’ (z)$ becomes just $e^{-{\frac {z^{2}}{2}}}$. This is essentially the trick we will use to sample from the posterior, where we don’t have the posterior as such, but we can calculate the posterior multiplied by $P(D)$.</p>
 </div></blockquote>
 <p>Now we can use our mcmc function above to take samples from the distribution:</p>
 <div class="cell docutils container">
@@ -650,14 +647,13 @@ But it also has some cons:</p></li>
 </section>
 <section id="using-mhmc-for-bayesian-inference-categorization-in-continuous-space">
 <h2>Using MHMC for Bayesian inference: categorization in continuous space<a class="headerlink" href="#using-mhmc-for-bayesian-inference-categorization-in-continuous-space" title="Permalink to this headline">#</a></h2>
-<p>Now recall the categorization case that we saw in class: we observe some samples from an unknown category, and we have to form a posterior over the position of the unseen category’s boundaries. The case we have seen in class has discrete boundaries, and therefore we could in theory calculate the posterior directly: consider all the possible hypotheses (categories) <span class="math notranslate nohighlight">\(H\)</span>, calculate <span class="math notranslate nohighlight">\(P(H) P(D \mid H)\)</span>, and sum it all to find <span class="math notranslate nohighlight">\(P(D)\)</span>.</p>
-<p>However, now imagine the case where we have a <em>continuous</em> space, and so infinitely many categories. The probability density of sampling a certain observation from a category is still 0 if the observation lies outside the category and <span class="math notranslate nohighlight">\(1/|H|\)</span> otherwise, but now the category <span class="math notranslate nohighlight">\(H\)</span> can have a float size (e.g., category [-1, 0.5] has size 1.5). Now it becomes difficult to calculate the <span class="math notranslate nohighlight">\(P(D)\)</span>, because we can’t easily integrate over all categories!</p>
-<p>However, if we define some prior over hypotheses (i.e. the categories), we can still easily calculate the numerator of the posterior, namely <span class="math notranslate nohighlight">\(P(H) P(D \mid H)\)</span>, for specific categories. A simple prior can be defined as follows:</p>
-<div class="math notranslate nohighlight">
-\[
-p(H) = \phi(x=l_H, \mu=0, \sigma=10) \; \phi(x=u_H, \mu=0, \sigma=10)
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(\phi\)</span> is the probability density function of a normal distribution, <span class="math notranslate nohighlight">\(l_H\)</span> is the lower bound, and <span class="math notranslate nohighlight">\(u_H\)</span> is the upper bound.</p>
+<p>Now recall the categorization case that we saw in class: we observe some samples from an unknown category, and we have to form a posterior over the position of the unseen category’s boundaries. The case we have seen in class has discrete boundaries, and therefore we could in theory calculate the posterior directly: consider all the possible hypotheses (categories) $H$, calculate $P(H) P(D \mid H)$, and sum it all to find $P(D)$.</p>
+<p>However, now imagine the case where we have a <em>continuous</em> space, and so infinitely many categories. The probability density of sampling a certain observation from a category is still 0 if the observation lies outside the category and $1/|H|$ otherwise, but now the category $H$ can have a float size (e.g., category [-1, 0.5] has size 1.5). Now it becomes difficult to calculate the $P(D)$, because we can’t easily integrate over all categories!</p>
+<p>However, if we define some prior over hypotheses (i.e. the categories), we can still easily calculate the numerator of the posterior, namely $P(H) P(D \mid H)$, for specific categories. A simple prior can be defined as follows:</p>
+<p>$$
+p(H) = \phi(x=l_H, \mu=0, \sigma=10) ; \phi(x=u_H, \mu=0, \sigma=10)
+$$</p>
+<p>where $\phi$ is the probability density function of a normal distribution, $l_H$ is the lower bound, and $u_H$ is the upper bound.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prior_f</span><span class="p">(</span><span class="n">boundaries</span><span class="p">):</span>
@@ -668,11 +664,10 @@ p(H) = \phi(x=l_H, \mu=0, \sigma=10) \; \phi(x=u_H, \mu=0, \sigma=10)
 </div>
 </div>
 <p>Likelihood can be defined as discussed above:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 p(D \mid H) = \prod_{d \in D} \left( |H|^{-1} \text{ if } d \in H \text{ else } 0 \right)
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(D\)</span> is a set of observations (points from the unobserved category).</p>
+$$</p>
+<p>where $D$ is a set of observations (points from the unobserved category).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">likelihood_f</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">boundaries</span><span class="p">):</span>
@@ -807,11 +802,10 @@ p(D \mid H) = \prod_{d \in D} \left( |H|^{-1} \text{ if } d \in H \text{ else } 
 <h2>Using MHMC in discrete spaces<a class="headerlink" href="#using-mhmc-in-discrete-spaces" title="Permalink to this headline">#</a></h2>
 <p>We can use Metropolis-Hastings for discrete hypotheses spaces too! The basic idea is the same: we move around the space of hypotheses, calculating the unnormalized posterior for each point, and accepting new moves according to the rule described in the algo. The only complication is that we can’t use the normal distribution centered at the current position as a proposal distribution, but we must come up with something different.</p>
 <p>As an example which will be useful in the future, consider the space of sentences generated by a PCFG as the space of hypotheses. For instance, the following PCFG:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 S \rightarrow a | b | Sa | Sb
-\]</div>
-<p>with uniform substitution probabilities (each <span class="math notranslate nohighlight">\(1/3\)</span>). The space of hypotheses then would be: ‘a’, ‘b’, ‘aa’, ‘ab’, ‘ba’, ‘bb’, and so on.</p>
+$$</p>
+<p>with uniform substitution probabilities (each $1/3$). The space of hypotheses then would be: ‘a’, ‘b’, ‘aa’, ‘ab’, ‘ba’, ‘bb’, and so on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complete</span><span class="p">(</span><span class="n">incomplete_sentence</span><span class="p">):</span>
@@ -837,7 +831,7 @@ S \rightarrow a | b | Sa | Sb
 </div>
 </div>
 </div>
-<p>The probability of a specific sentence of length <span class="math notranslate nohighlight">\(n\)</span> then is <span class="math notranslate nohighlight">\(4^{-n}\)</span> (can you see why?). Let’s verify by sampling a bunch of sentences and finding the proportion of times we sample each one:</p>
+<p>The probability of a specific sentence of length $n$ then is $4^{-n}$ (can you see why?). Let’s verify by sampling a bunch of sentences and finding the proportion of times we sample each one:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
@@ -938,22 +932,23 @@ S \rightarrow a | b | Sa | Sb
 </div>
 </div>
 </div>
-<p>Finally, we need a proposal distribution, which brings us from a current sentence to a possible next step. For MHMC to work as written above, it has to be the case that the probability of going from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(x'\)</span> is the same as the probability of going from <span class="math notranslate nohighlight">\(x'\)</span> to <span class="math notranslate nohighlight">\(x\)</span>. If this is not the case, we need to multiply the value of <code class="docutils literal notranslate"><span class="pre">acceptance</span></code> in <code class="docutils literal notranslate"><span class="pre">mcmc</span></code> by <span class="math notranslate nohighlight">\(\frac{P(x' \rightarrow x) }{ P(x \rightarrow x')}\)</span> to balance things out.</p>
-<p>In practice, we will use the <em>subtree-regeneration</em> transition distribution proposed at p.153 in Goodman, Noah D., Joshua B. Tenenbaum, Jacob Feldman, and Thomas L. Griffiths. “A Rational Analysis of Rule-Based Concept Learning.” Cognitive Science 32, no. 1 (2008): 108–54. <a class="reference external" href="https://doi.org/10.1080/03640210701802071">https://doi.org/10.1080/03640210701802071</a>. It works as follows, starting from current sentence <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<p>Finally, we need a proposal distribution, which brings us from a current sentence to a possible next step. For MHMC to work as written above, it has to be the case that the probability of going from $x$ to $x’$ is the same as the probability of going from $x’$ to $x$. If this is not the case, we need to multiply the value of <code class="docutils literal notranslate"><span class="pre">acceptance</span></code> in <code class="docutils literal notranslate"><span class="pre">mcmc</span></code> by $\frac{P(x’ \rightarrow x) }{ P(x \rightarrow x’)}$ to balance things out.</p>
+<p>In practice, we will use the <em>subtree-regeneration</em> transition distribution proposed at p.153 in Goodman, Noah D., Joshua B. Tenenbaum, Jacob Feldman, and Thomas L. Griffiths. “A Rational Analysis of Rule-Based Concept Learning.” Cognitive Science 32, no. 1 (2008): 108–54. https://doi.org/10.1080/03640210701802071. It works as follows, starting from current sentence $x$:</p>
 <ul class="simple">
-<li><p>Sample a node <span class="math notranslate nohighlight">\(n\)</span> at random from the parse tree of <span class="math notranslate nohighlight">\(x\)</span></p></li>
-<li><p>Remove everything below <span class="math notranslate nohighlight">\(n\)</span> and replace <span class="math notranslate nohighlight">\(n\)</span> with appropriate non-terminal, generating a tree <span class="math notranslate nohighlight">\(y\)</span> containing non-terminals.</p></li>
-<li><p>Complete <span class="math notranslate nohighlight">\(y\)</span> with the PCFG, obtaining new sentence <span class="math notranslate nohighlight">\(x'\)</span>.</p></li>
+<li><p>Sample a node $n$ at random from the parse tree of $x$</p></li>
+<li><p>Remove everything below $n$ and replace $n$ with appropriate non-terminal, generating a tree $y$ containing non-terminals.</p></li>
+<li><p>Complete $y$ with the PCFG, obtaining new sentence $x’$.</p></li>
 <li><p>The acceptance probability from <code class="docutils literal notranslate"><span class="pre">mcmc</span></code> then gets additionally multiplied by:</p></li>
 </ul>
-<p>\begin{align}
-\frac{p(x’ \rightarrow x)}{p(x \rightarrow x’)}
-&amp;=
-\frac{ P(\text{sampling node <span class="math notranslate nohighlight">\(n\)</span> from <span class="math notranslate nohighlight">\(x'\)</span>}) }{ P(\text{sampling node <span class="math notranslate nohighlight">\(n\)</span> from <span class="math notranslate nohighlight">\(x'\)</span>}) }
-\frac{ P(x \mid \text{PCFG}) }{ P(x’ \mid \text{PCFG}) } \
-&amp;= \frac{|x’|^{-1}}{|x|^{-1}} \frac{4^{-|x|}}{4^{-|x’|}} \
-&amp;= \frac{|x|}{|x’|} \frac{4^{-|x|}}{4^{-|x’|}}
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2061d596-fb0c-4ecc-8752-57902a72fede">
+<span class="eqno">(3)<a class="headerlink" href="#equation-2061d596-fb0c-4ecc-8752-57902a72fede" title="Permalink to this equation">#</a></span>\[\begin{align}
+\frac{p(x' \rightarrow x)}{p(x \rightarrow x')} 
+&amp;= 
+\frac{ P(\text{sampling node $n$ from $x'$}) }{ P(\text{sampling node $n$ from $x'$}) } 
+\frac{ P(x \mid \text{PCFG}) }{ P(x' \mid \text{PCFG}) } \\
+&amp;= \frac{|x'|^{-1}}{|x|^{-1}} \frac{4^{-|x|}}{4^{-|x'|}} \\
+&amp;= \frac{|x|}{|x'|} \frac{4^{-|x|}}{4^{-|x'|}}
+\end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transition_f</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>
@@ -1070,28 +1065,28 @@ S \rightarrow a | b | Sa | Sb
 <section id="homework">
 <h2>Homework<a class="headerlink" href="#homework" title="Permalink to this headline">#</a></h2>
 <p>Third (and last) homeworks set! Consider the following CFG (interpret it as a PCFG with uniform probabilities), where each sentence from this grammar is an integer:
-$<span class="math notranslate nohighlight">\(
+$$
 S \rightarrow 1 | S+1 | S-1
-\)</span><span class="math notranslate nohighlight">\(
-Note that there are multiple way to arrive at the same integer. E.g. \)</span>I(1+1-1)=I(1)$.</p>
+$$
+Note that there are multiple way to arrive at the same integer. E.g. $I(1+1-1)=I(1)$.</p>
 <ol class="arabic simple">
 <li><p>Write a function <code class="docutils literal notranslate"><span class="pre">prior_f</span></code> that takes a sentence produced by the PCFG and returns its probability in the PCFG.</p></li>
 </ol>
-<p>Assume that there is a true (unknown) sentence <span class="math notranslate nohighlight">\(H\)</span> that we are trying to infer based on some observations <span class="math notranslate nohighlight">\({o_1, \dots, o_n}\)</span>. The observations aren’t just the integer defined by the sentence, but rather each observation is equal to the integer defined by the sentence plus some normally distributed noise. The likelihood function therefore is as follows:
-$<span class="math notranslate nohighlight">\(
+<p>Assume that there is a true (unknown) sentence $H$ that we are trying to infer based on some observations ${o_1, \dots, o_n}$. The observations aren’t just the integer defined by the sentence, but rather each observation is equal to the integer defined by the sentence plus some normally distributed noise. The likelihood function therefore is as follows:
+$$
 p(o \mid H) = \phi(x= o-I(H), \mu=0, \sigma=2.)
-\)</span><span class="math notranslate nohighlight">\(
-as usual, \)</span>I<span class="math notranslate nohighlight">\( is the interpretation function, \)</span>\phi$ is the density function of the normal distribution. For instance if the true sentence was <code class="docutils literal notranslate"><span class="pre">1+1</span></code>, we might observe 1.94.</p>
+$$
+as usual, $I$ is the interpretation function, $\phi$ is the density function of the normal distribution. For instance if the true sentence was <code class="docutils literal notranslate"><span class="pre">1+1</span></code>, we might observe 1.94.</p>
 <ol class="arabic simple" start="2">
 <li><p>Write a function <code class="docutils literal notranslate"><span class="pre">likelihood_f</span></code> that calculates the probability of a list of observations given a sentence.</p></li>
 </ol>
 <blockquote>
-<div><p><strong>HINT</strong> First find the integer <span class="math notranslate nohighlight">\(i\)</span> defined by the sentence, then for each observation find the difference between <span class="math notranslate nohighlight">\(i\)</span> and the observation, then find the probability of those differences (given that they are samples from a normal with <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(\sigma=2\)</span>), and multiply those probabilities together.</p>
+<div><p><strong>HINT</strong> First find the integer $i$ defined by the sentence, then for each observation find the difference between $i$ and the observation, then find the probability of those differences (given that they are samples from a normal with $\mu=0$ and $\sigma=2$), and multiply those probabilities together.</p>
 </div></blockquote>
 <ol class="arabic simple" start="3">
 <li><p>Write a function to calculate the unnormalized posterior. This is essentially what the <code class="docutils literal notranslate"><span class="pre">define_unnorm_posterior</span></code> function above does.</p></li>
-<li><p>Write a transition function: a function that takes a current sentence <span class="math notranslate nohighlight">\(x\)</span> and returns a randomly generated proposal <span class="math notranslate nohighlight">\(x'\)</span>. You can modify the subtree-regeneration above to adapt it to this case.</p></li>
-<li><p>Using mcmc, draw 100000 samples from <span class="math notranslate nohighlight">\(P(H \mid D)\)</span>.</p></li>
+<li><p>Write a transition function: a function that takes a current sentence $x$ and returns a randomly generated proposal $x’$. You can modify the subtree-regeneration above to adapt it to this case.</p></li>
+<li><p>Using mcmc, draw 100000 samples from $P(H \mid D)$.</p></li>
 </ol>
 </section>
 <section id="implemented-mhmc">

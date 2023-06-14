@@ -60,8 +60,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '3_lab';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -478,7 +477,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-function-definition-in-python">Standard function definition in python</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-a-function">Calling a function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-lambda-functions"><span class="math notranslate nohighlight">\(\lambda\)</span> (‘lambda’) functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-lambda-functions">$\lambda$ (‘lambda’) functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-functions">Recursive functions</a></li>
 </ul>
 </li>
@@ -502,7 +501,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="python-refresher-part-ii">
+  <section id="python-refresher-part-ii">
 <h1>Python refresher: Part II<a class="headerlink" href="#python-refresher-part-ii" title="Permalink to this headline">#</a></h1>
 <p>Last week, we have seen some basic python, which you should be familiar with by now. This includes comments, data types and some of the operators that can be used with them, and other tids and bits.</p>
 <p>This week, we’re going to look at some slightly more complex topics that are needed to work with the code in the second section of the course. Specifically, some concepts that we need to use Piantadosi’s LOTlib3 library.</p>
@@ -524,7 +523,7 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span>
 </pre></div>
 </div>
-<p>to get the number <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
+<p>to get the number $\pi$.</p>
 <p>However, often we do not want to use the full name of the library, but rather some abbreviation. In this case, we can write as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
@@ -709,7 +708,7 @@ document.write(`
 <p>Now we only repeat one word rather than several lines, and also if it turns out we want to change the transformation later, we only need to do it once rather than changing it independently multiple times!</p>
 </section>
 <section id="lambda-lambda-functions">
-<h3><span class="math notranslate nohighlight">\(\lambda\)</span> (‘lambda’) functions<a class="headerlink" href="#lambda-lambda-functions" title="Permalink to this headline">#</a></h3>
+<h3>$\lambda$ (‘lambda’) functions<a class="headerlink" href="#lambda-lambda-functions" title="Permalink to this headline">#</a></h3>
 <p>At this point it is worth mentioning that there is another notation for defining functions that doesn’t use the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword. Namely, we write <code class="docutils literal notranslate"><span class="pre">lambda</span></code> followed by a space, zero or more comma-separated arguments, a colon, and a single statement.</p>
 <p>For example, suppose we want to sum two variables. We could define a function that does it as follows:</p>
 <div class="cell docutils container">
@@ -746,7 +745,7 @@ document.write(`
 </section>
 <section id="recursive-functions">
 <h3>Recursive functions<a class="headerlink" href="#recursive-functions" title="Permalink to this headline">#</a></h3>
-<p>This is a slighlty mindbending concept: functions can <em>call themselves</em>. This means that inside a function <span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(f\)</span> itself can be called and the return value can be used inside <span class="math notranslate nohighlight">\(f\)</span>. Of course, this can easily lead to functions that never terminate, but rather keep calling themselves, forever increasing the level of nested calls. For instance, try to think what is happening here:</p>
+<p>This is a slighlty mindbending concept: functions can <em>call themselves</em>. This means that inside a function $f$, $f$ itself can be called and the return value can be used inside $f$. Of course, this can easily lead to functions that never terminate, but rather keep calling themselves, forever increasing the level of nested calls. For instance, try to think what is happening here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bad_recursive_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -793,10 +792,10 @@ document.write(`
 <li><p>There is one or more ‘base case’, i.e. an input for which the function simply calculates a return value without calling the function itself.</p></li>
 <li><p>There are ‘complex’ cases where the input to the function is somehow ‘simplified’ and the function is called with the simplified input. Eventually after enough ‘simplification’ steps the input reduces to a base case, and recursion stops.</p></li>
 </ul>
-<p>A classic case of recursion is the following formulation of the <span class="math notranslate nohighlight">\(n\)</span>th Fibonacci numbers:</p>
+<p>A classic case of recursion is the following formulation of the $n$th Fibonacci numbers:</p>
 <ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(n\)</span> is 0 or 1 (i.e., the first or second Fibonacci number), return 1</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(n\)</span> is greater than 1, return the <span class="math notranslate nohighlight">\(n\)</span>th-2 Fibonacci number + the <span class="math notranslate nohighlight">\(n\)</span>th-1 Fibonacci number</p></li>
+<li><p>If $n$ is 0 or 1 (i.e., the first or second Fibonacci number), return 1</p></li>
+<li><p>If $n$ is greater than 1, return the $n$th-2 Fibonacci number + the $n$th-1 Fibonacci number</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -826,8 +825,8 @@ document.write(`
 <section id="functions-as-objects">
 <h2>Functions as objects<a class="headerlink" href="#functions-as-objects" title="Permalink to this headline">#</a></h2>
 <p>We have refreshed briefly how to define functions above. Functions in python are <em>first class citizens</em>, meaning that they can be treated as objects themselves: passed as arguments of functions, destroyed, transformed in all the same ways as other objects.</p>
-<p>Let’s see a simple example. Suppose that you have a function <span class="math notranslate nohighlight">\(f\)</span> that takes an integer and returns an integer, but you don’t know exactly what it does to that integer. But whatever it does, you want another function that does the same thing as <span class="math notranslate nohighlight">\(f\)</span> but then adds 3 to the result.</p>
-<p>Well, we can define a function <span class="math notranslate nohighlight">\(g\)</span> that takes a function <span class="math notranslate nohighlight">\(f\)</span> <em>as an argument</em> and returns another function from integer to integer, that first calls <span class="math notranslate nohighlight">\(f\)</span> on the integer and then adds three:</p>
+<p>Let’s see a simple example. Suppose that you have a function $f$ that takes an integer and returns an integer, but you don’t know exactly what it does to that integer. But whatever it does, you want another function that does the same thing as $f$ but then adds 3 to the result.</p>
+<p>Well, we can define a function $g$ that takes a function $f$ <em>as an argument</em> and returns another function from integer to integer, that first calls $f$ on the integer and then adds three:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify_f</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
@@ -933,11 +932,11 @@ document.write(`
 </div>
 <p>How does <code class="docutils literal notranslate"><span class="pre">apply_inside</span></code> work?</p>
 <ul class="simple">
-<li><p>You pass it some function <span class="math notranslate nohighlight">\(f\)</span> (<span class="math notranslate nohighlight">\(f\)</span> takes a function as argument), and it returns another function, let’s call it <span class="math notranslate nohighlight">\(h\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(h\)</span> (i.e., the return value of <code class="docutils literal notranslate"><span class="pre">apply_inside</span></code>) is defined as <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">g:</span> <span class="pre">f(lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y)</span></code>, and so it is a function:</p>
+<li><p>You pass it some function $f$ ($f$ takes a function as argument), and it returns another function, let’s call it $h$.</p></li>
+<li><p>$h$ (i.e., the return value of <code class="docutils literal notranslate"><span class="pre">apply_inside</span></code>) is defined as <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">g:</span> <span class="pre">f(lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y)</span></code>, and so it is a function:</p>
 <ul>
-<li><p>from a function <span class="math notranslate nohighlight">\(g\)</span></p></li>
-<li><p>to the result of calling <span class="math notranslate nohighlight">\(f\)</span> (the original argument) on <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y)</span></code></p></li>
+<li><p>from a function $g$</p></li>
+<li><p>to the result of calling $f$ (the original argument) on <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">y:</span> <span class="pre">g(g)(y)</span></code></p></li>
 </ul>
 </li>
 </ul>
@@ -1251,25 +1250,29 @@ document.write(`
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="first-homeworks-set">
+<section id="first-homeworks-set">
 <h1>First homeworks set<a class="headerlink" href="#first-homeworks-set" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Write a function to sum three numbers.</p></li>
-<li><p>Write a <span class="math notranslate nohighlight">\(\lambda\)</span> function to sum three numbers.</p></li>
-<li><p>Write a recursive function that calculates the factorial function for <span class="math notranslate nohighlight">\(n\)</span>, written <span class="math notranslate nohighlight">\(n!\)</span>, and defined as follows:</p></li>
+<li><p>Write a $\lambda$ function to sum three numbers.</p></li>
+<li><p>Write a recursive function that calculates the factorial function for $n$, written $n!$, and defined as follows:</p></li>
 </ul>
-<p>\begin{align}
-1! &amp;= 1 \
-n! &amp;= n \times (n-1)!
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-797a9dfd-9039-4a65-8585-2048d90454f3">
+<span class="eqno">(1)<a class="headerlink" href="#equation-797a9dfd-9039-4a65-8585-2048d90454f3" title="Permalink to this equation">#</a></span>\[\begin{align}
+    1! &amp;= 1 \\
+    n! &amp;= n \times (n-1)!
+\end{align}\]</div>
 <ul class="simple">
 <li><p>Write a recursive function <code class="docutils literal notranslate"><span class="pre">interpret</span></code> that takes a string that consists of a series of <code class="docutils literal notranslate"><span class="pre">¬</span></code> followed by a single <code class="docutils literal notranslate"><span class="pre">a</span></code> (<code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬¬a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬¬¬a</span></code>, etc) and is defined as follows:</p></li>
 </ul>
-<p>\begin{align}
-\text{interpret}(x) &amp;= 1                             &amp; \text{if } x = \text{‘a’} \
-&amp;= 1 - \text{interpret(x[1:])}   &amp; \text{else}
-\end{align}
-(do you see how this corresponds to the semantics of Boolean negation?)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a67dc8ad-bc6d-4d3c-bd14-4f436b34564b">
+<span class="eqno">(2)<a class="headerlink" href="#equation-a67dc8ad-bc6d-4d3c-bd14-4f436b34564b" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \text{interpret}(x) &amp;= 1                             &amp; \text{if } x = \text{'a'} \\
+                        &amp;= 1 - \text{interpret(x[1:])}   &amp; \text{else}
+\end{align}\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(do you see how this corresponds to the semantics of Boolean negation?)
+</pre></div>
+</div>
 <ul>
 <li><p>Rewrite the factorial function and <code class="docutils literal notranslate"><span class="pre">interpret</span></code> using <code class="docutils literal notranslate"><span class="pre">recursive_function</span></code> and <code class="docutils literal notranslate"><span class="pre">apply_inside</span></code> rather than explicit recursion.</p></li>
 <li><p>Make a scatterplot of the first 10 strings interpreted by <code class="docutils literal notranslate"><span class="pre">interpret</span></code>  (<code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬¬a</span></code>, <code class="docutils literal notranslate"><span class="pre">¬¬¬a</span></code>, etc): the x-axis shows the strings in order and the y-axis shows the result of <code class="docutils literal notranslate"><span class="pre">interpret</span></code> for the corresponding string.</p></li>
@@ -1374,7 +1377,7 @@ n! &amp;= n \times (n-1)!
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-function-definition-in-python">Standard function definition in python</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-a-function">Calling a function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-lambda-functions"><span class="math notranslate nohighlight">\(\lambda\)</span> (‘lambda’) functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-lambda-functions">$\lambda$ (‘lambda’) functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-functions">Recursive functions</a></li>
 </ul>
 </li>
