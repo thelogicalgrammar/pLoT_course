@@ -43,6 +43,14 @@ html:
   use_issues_button: true
   use_repository_button: true
 
+# don't forget to list any other extensions you want enabled,
+# including those that are enabled by default!
+parse:
+  myst_enable_extensions:
+    # allows us to use latex environments
+    - amsmath
+    - dollarmath
+
 # prevent jupyter-book from adding LOTlib3 to build_
 exclude_patterns: [
     LOTlib3, 
