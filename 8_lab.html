@@ -60,7 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '8_lab';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -489,7 +490,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="the-lotlib3-library">
+  <section class="tex2jax_ignore mathjax_ignore" id="the-lotlib3-library">
 <h1>The LOTlib3 library<a class="headerlink" href="#the-lotlib3-library" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p><strong><strong>NOTE</strong></strong> This is based on Piantadosi’s introduction to LOTlib3, which you can find <a class="reference external" href="https://github.com/piantado/LOTlib3/blob/master/Documentation/Tutorial.md">here</a>.</p>
@@ -526,18 +527,18 @@ document.write(`
 <li><p>division (/)</p></li>
 </ul>
 <p>We can use these primitives to define a simple CFG:
-$$
-S \to (S + S) \mid (S - S) \mid (S * S) \mid (S / S) \mid 1 \mid … \mid 10
-$$</p>
-<p>Each production of this CFG can be interpreted into a (rationa) number. The interpretation of this CFG is given by usual arithmetic. Note that it is possible to encode any number with an infinite variety of possible expressions in this CFG. For instance, 12 may be written as $(1+1) * 6$, or it may have been written as $1 + 11$, or $2 * 3 * 2$, etc.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1b544ae0-2a35-4f62-92ae-967325df610b">
-<span class="eqno">(4)<a class="headerlink" href="#equation-1b544ae0-2a35-4f62-92ae-967325df610b" title="Permalink to this equation">#</a></span>\[\begin{align}
+$<span class="math notranslate nohighlight">\(
+S \to (S + S) \mid (S - S) \mid (S * S) \mid (S / S) \mid 1 \mid ... \mid 10 
+\)</span>$</p>
+<p>Each production of this CFG can be interpreted into a (rationa) number. The interpretation of this CFG is given by usual arithmetic. Note that it is possible to encode any number with an infinite variety of possible expressions in this CFG. For instance, 12 may be written as <span class="math notranslate nohighlight">\((1+1) * 6\)</span>, or it may have been written as <span class="math notranslate nohighlight">\(1 + 11\)</span>, or <span class="math notranslate nohighlight">\(2 * 3 * 2\)</span>, etc.:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-449c3df8-5fb0-493d-9bd3-d5f6bdc6ff20">
+<span class="eqno">(4)<a class="headerlink" href="#equation-449c3df8-5fb0-493d-9bd3-d5f6bdc6ff20" title="Permalink to this equation">#</a></span>\[\begin{align}
 (1+1) * 6 &amp;= 12 \\
 12+(1-1+1-1+1-1+1-1+1-1+1-1+1-1+1-1) &amp;= 12
 \end{align}\]</div>
 <p>In order to transform this CFG into a PCFG, we need to assign a probability to each production rule. A natural way of doing it is as follows (with unnormalized probabilities):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3fea5c88-2d28-4a50-9547-261eaa0606d8">
-<span class="eqno">(5)<a class="headerlink" href="#equation-3fea5c88-2d28-4a50-9547-261eaa0606d8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-536c33db-9760-4724-b518-f7891dee52a7">
+<span class="eqno">(5)<a class="headerlink" href="#equation-536c33db-9760-4724-b518-f7891dee52a7" title="Permalink to this equation">#</a></span>\[\begin{align}
 (S + S) &amp; \to 1.0 &amp;\text{Operators get the same probability} \\
 (S - S) &amp; \to 1.0 \\
 (S * S) &amp; \to 1.0 \\
@@ -546,10 +547,10 @@ $$</p>
 &amp;... \\
 10 &amp; \to 10*\frac{1}{10^2} 
 \end{align}\]</div>
-<p>We use probability $\frac{1}{n^2}$ for numeral $n$ so that numerals referring to smaller numbers get a higher prior probability of appearing in a formula, but we also multiply all probabilities by 10 to increase the total probability of producing a numeral over the other productions.</p>
+<p>We use probability <span class="math notranslate nohighlight">\(\frac{1}{n^2}\)</span> for numeral <span class="math notranslate nohighlight">\(n\)</span> so that numerals referring to smaller numbers get a higher prior probability of appearing in a formula, but we also multiply all probabilities by 10 to increase the total probability of producing a numeral over the other productions.</p>
 <p>Here is a possible production from this grammar:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b730c169-e39e-414b-9c58-0566162469ec">
-<span class="eqno">(6)<a class="headerlink" href="#equation-b730c169-e39e-414b-9c58-0566162469ec" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-83b14eaa-b7dd-4f06-8c7a-84203edd5bbd">
+<span class="eqno">(6)<a class="headerlink" href="#equation-83b14eaa-b7dd-4f06-8c7a-84203edd5bbd" title="Permalink to this equation">#</a></span>\[\begin{align}
 S
 &amp;\to (S+S) \\
 &amp;\to ((S/S)+S) \\
@@ -564,15 +565,15 @@ S
 <p>And this expression evaluates to the number 3!</p>
 <p>This should all be familiar from previous classes. However, now we add something new, which is at the very core of the LoT project. Suppose you have the following problem: You observe a number, and you want to infer which formula in the PCFG above generated it. To address this problem, we will need to combine all the topics we have covered so far. The general plan is:</p>
 <ol class="arabic simple">
-<li><p>We define a PCFG, which gives us a prior probability $P(s)$ over productions $s$ from the CFG.</p></li>
-<li><p>We define a likelihood function $P(o \mid s)$, which gives us the probability of an observation (or set of observations) $o$ given a production $s$ from the PCFG.</p></li>
-<li><p>Given some data $o$, we run approximated Bayesian inference to find a posterior distribution $P(s \mid o)$.</p></li>
+<li><p>We define a PCFG, which gives us a prior probability <span class="math notranslate nohighlight">\(P(s)\)</span> over productions <span class="math notranslate nohighlight">\(s\)</span> from the CFG.</p></li>
+<li><p>We define a likelihood function <span class="math notranslate nohighlight">\(P(o \mid s)\)</span>, which gives us the probability of an observation (or set of observations) <span class="math notranslate nohighlight">\(o\)</span> given a production <span class="math notranslate nohighlight">\(s\)</span> from the PCFG.</p></li>
+<li><p>Given some data <span class="math notranslate nohighlight">\(o\)</span>, we run approximated Bayesian inference to find a posterior distribution <span class="math notranslate nohighlight">\(P(s \mid o)\)</span>.</p></li>
 </ol>
-<p>For instance, suppose you observe the single number 12. There are lots of ways (infinitely many) to generate 12.  Which one is correct?  Ay composition of addition, subtraction, multiplication, etc. that outputs a 12 would be <em>consistent</em> with the data. However, some seem more plausible than others. For instance it might be unlikely the 12 was generated as $12+(1-1+1-1+1-1+1-1)$ as it seems an unnecessarily complex way to arrive at 12.  LOTLib3 is designed to help you make sensible decisions about which compositions of functions likely explain a particular set of outputs or input-output pairs.</p>
+<p>For instance, suppose you observe the single number 12. There are lots of ways (infinitely many) to generate 12.  Which one is correct?  Ay composition of addition, subtraction, multiplication, etc. that outputs a 12 would be <em>consistent</em> with the data. However, some seem more plausible than others. For instance it might be unlikely the 12 was generated as <span class="math notranslate nohighlight">\(12+(1-1+1-1+1-1+1-1)\)</span> as it seems an unnecessarily complex way to arrive at 12.  LOTLib3 is designed to help you make sensible decisions about which compositions of functions likely explain a particular set of outputs or input-output pairs.</p>
 </section>
 <section id="defining-a-domain-grammar">
 <h3>Defining a domain grammar<a class="headerlink" href="#defining-a-domain-grammar" title="Permalink to this headline">#</a></h3>
-<p>The general strategy of LOTlib3 models is to start by specifying a probabilistic context-free grammar (with one small exception described below) that specifies a prior distribution on trees, or equivalently compositional structures like $(1+1)<em>6$, $2+2+2+2+2+2$, $(1+1)+(2</em>5)$, etc. We set the grammar up so that each production from it will be a valid Python expression, which can be interpreted automatically rather than manually.</p>
+<p>The general strategy of LOTlib3 models is to start by specifying a probabilistic context-free grammar (with one small exception described below) that specifies a prior distribution on trees, or equivalently compositional structures like <span class="math notranslate nohighlight">\((1+1)*6\)</span>, <span class="math notranslate nohighlight">\(2+2+2+2+2+2\)</span>, <span class="math notranslate nohighlight">\((1+1)+(2*5)\)</span>, etc. We set the grammar up so that each production from it will be a valid Python expression, which can be interpreted automatically rather than manually.</p>
 <p>Let’s see how to construct a simple example grammar step-by-step. First, we import the Grammar class:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -716,7 +717,7 @@ S
 </div>
 <p>There are a few things going on here. First, we import LOTHypothesis and use that to define the new class <code class="docutils literal notranslate"><span class="pre">MyHypothesis</span></code>. The <code class="docutils literal notranslate"><span class="pre">self</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">MyHypothesis</span></code> can be called like a function, and in a specific instantiation of <code class="docutils literal notranslate"><span class="pre">MyHypothesis</span></code> that function will be the interpreted hypothesis (more on this below).</p>
 <p>Then, we define the initializer <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, which calls the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> of the superclass <code class="docutils literal notranslate"><span class="pre">LOTHypothesis</span></code>. The <code class="docutils literal notranslate"><span class="pre">LOTHypothesis</span></code> init takes various arguments. First, a <code class="docutils literal notranslate"><span class="pre">grammar</span></code> argument to specify a Grammar object; in our case, we specify that the grammar we want is the one defined above, <code class="docutils literal notranslate"><span class="pre">grammar</span></code>. Then, the <code class="docutils literal notranslate"><span class="pre">display</span></code> argument, which allows us to specify how we want the Hypotheses to be displayed. When we convert the value of the hypothesis into a string, it will get substituted into the <code class="docutils literal notranslate"><span class="pre">display</span></code> keyword. Here, <code class="docutils literal notranslate"><span class="pre">display=&quot;lambda:</span> <span class="pre">%s&quot;</span></code> means that the hypothesis will be displayed and also evaled in python as appearing after a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> without any arguments.</p>
-<p>The second thing we have done when defining <code class="docutils literal notranslate"><span class="pre">MyHypothesis</span></code> is defining a method <code class="docutils literal notranslate"><span class="pre">compute_single_likelihood</span></code>. What does this function do, conceptually? It takes a single observation and returns the logarithm of the likelihood given the (currently considered) hypothesis: $P(\mathrm{observation} \mid \mathrm{hypothesis})$. We get to decide what the value of this probability is. Note that in general each production from our PCFG can encode a function. In that case the observations are (input, output) tuples, where the output is obtained by running the input through the (unknown) interpreted PCFG production. Therefore, in general we need the following components to write the likelihood function:</p>
+<p>The second thing we have done when defining <code class="docutils literal notranslate"><span class="pre">MyHypothesis</span></code> is defining a method <code class="docutils literal notranslate"><span class="pre">compute_single_likelihood</span></code>. What does this function do, conceptually? It takes a single observation and returns the logarithm of the likelihood given the (currently considered) hypothesis: <span class="math notranslate nohighlight">\(P(\mathrm{observation} \mid \mathrm{hypothesis})\)</span>. We get to decide what the value of this probability is. Note that in general each production from our PCFG can encode a function. In that case the observations are (input, output) tuples, where the output is obtained by running the input through the (unknown) interpreted PCFG production. Therefore, in general we need the following components to write the likelihood function:</p>
 <ul class="simple">
 <li><p>An observation, containing an input, an output, and whatever other parameters we need to calculate the likelihood.</p></li>
 <li><p>A way of calling the input on the currently entertained hypothesis.</p></li>
@@ -1112,7 +1113,7 @@ Interpretation:  12
 <section id="things-to-try-out">
 <h2>Things to try out<a class="headerlink" href="#things-to-try-out" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>What happens if we make the $\alpha$ higher or lower?</p></li>
+<li><p>What happens if we make the <span class="math notranslate nohighlight">\(\alpha\)</span> higher or lower?</p></li>
 <li><p>What happens to the inferred hypotheses if we add another datapoint with a different number?</p></li>
 <li><p>What happens if we decrease the prior weight of the numerals?</p></li>
 </ul>

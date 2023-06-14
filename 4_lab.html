@@ -60,6 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '4_lab';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -485,7 +487,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="formal-grammars">
+  <section class="tex2jax_ignore mathjax_ignore" id="formal-grammars">
 <h1>Formal Grammars<a class="headerlink" href="#formal-grammars" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -505,9 +507,9 @@ document.write(`
 <div><p><strong>NOTE</strong>: To see why we need to use lists as values rather than using a different key for each rule, try to repeat the same key more than once. What happens?</p>
 </div></blockquote>
 <p>For instance, let’s write the grammar with the following rules:
-$$
+$<span class="math notranslate nohighlight">\(
 S \rightarrow aS | bS | \epsilon
-$$</p>
+\)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span> <span class="o">=</span> <span class="p">{</span>
@@ -799,9 +801,9 @@ abba
 </div>
 <p>What happens when we increase…</p>
 <ul class="simple">
-<li><p>the probability of the rule $S \rightarrow aSa$?</p></li>
-<li><p>the probability of the rule $S \rightarrow bSb$?</p></li>
-<li><p>the probability of the rule $S \rightarrow \epsilon$?</p></li>
+<li><p>the probability of the rule <span class="math notranslate nohighlight">\(S \rightarrow aSa\)</span>?</p></li>
+<li><p>the probability of the rule <span class="math notranslate nohighlight">\(S \rightarrow bSb\)</span>?</p></li>
+<li><p>the probability of the rule <span class="math notranslate nohighlight">\(S \rightarrow \epsilon\)</span>?</p></li>
 </ul>
 </section>
 </section>

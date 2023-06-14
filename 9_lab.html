@@ -60,6 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '9_lab';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -488,7 +490,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="the-lotlib3-library-continued">
+  <section class="tex2jax_ignore mathjax_ignore" id="the-lotlib3-library-continued">
 <h1>The LOTlib3 library - continued<a class="headerlink" href="#the-lotlib3-library-continued" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p><strong><strong>NOTE</strong></strong> This is based on Piantadosi’s introduction to LOTlib3, which you can find <a class="reference external" href="https://github.com/piantado/LOTlib3/blob/master/Documentation/Tutorial.md">here</a>.</p>
@@ -823,7 +825,7 @@ plus_(1, 2)
 </div>
 </div>
 </div>
-<p>Very often, models in LOTlib3 approximate the full posterior distribution $P(H|D)$ using the highest posterior hypotheses. There are two main ways to do this. One is a class named <code class="docutils literal notranslate"><span class="pre">LOTlib3.TopN</span></code> which acts like a set–you can add to it, but it keeps only the ones with highest <code class="docutils literal notranslate"><span class="pre">posterior_score</span></code> (or whatever “key” is set). It will return them to you in a sorted order:</p>
+<p>Very often, models in LOTlib3 approximate the full posterior distribution <span class="math notranslate nohighlight">\(P(H|D)\)</span> using the highest posterior hypotheses. There are two main ways to do this. One is a class named <code class="docutils literal notranslate"><span class="pre">LOTlib3.TopN</span></code> which acts like a set–you can add to it, but it keeps only the ones with highest <code class="docutils literal notranslate"><span class="pre">posterior_score</span></code> (or whatever “key” is set). It will return them to you in a sorted order:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">LOTlib3.TopN</span> <span class="kn">import</span> <span class="n">TopN</span>
@@ -891,7 +893,7 @@ plus_(1, 2)
 </div>
 </div>
 </div>
-<p>Productions the results in the output 12 have high posterior scores and are in general among the best hypotheses.  However, some very simple and short programs like a single number output (like 0) might still appear among the “top” hypotheses. This is because the prior might make them still quite likely given the specified level of noise $\alpha$, i.e., the observation might have been a mistake. This shows the importance of thinking about the nature of your prior and the likelihood function for your problem.</p>
+<p>Productions the results in the output 12 have high posterior scores and are in general among the best hypotheses.  However, some very simple and short programs like a single number output (like 0) might still appear among the “top” hypotheses. This is because the prior might make them still quite likely given the specified level of noise <span class="math notranslate nohighlight">\(\alpha\)</span>, i.e., the observation might have been a mistake. This shows the importance of thinking about the nature of your prior and the likelihood function for your problem.</p>
 </section>
 <section id="hypotheses-as-functions">
 <h2>Hypotheses as functions<a class="headerlink" href="#hypotheses-as-functions" title="Permalink to this headline">#</a></h2>
