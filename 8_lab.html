@@ -680,7 +680,7 @@ S
 <p>Let’s look how this is done by defining a Hypothesis class <code class="docutils literal notranslate"><span class="pre">MyHypothesis</span></code> for the PCFG above:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">exp</span>
 <span class="kn">from</span> <span class="nn">LOTlib3.Hypotheses.LOTHypothesis</span> <span class="kn">import</span> <span class="n">LOTHypothesis</span>
 
 <span class="c1"># define a hypothesis</span>
@@ -759,10 +759,7 @@ S
 <p>Now we have a problem, namely, it can happen that the grammar generates an expression like <code class="docutils literal notranslate"><span class="pre">1/0</span></code>, with a zero in the demoninator. This will generate a divide by zero error when evaluated by the Python interpreter. How do we deal with this? Fortunately, we can hack our hypothesis class to address this by catching the exception. A smart way to do this is to override <code class="docutils literal notranslate"><span class="pre">__call__</span></code> and return an appropriate value when such an error occurs:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">exp</span>
-<span class="kn">from</span> <span class="nn">LOTlib3.Hypotheses.LOTHypothesis</span> <span class="kn">import</span> <span class="n">LOTHypothesis</span>
-
-<span class="k">class</span> <span class="nc">MyHypothesis</span><span class="p">(</span><span class="n">LOTHypothesis</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyHypothesis</span><span class="p">(</span><span class="n">LOTHypothesis</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">LOTHypothesis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grammar</span><span class="o">=</span><span class="n">grammar</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="s2">&quot;lambda: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
