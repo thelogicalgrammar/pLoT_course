@@ -531,14 +531,14 @@ $<span class="math notranslate nohighlight">\(
 S \to (S + S) \mid (S - S) \mid (S * S) \mid (S / S) \mid 1 \mid ... \mid 10 
 \)</span>$</p>
 <p>Each production of this CFG can be interpreted into a (rationa) number. The interpretation of this CFG is given by usual arithmetic. Note that it is possible to encode any number with an infinite variety of possible expressions in this CFG. For instance, 12 may be written as <span class="math notranslate nohighlight">\((1+1) * 6\)</span>, or it may have been written as <span class="math notranslate nohighlight">\(1 + 11\)</span>, or <span class="math notranslate nohighlight">\(2 * 3 * 2\)</span>, etc.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-449c3df8-5fb0-493d-9bd3-d5f6bdc6ff20">
-<span class="eqno">(4)<a class="headerlink" href="#equation-449c3df8-5fb0-493d-9bd3-d5f6bdc6ff20" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b4b9b3f3-c595-4e9b-907a-05ccba85ed0f">
+<span class="eqno">(4)<a class="headerlink" href="#equation-b4b9b3f3-c595-4e9b-907a-05ccba85ed0f" title="Permalink to this equation">#</a></span>\[\begin{align}
 (1+1) * 6 &amp;= 12 \\
 12+(1-1+1-1+1-1+1-1+1-1+1-1+1-1+1-1) &amp;= 12
 \end{align}\]</div>
 <p>In order to transform this CFG into a PCFG, we need to assign a probability to each production rule. A natural way of doing it is as follows (with unnormalized probabilities):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-536c33db-9760-4724-b518-f7891dee52a7">
-<span class="eqno">(5)<a class="headerlink" href="#equation-536c33db-9760-4724-b518-f7891dee52a7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-48b1faa8-48a5-45e2-bd59-8a8a864d8300">
+<span class="eqno">(5)<a class="headerlink" href="#equation-48b1faa8-48a5-45e2-bd59-8a8a864d8300" title="Permalink to this equation">#</a></span>\[\begin{align}
 (S + S) &amp; \to 1.0 &amp;\text{Operators get the same probability} \\
 (S - S) &amp; \to 1.0 \\
 (S * S) &amp; \to 1.0 \\
@@ -549,8 +549,8 @@ S \to (S + S) \mid (S - S) \mid (S * S) \mid (S / S) \mid 1 \mid ... \mid 10
 \end{align}\]</div>
 <p>We use probability <span class="math notranslate nohighlight">\(\frac{1}{n^2}\)</span> for numeral <span class="math notranslate nohighlight">\(n\)</span> so that numerals referring to smaller numbers get a higher prior probability of appearing in a formula, but we also multiply all probabilities by 10 to increase the total probability of producing a numeral over the other productions.</p>
 <p>Here is a possible production from this grammar:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83b14eaa-b7dd-4f06-8c7a-84203edd5bbd">
-<span class="eqno">(6)<a class="headerlink" href="#equation-83b14eaa-b7dd-4f06-8c7a-84203edd5bbd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bb9b2652-3dd1-427f-ba3b-e0f79e475fcd">
+<span class="eqno">(6)<a class="headerlink" href="#equation-bb9b2652-3dd1-427f-ba3b-e0f79e475fcd" title="Permalink to this equation">#</a></span>\[\begin{align}
 S
 &amp;\to (S+S) \\
 &amp;\to ((S/S)+S) \\
@@ -631,23 +631,35 @@ S
 <p>We can see some productions from this grammar if we call <code class="docutils literal notranslate"><span class="pre">Grammar.generate</span></code>. We will also show the probability of this tree according to the grammar, which is computed by renormalizing the <code class="docutils literal notranslate"><span class="pre">&lt;PROBABILITY&gt;</span></code> values of each rule when expanding each nonterminal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">log_probability</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3.8814440645728694 5
--0.6625682397046684 1
--2.048862600824559 2
--19.92698669181795 (3 * (-(float(1) / float((5 + 1)))))
--0.6625682397046684 1
--3.43515696194445 4
--2.048862600824559 2
--3.6277215724033827 (-1)
--0.6625682397046684 1
--0.6625682397046684 1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1 + (1 + 3))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">log_probability</span><span class="p">(</span><span class="n">t</span><span class="p">)),</span> <span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5155256394530384 1
+0.5155256394530384 1
+0.0008563096262227385 (1 * 4)
+0.026576668493346407 (-1)
+0.0005480381607825527 (float(1) / float(5))
+0.026576668493346407 (-1)
+0.5155256394530384 1
+0.12888140986325958 2
+0.5155256394530384 1
+0.5155256394530384 1
 </pre></div>
 </div>
 </div>
@@ -685,8 +697,13 @@ S
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">exp</span>
 <span class="kn">from</span> <span class="nn">LOTlib3.Hypotheses.LOTHypothesis</span> <span class="kn">import</span> <span class="n">LOTHypothesis</span>
-
-<span class="c1"># define a hypothesis</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a hypothesis</span>
 <span class="k">class</span> <span class="nc">MyHypothesis</span><span class="p">(</span><span class="n">LOTHypothesis</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -802,7 +819,7 @@ S
         <span class="c1"># the probability of </span>
         <span class="c1"># observing the true number</span>
         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.999</span>
-    <span class="p">)</span> 
+    <span class="p">)</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -821,7 +838,7 @@ S
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-14.800602876662946 -9.210340371976182 lambda: (0 + (4 + (0 + 0)))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.6677102532589441 -11.512925464970227 lambda: 0
 </pre></div>
 </div>
 </div>
@@ -991,60 +1008,71 @@ Interpretation:            0
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Count:          &#39;</span><span class="p">,</span> <span class="n">count</span><span class="p">[</span><span class="n">h</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Posterior:      &#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">posterior_score</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hypothesis:     &#39;</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Prior:          &#39;</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">prior</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Interpretation: &#39;</span><span class="p">,</span> <span class="n">h</span><span class="p">())</span>
     <span class="nb">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Count:           886
-Posterior:       8.863300048096163e-07
-Hypothesis:      lambda: ((4 + 0) * 3)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Count:           848
+Posterior:       8.039274420041883e-07
+Hypothesis:      lambda: (6 * (0 + 2))
+Prior:           -14.032766327729657
 Interpretation:  12
 
-Count:           1140
-Posterior:       2.2158250120240445e-07
-Hypothesis:      lambda: (3 + (9 + 0))
-Interpretation:  12
-
-Count:           1189
-Posterior:       6.655737304579818e-06
-Hypothesis:      lambda: (4 + 8)
-Interpretation:  12
-
-Count:           1299
-Posterior:       8.863300048096163e-07
-Hypothesis:      lambda: ((0 + 4) * 3)
-Interpretation:  12
-
-Count:           1547
+Count:           891
 Posterior:       1.2822040082201285e-06
 Hypothesis:      lambda: 1
+Prior:           -2.054004614378835
 Interpretation:  1
 
-Count:           6172
+Count:           1852
+Posterior:       2.0098186050104705e-07
+Hypothesis:      lambda: ((float(6) / float(1)) * 2)
+Prior:           -15.419060688849548
+Interpretation:  12.0
+
+Count:           2025
+Posterior:       8.039274420041883e-07
+Hypothesis:      lambda: ((0 + 6) * 2)
+Prior:           -14.032766327729657
+Interpretation:  12
+
+Count:           2092
+Posterior:       2.7355864345975786e-07
+Hypothesis:      lambda: ((1 + 5) * 2)
+Prior:           -15.110759329195034
+Interpretation:  12
+
+Count:           2765
+Posterior:       8.039274420041883e-07
+Hypothesis:      lambda: (6 * (2 + 0))
+Prior:           -14.032766327729657
+Interpretation:  12
+
+Count:           3671
 Posterior:       5.128816032880515e-06
 Hypothesis:      lambda: 0
+Prior:           -0.6677102532589441
 Interpretation:  0
 
-Count:           7500
-Posterior:       3.36946701044353e-05
-Hypothesis:      lambda: (3 * 4)
+Count:           4181
+Posterior:       8.039274420041883e-07
+Hypothesis:      lambda: (0 + (6 * 2))
+Prior:           -14.032766327729657
 Interpretation:  12
 
-Count:           13781
+Count:           5260
+Posterior:       2.0098186050104705e-07
+Hypothesis:      lambda: (float(6) / float((float(1) / float(2))))
+Prior:           -15.419060688849548
+Interpretation:  12.0
+
+Count:           59294
 Posterior:       3.056205905164204e-05
 Hypothesis:      lambda: (6 * 2)
-Interpretation:  12
-
-Count:           19710
-Posterior:       8.423667526108823e-06
-Hypothesis:      lambda: (3 + 9)
-Interpretation:  12
-
-Count:           27273
-Posterior:       3.36946701044353e-05
-Hypothesis:      lambda: (4 * 3)
+Prior:           -10.394760728217724
 Interpretation:  12
 </pre></div>
 </div>
