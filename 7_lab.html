@@ -946,8 +946,8 @@ S \rightarrow a | b | Sa | Sb
 <li><p>Complete <span class="math notranslate nohighlight">\(y\)</span> with the PCFG, obtaining new sentence <span class="math notranslate nohighlight">\(x'\)</span>.</p></li>
 <li><p>The acceptance probability from <code class="docutils literal notranslate"><span class="pre">mcmc</span></code> then gets additionally multiplied by:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-7b20bb5e-e4bb-4358-a5ad-489ffb063e7d">
-<span class="eqno">(3)<a class="headerlink" href="#equation-7b20bb5e-e4bb-4358-a5ad-489ffb063e7d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c56fede5-c985-45d1-9424-7c8ad68c765a">
+<span class="eqno">(3)<a class="headerlink" href="#equation-c56fede5-c985-45d1-9424-7c8ad68c765a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{p(x' \rightarrow x)}{p(x \rightarrow x')} 
 &amp;= 
 \frac{ P(\text{sampling node $n$ from $x'$}) }{ P(\text{sampling node $n$ from $x'$}) } 
@@ -959,7 +959,7 @@ S \rightarrow a | b | Sa | Sb
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transition_f</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">current</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">truncated</span> <span class="o">=</span> <span class="s1">&#39;S&#39;</span> <span class="o">+</span> <span class="n">current</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>
+    <span class="n">truncated</span> <span class="o">=</span> <span class="s1">&#39;S&#39;</span> <span class="o">+</span> <span class="n">current</span><span class="p">[</span><span class="n">n</span><span class="p">:]</span>
     <span class="k">return</span> <span class="n">complete</span><span class="p">(</span><span class="n">truncated</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -973,7 +973,7 @@ S \rightarrow a | b | Sa | Sb
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;baaa&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;bbaba&#39;
 </pre></div>
 </div>
 </div>
@@ -1033,7 +1033,7 @@ S \rightarrow a | b | Sa | Sb
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span> <span class="o">=</span> <span class="n">mcmc</span><span class="p">(</span>
-    <span class="mi">100000</span><span class="p">,</span>
+    <span class="mi">500000</span><span class="p">,</span>
     <span class="n">define_unnorm_posterior</span><span class="p">(</span><span class="n">observations</span><span class="p">),</span>
     <span class="n">transition_f</span><span class="p">,</span>
     <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;a&#39;</span>
@@ -1057,7 +1057,7 @@ S \rightarrow a | b | Sa | Sb
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0d7051240123592cc807280eb109b9b361a1f61dded4aeab459930ed206c11e7.png" src="_images/0d7051240123592cc807280eb109b9b361a1f61dded4aeab459930ed206c11e7.png" />
+<img alt="_images/6fcd78d4a833766ef99ad7769b578fac5c75496248b56ee178ca1fb0950860d0.png" src="_images/6fcd78d4a833766ef99ad7769b578fac5c75496248b56ee178ca1fb0950860d0.png" />
 </div>
 </div>
 <p>Various things to be noticed:</p>

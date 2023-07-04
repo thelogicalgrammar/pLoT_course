@@ -531,14 +531,14 @@ $<span class="math notranslate nohighlight">\(
 S \to (S + S) \mid (S - S) \mid (S * S) \mid (S / S) \mid 1 \mid ... \mid 10 
 \)</span>$</p>
 <p>Each production of this CFG can be interpreted into a (rationa) number. The interpretation of this CFG is given by usual arithmetic. Note that it is possible to encode any number with an infinite variety of possible expressions in this CFG. For instance, 12 may be written as <span class="math notranslate nohighlight">\((1+1) * 6\)</span>, or it may have been written as <span class="math notranslate nohighlight">\(1 + 11\)</span>, or <span class="math notranslate nohighlight">\(2 * 3 * 2\)</span>, etc.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b4b9b3f3-c595-4e9b-907a-05ccba85ed0f">
-<span class="eqno">(4)<a class="headerlink" href="#equation-b4b9b3f3-c595-4e9b-907a-05ccba85ed0f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-72a710f9-d464-4f22-941d-d0ab5d148938">
+<span class="eqno">(4)<a class="headerlink" href="#equation-72a710f9-d464-4f22-941d-d0ab5d148938" title="Permalink to this equation">#</a></span>\[\begin{align}
 (1+1) * 6 &amp;= 12 \\
 12+(1-1+1-1+1-1+1-1+1-1+1-1+1-1+1-1) &amp;= 12
 \end{align}\]</div>
 <p>In order to transform this CFG into a PCFG, we need to assign a probability to each production rule. A natural way of doing it is as follows (with unnormalized probabilities):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-48b1faa8-48a5-45e2-bd59-8a8a864d8300">
-<span class="eqno">(5)<a class="headerlink" href="#equation-48b1faa8-48a5-45e2-bd59-8a8a864d8300" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-38552c4b-7520-4532-af9a-bc6cf6410256">
+<span class="eqno">(5)<a class="headerlink" href="#equation-38552c4b-7520-4532-af9a-bc6cf6410256" title="Permalink to this equation">#</a></span>\[\begin{align}
 (S + S) &amp; \to 1.0 &amp;\text{Operators get the same probability} \\
 (S - S) &amp; \to 1.0 \\
 (S * S) &amp; \to 1.0 \\
@@ -549,8 +549,8 @@ S \to (S + S) \mid (S - S) \mid (S * S) \mid (S / S) \mid 1 \mid ... \mid 10
 \end{align}\]</div>
 <p>We use probability <span class="math notranslate nohighlight">\(\frac{1}{n^2}\)</span> for numeral <span class="math notranslate nohighlight">\(n\)</span> so that numerals referring to smaller numbers get a higher prior probability of appearing in a formula, but we also multiply all probabilities by 10 to increase the total probability of producing a numeral over the other productions.</p>
 <p>Here is a possible production from this grammar:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bb9b2652-3dd1-427f-ba3b-e0f79e475fcd">
-<span class="eqno">(6)<a class="headerlink" href="#equation-bb9b2652-3dd1-427f-ba3b-e0f79e475fcd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-de65a9cd-52ae-498e-82f0-c7fdc989b5c4">
+<span class="eqno">(6)<a class="headerlink" href="#equation-de65a9cd-52ae-498e-82f0-c7fdc989b5c4" title="Permalink to this equation">#</a></span>\[\begin{align}
 S
 &amp;\to (S+S) \\
 &amp;\to ((S/S)+S) \\
